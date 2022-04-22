@@ -1,0 +1,68 @@
+<ion-header class="osahan-nav">
+  <ion-toolbar>
+     <ion-buttons slot="start">
+        <ion-menu-button class="back-icon-color"></ion-menu-button>
+     </ion-buttons>
+     <ion-label class="title">ລາຍການຊື້ຂອງຂ້ອຍ</ion-label>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar placeholder="Search Bill"></ion-searchbar>
+
+  <ion-card>
+    <ion-item class="b-bottom" lines="none">
+      <div class="img">
+        <img width="80px" height="80px" src="../../assets/icon/shoe.jpg">
+      </div>
+      <ion-label class="title">Manee Store - jacket <p>L3,000</p> <p>Order ID : <ion-text>od123</ion-text></p></ion-label>
+    </ion-item>
+    <ion-item class="b-bottom" lines="none"> 
+      <ion-label color="danger">Order Cancelled</ion-label>
+      <ion-icon color="danger" name="close-circle-outline"></ion-icon>
+    </ion-item>
+
+    <ion-item  lines="none">
+      <ion-label>Original Payable amount</ion-label>
+      <ion-label slot="end">$233,00</ion-label>
+    </ion-item> 
+
+    <ion-item lines="none">
+      <ion-label>Final paid amount</ion-label>
+      <ion-label slot="end">$00,00</ion-label>
+    </ion-item>
+
+    <ion-button class="bbutton" (click)="onClick()" expand="block">
+      ລາຍລະອຽດ
+    </ion-button>
+  </ion-card>
+
+
+
+  <ion-card>
+    <ion-item class="b-bottom" lines="none">
+      <div class="img">
+        <img width="80px" height="80px" src="../../assets/icon/shoe.jpg">
+      </div>
+      <ion-label class="title">Manee Store - jacket <p>L3,000</p> <p>Order ID : <ion-text>od123</ion-text></p></ion-label>
+    </ion-item>
+    <ion-item class="b-bottom" lines="none"> 
+      <ion-label color="success">Order Cancelled</ion-label>
+      <ion-icon color="success" name="checkmark-circle-outline"></ion-icon>
+    </ion-item>
+
+    <ion-item  lines="none">
+      <ion-label>Original Payable amount</ion-label>
+      <ion-label slot="end">$233,00</ion-label>
+    </ion-item> 
+
+    <ion-item lines="none">
+      <ion-label>Final paid amount</ion-label>
+      <ion-label slot="end">$00,00</ion-label>
+    </ion-item>
+
+    <ion-button class="bbutton" (click)="onClick()" expand="block">
+      ລາຍລະອຽດ
+    </ion-button>
+  </ion-card>
+</ion-content>

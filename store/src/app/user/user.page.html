@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-item>
+    <ion-label align="center">ຂໍ້ມູນສ່ວນຕົວ</ion-label>
+  </ion-item>
+</ion-header>
+
+<ion-content>
+  <ion-item lines="none">
+    <ion-label color="primary">ບັນຊີ</ion-label>
+  </ion-item>
+  <ion-item lines="none" (click)="loadgprofile()">
+    <ion-icon class="person" name="person"></ion-icon>
+    <ion-label>ຂໍ້ມູນສ່ວນຕົວ</ion-label>
+    <ion-icon name="chevron-forward"></ion-icon>
+  </ion-item>
+  <ion-item lines="none" (click)="MyfavoritesPost()">
+    <ion-icon class="person" name="heart"></ion-icon>
+    <ion-label>ໂຄສະນາທີ່ຖືກໃຈ</ion-label>
+    <ion-icon name="chevron-forward"></ion-icon>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-label color="primary" class="more">ເພີ່ມເຕີມ</ion-label>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-label>ພາສາ</ion-label>
+    <ion-icon name="earth"></ion-icon>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-label>ໃຫ້ຄະແນນພວກເຮົາ</ion-label>
+    <ion-icon name="star"></ion-icon>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-label>ກ່ຽວກັບພວກເຮົາ</ion-label>
+    <ion-icon name="information"></ion-icon>
+  </ion-item>
+  <ion-item>
+    <ion-label>ຕິດຕໍ່ພວກເຮົາ</ion-label>
+    <ion-icon name="mail"></ion-icon>
+  </ion-item>
+  
+    <ion-button color="danger" (click)="logout()" expand="block" fill="clear" shape="round">
+      ອອກຈາກແອັບ
+    </ion-button>
+</ion-content>

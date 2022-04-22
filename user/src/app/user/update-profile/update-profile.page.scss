@@ -1,0 +1,125 @@
+// .position {
+//     position: absolute;
+//     font-size: 10px;
+//     height: 30px;
+//     left: 300px;
+//     top: 270px;
+//     z-index: 10;
+//   }
+//   .positionAddress{
+//     position: absolute;
+//     font-size: 10px;
+//     height: 30px;
+//     left: 300px;
+//     top: 300px;
+//     z-index: 15;
+//   }
+// .input {
+//     background-color: rgb(236, 236, 236);
+//     // background-color: rgb(212, 236, 176);
+//     padding-top: 10px;
+//     color: black;
+//     border-radius: 10px;
+//     margin-bottom: 15px;
+//     margin-top: 5px;
+//   }
+// .icon-position{
+//     position: absolute;
+//     left: 210px;
+//     top: 140px;
+//     z-index: 10;
+//     color: whitesmoke;
+//     background-color: rgb(255, 255, 255);
+//     border-radius:20px;
+// }
+
+// .background{
+//     position: relative;
+// }
+// .profile{
+//     //  position: absolute;
+//     //  left: 100px;
+//     //  top: 60px;
+//     margin-left: 25%;
+//      border-radius: 80px;
+//     z-index: 10;
+//     // border-color: black;
+//     // border-width: 50px;
+// }
+// ion-icon{
+//     border-color: rgb(12, 12, 12) !important;
+// }
+// .countDescription{
+//     position: absolute;
+//     left: 270px;
+//     top:60px
+// }
+// .name{
+//     margin-top: 10px;
+// }
+// .in {
+//     // background-color: rgb(212, 236, 176);
+//     background-color: rgb(236, 236, 236);
+//     padding: 10px 10px 10px 10px;
+//     border-radius: 10px;
+//     margin-bottom: 15px;
+//     margin-top: 5px;
+//     width: 100%;
+//     min-height: 50px;
+//     height: auto;
+//     outline: none;
+//   }
+
+//   // [contenteditable] {
+//   //   outline: 0px solid transparent;
+//   // }
+//   [contentEditable=true]:empty:before{
+//     content:attr(data-text);
+//     color:gray;
+//   }
+//   .setmargin{
+//     margin-top: 20px;
+//     margin-bottom: 5px;
+//   }
+// //   input[type="text"]::placeholder {  
+                  
+// //     /* Firefox, Chrome, Opera */ 
+// //     padding-left: 20px; 
+// // } 
+// /*Must include type="text" in HTML*/
+
+// // ion-input{
+// //   --padding-end: 50px; 
+// // }
+
+
+
+
+
+// .body{
+//   --background:#E2E2E2 ;
+// }
+// .body1{
+//   --background:#773535 ;
+// }
+
+// ion-input:focus{
+//   border: solid #3880FF !important;
+// }
+// ion-item:focus {
+//   --border-color: var(--ion-color-danger, #f1453d);
+// }
+ion-input:focus{
+  --outline: 2px solid orange;     /* oranges! yey */
+}
+.icon{
+  font-size: xx-large;
+}
+.back-icon{
+  font-size: x-large;
+}
+.card-title{
+  font-size: larger;
+  font-weight: bold;
+}
+

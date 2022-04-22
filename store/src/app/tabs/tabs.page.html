@@ -1,0 +1,48 @@
+
+<ion-tabs  #tabs (ionTabsDidChange)="setCurrentTab($event)">
+
+  <ion-fab (click)="gohome()"  vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button >
+      <ion-icon name="home"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+
+
+  <ion-tab-bar  slot="bottom" >
+
+    <ion-tab-button tab="store-list">
+      <ion-icon name="storefront"></ion-icon>
+      <!-- <ion-label>ຮ້ານຄ້າ</ion-label> -->
+      <ion-label *ngIf="selectTab == 'store-list'">ຮ້ານຄ້າ</ion-label>
+    </ion-tab-button>
+
+
+    <ion-tab-button tab="tab2">
+      <ion-icon name="heart"></ion-icon>
+      <!-- <ion-label class="fontsize" >ຖືກໃຈ</ion-label> -->
+      <ion-badge color="danger" mode="md">2</ion-badge>
+      <ion-label *ngIf="selectTab == 'tab2'">ຖືກໃຈ</ion-label>
+    </ion-tab-button>
+    <ion-tab-button></ion-tab-button>
+   
+
+    <ion-tab-button tab="cart">
+      <ion-icon name="cart"></ion-icon>
+      <ion-badge color="danger" mode="md">2</ion-badge>
+      <!-- <ion-label >ກະຕ່າ</ion-label> -->
+      <ion-label *ngIf="selectTab == 'cart'">ກະຕ່າ</ion-label>
+    </ion-tab-button>
+
+   
+    <ion-tab-button tab="user">
+      <ion-icon name="person"></ion-icon>
+      <!-- <ion-label >ຂໍ້ມູນສ່ວນຕົວ</ion-label> -->
+      <ion-label *ngIf="selectTab == 'user'">ຂໍ້ມູນສ່ວນຕົວ</ion-label>
+
+    </ion-tab-button>
+
+  </ion-tab-bar>
+  
+</ion-tabs>
+

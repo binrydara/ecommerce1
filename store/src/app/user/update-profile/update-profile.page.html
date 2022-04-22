@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-item>
+    <ion-icon (click)="dismiss()" name="arrow-back"></ion-icon>
+    <ion-label align="center">ແກ້ໄຂຂໍ້ມູນສ່ວນຕົວ</ion-label>
+    <ion-icon></ion-icon>
+  </ion-item>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div class="name">
+    <ion-label>ຊື່ ແລະ ນາມສະກຸນ<ion-text color="danger">
+      *
+    </ion-text></ion-label>
+    <ion-input multiple="true " maxlength="27" class="input" type="text" [(ngModel)]="name" placeholder="ປ້ອນຊື່ຂອງເຈົ້າ" required></ion-input>
+  </div>
+
+
+  <div class="setmargin">
+    <ion-label>ເບີໂທຕິດຕໍ່</ion-label>
+  </div>
+  
+  <ion-input  maxlength="15" class="input" type="tel" [(ngModel)]="phoneNumber" placeholder="ປ້ອນເບີໂທ"></ion-input>
+
+      <ion-label position="floating" >ແຂວງ</ion-label>
+        <ion-select class="input"  [(ngModel)]="pr_id" placeholder="ເລືອກແຂວງ" (ionChange)="loaddistrict($event)">
+          <ion-select-option *ngFor="let i of province_list" value="{{i.pr_id}},{{i.pr_name}}">{{i.pr_name}}</ion-select-option>
+        </ion-select>
+
+      <div *ngIf="pr_id">
+        <ion-label>ເມືອງ</ion-label>
+        <ion-select class="input" [(ngModel)]="dr_id" placeholder="ເລືອກເມືອງ" (ionChange)="loadvillage($event)" >
+          <ion-select-option *ngFor="let i of district_list" value="{{i.dr_id}},{{i.dr_name}}">{{i.dr_name}}</ion-select-option>
+        </ion-select>
+      </div>
+  
+      <div *ngIf="dr_id">
+          <ion-label>ບ້ານ</ion-label>
+            <ion-select class="input" [(ngModel)]="vill_name"  placeholder="ເລືອກບ້ານ">
+              <ion-select-option *ngFor="let i of village_list" value="{{i.vill_name}}">{{i.vill_name}}</ion-select-option>
+            </ion-select>
+      </div>
+
+</ion-content>
+
+
+<ion-footer>
+  <ion-item lines="none">
+    <ion-button size="larg" slot="end" (click)="update()"   shape="round">
+      ແກ້ໄຂ
+    </ion-button>
+   
+    <ion-button size="larg" color="danger" (click)="clear()"   shape="round">
+      ລ້າງຂໍ້ມູນທັງໝົດ
+    </ion-button>
+  </ion-item>
+</ion-footer>

@@ -1,0 +1,22 @@
+<ion-content>
+  <ion-row >
+    <ion-col>
+     <ion-input class="x" #otp1 required="true" maxLength="1" [(ngModel)]="OTP.first" (keyup)="otpController($event,otp2,'')">
+     </ion-input>
+     <ion-input class="x" #otp2 required="true" maxLength="1" [(ngModel)]="OTP.second" (keyup)="otpController($event,otp3,otp1)">
+     </ion-input>
+     <ion-input class="x" #otp3 required="true" maxLength="1" [(ngModel)]="OTP.third"  (keyup)="otpController($event,otp4,otp2)">
+     </ion-input>
+
+     <ion-input class="x" #otp4 required="true" maxLength="1" [(ngModel)]="OTP.forth"  (keyup)="otpController($event,otp5,otp3)">
+    </ion-input>
+
+    <ion-input class="x" #otp5  required="true" maxLength="1" [(ngModel)]="OTP.fifth" (keyup)="otpController($event,otp6,otp4)">
+    </ion-input>
+
+    <ion-input class="x" #otp6  required="true" maxLength="1" [(ngModel)]="OTP.sixth" (keyup)="otpController($event,'',otp5)">
+    </ion-input>
+
+    </ion-col>
+  </ion-row>
+</ion-content>

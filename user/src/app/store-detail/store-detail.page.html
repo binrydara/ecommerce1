@@ -1,0 +1,74 @@
+<!-- <ion-header class="osahan-nav">
+  <ion-toolbar>
+     <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+     </ion-buttons>
+     <ion-label class="title">ກະເປົາເງິນຂອງຂ້ອຍ</ion-label>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12" size-md="6" size-lg="6">
+        <img src="../../assets/icon/store.png" alt="">
+      </ion-col>
+      <ion-col size="12" size-md="6" size-lg="6">
+              <ion-item (click)="goto_detail()" class="b-bottom" lines="none">
+                <div class="img">
+                  <img width="80px" height="80px" src="../../assets/icon/store.png">
+                </div>
+                <ion-label class="title">Manee Store <p>House: 00, Road: 00, City-0000, Country</p>
+                <ion-label class="margin-left" >
+                  <ion-icon color="warning" slot="start" name="star"></ion-icon>
+                  <ion-icon color="warning" slot="start" name="star"></ion-icon>
+                  <ion-icon color="warning" slot="start" name="star"></ion-icon>
+                  <ion-icon color="warning" slot="start" name="star"></ion-icon>
+                  <ion-icon color="warning" slot="start" name="star"></ion-icon>
+                </ion-label>
+                </ion-label>
+
+                <ion-icon color="danger" slot="end" name="heart"></ion-icon>
+              </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+          <ion-segment scrollable  [(ngModel)]="selectTabs">
+              <ion-segment-button value="seg1">
+                <ion-label>category1</ion-label>
+              </ion-segment-button>
+              <ion-segment-button value="seg2">
+                <ion-label>category2</ion-label>
+              </ion-segment-button>
+              <ion-segment-button value="seg3">
+                <ion-label>category3</ion-label>
+              </ion-segment-button>
+              <ion-segment-button value="seg4">
+                <ion-label>category4</ion-label>
+              </ion-segment-button>
+              <ion-segment-button value="seg5">
+                <ion-label>category5</ion-label>
+              </ion-segment-button>
+          </ion-segment>
+  
+
+          <div *ngIf="selectTabs == 'seg1'">
+            <h1>segment1</h1>
+          </div>
+          <div *ngIf="selectTabs == 'seg2'">
+            <h1>segment2</h1>
+          </div>
+          <div *ngIf="selectTabs == 'seg3'">
+            <h1>segment3</h1>
+          </div>
+          <div *ngIf="selectTabs == 'seg4'">
+            <h1>segment4</h1>
+          </div>
+          <div *ngIf="selectTabs == 'seg5'">
+            <h1>segment5</h1>
+          </div>
+        
+</ion-content>

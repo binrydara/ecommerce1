@@ -1,0 +1,62 @@
+<!-- <ion-header class="header">
+  <ion-item class="header" lines="none">
+    <ion-label color="light" align="center">ກະຕ່າຂອງຂ້ອຍ</ion-label>
+  </ion-item>
+</ion-header> -->
+
+<ion-header class="osahan-nav">
+  <ion-toolbar>
+     <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+     </ion-buttons>
+     <ion-label class="title">ກະຕ່າຂອງຂ້ອຍ</ion-label>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list >
+    
+    <ion-item-sliding *ngFor="let i of test ; let j = index"> 
+
+  <ion-item class="ion-no-padding">
+      <img style="margin: 5px 10px;border-radius: 5px;" width="90px" height="90px" [src]="i.pic" />
+    <ion-label class="margin-left">
+      
+          <ion-label style="font-size: 20px;">{{i.name}}</ion-label>
+     
+      <p>₭{{i.price}}</p>
+
+      <ion-buttons>
+      <ion-button (click)="onClick()">
+        <ion-icon class="btn-color" slot="icon-only" name="remove"></ion-icon>
+      </ion-button>
+      <ion-label >100</ion-label>
+      <ion-button  (click)="onClick()">
+        <ion-icon class="btn-color" slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    </ion-label>
+
+  </ion-item>
+
+<ion-item-options side="end">
+  <ion-item-option color="danger">ລົບ</ion-item-option>
+</ion-item-options>
+
+</ion-item-sliding>
+</ion-list>
+
+</ion-content>
+
+<ion-footer style="border-top: 3px solid #3880ff;">
+  <ion-item  lines="none">
+    <ion-label>ລວມລາຄາ : <ion-text color="success">
+      <h1>₭1.500.000</h1>
+    </ion-text>​</ion-label>
+  <ion-button size="larg" (click)="onClick()" expand="block"  >
+    ສັ່ງຊື້ສິນຄ້າ
+  </ion-button>
+  </ion-item>
+
+</ion-footer>

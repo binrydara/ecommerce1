@@ -1,0 +1,190 @@
+<!-- <ion-header>
+  <ion-item>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-label>ລາຍລະອຽດສິນຄ້າ</ion-label>
+    <ion-buttons slot="start">
+      <ion-button >
+      </ion-button>
+    </ion-buttons>
+  </ion-item>
+</ion-header> -->
+
+<ion-header class="osahan-nav">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <!-- defaultHref="tabs/home" -->
+      <ion-back-button class="back-icon-color"></ion-back-button>
+    </ion-buttons>
+     <ion-label class="title">ລາຍລະອຽດສິນຄ້າ</ion-label>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-row>
+    <ion-col class="ion-no-padding" size="12" size-sm="6" size-md="6">
+      <div class="pic">
+        <!-- style="max-width: 400px;" -->
+        <img  width="100%" height="300px" [src]="pic" alt="">
+        <!-- <ion-img width="100%" height="50%" src="../../assets/icon/shoe.jpg"></ion-img> -->
+        <ion-icon color="danger" class="icon" name="heart"></ion-icon>
+        <ion-icon color="primary" class="icon1" name="share-social-outline"></ion-icon>
+      </div>
+    </ion-col>
+    <ion-col class="ion-no-padding" size="12" size-sm="6" size-md="6">
+          <ion-item style="margin-top: 10px;" lines="none">
+     {{name}}
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label align="center" class="margin-left vl">
+        <ion-icon color="warning" slot="start" name="star"></ion-icon>
+        <ion-icon color="warning" slot="start" name="star"></ion-icon>
+        <ion-icon color="warning" slot="start" name="star-half"></ion-icon>
+        <ion-icon  slot="start" name="star"></ion-icon>
+        <ion-icon  slot="start" name="star"></ion-icon>
+      </ion-label>
+      <ion-label align="center" class="vl">707 Ratings</ion-label>
+      <ion-label align="center">2 ພັນ ຂາຍແລ້ວ</ion-label>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label style="margin-left: 10px;">
+        <ion-text class="price" color="primary">
+          ₭500.000
+        </ion-text>
+        <!--use  &emsp;  for  four spaces-->
+        <p style="color: grey;margin-left: 10px;"><s>₭1.000.000 </s> <ion-text color="danger">&nbsp; -50%</ion-text></p>
+      </ion-label>
+    </ion-item>
+    
+    <ion-item lines="none">
+      <ion-label>ຈຳນວນສັ່ງຊື້ :</ion-label>
+      <ion-buttons>
+        <ion-button  (click)="onClick()">
+          <ion-icon class="btn-color" slot="icon-only" name="remove"></ion-icon>
+        </ion-button>
+        <ion-label >100</ion-label>
+        <ion-button  (click)="onClick()">
+          <ion-icon class="btn-color" slot="icon-only" name="add"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+
+    <ion-item lines="full">
+      
+        <ion-button size="larg" color="warning" (click)="onClick()">
+         Buy Now
+        </ion-button>
+        <ion-button size="larg" color="success" (click)="onClick()">
+          Add to Cart
+        </ion-button>
+     
+    </ion-item>
+    </ion-col>
+  </ion-row>
+  
+    
+  <ion-list>
+    <ion-item lines="none">
+      <ion-label>ຄະແນນຂອງສິນຄ້າ</ion-label>
+    </ion-item>
+    <ion-card>
+      <ion-item lines="none">
+        <ion-label>
+          <ion-text color="primary">
+            <h1>2.5 ເຕັມ 5 ດາວ</h1>
+          </ion-text>
+          <ion-label>
+            <ion-icon color="warning" slot="start" name="star"></ion-icon>
+            <ion-icon color="warning" slot="start" name="star"></ion-icon>
+            <ion-icon color="warning" slot="start" name="star-half"></ion-icon>
+            <ion-icon  slot="start" name="star"></ion-icon>
+            <ion-icon  slot="start" name="star"></ion-icon>
+          </ion-label>
+        </ion-label>
+      </ion-item>
+    </ion-card>
+
+    <div>
+      <ion-item class="top-line" lines="none">
+        <ion-avatar slot="start">
+          <img src="../../assets/icon/user.png" />
+        </ion-avatar>
+        <ion-label slot="start">
+          nanamo
+              <p><ion-icon color="warning" slot="start" name="star"></ion-icon>
+                <ion-icon color="warning" slot="start" name="star"></ion-icon>
+                <ion-icon color="warning" slot="start" name="star-half"></ion-icon>
+                <ion-icon  slot="start" name="star"></ion-icon>
+                <ion-icon  slot="start" name="star"></ion-icon></p>
+                <small>2022-01-17</small>
+        </ion-label>
+        
+        <ion-icon slot="end" name="ellipsis-vertical-outline"></ion-icon>
+      </ion-item>
+      
+      <ion-item lines="none">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur odit temporibus cupiditate facilis deserunt saepe earum repudiandae, modi exercitationem enim.
+      </ion-item>
+
+      <!-- ////////////////////////////////////////////////////////// -->
+      <ion-item class="top-line" lines="none">
+        <ion-avatar slot="start">
+          <img src="../../assets/icon/user.png" />
+        </ion-avatar>
+        <ion-label slot="start">
+          dadada
+              <p><ion-icon color="warning" slot="start" name="star"></ion-icon>
+                <ion-icon color="warning" slot="start" name="star"></ion-icon>
+                <ion-icon color="warning" slot="start" name="star"></ion-icon>
+                <ion-icon color="warning" slot="start" name="star-half"></ion-icon>
+                <ion-icon  slot="start" name="star"></ion-icon></p>
+                <small>2022-01-17</small>
+        </ion-label>
+        
+        <ion-icon slot="end" name="ellipsis-vertical-outline"></ion-icon>
+      </ion-item>
+      
+      <ion-item lines="none">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur odit temporibus cupiditate facilis deserunt saepe earum repudiandae, modi exercitationem enim.
+        
+      </ion-item>
+        <ion-card>
+          <ion-item color="danger" lines="none">
+            <ion-label>ການຕອບກັບຈາກຜູ້ຂາຍ</ion-label>
+          </ion-item>
+          <ion-item lines="none">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad debitis nisi praesentium explicabo reprehenderit quos quibusdam voluptate. Necessitatibus, explicabo assumenda.
+          </ion-item>
+        </ion-card>
+      
+      <!-- ////////////////////////////////////////////////////////// -->
+
+        <ion-item class="top-line" lines="none">
+          <ion-avatar slot="start">
+            <img src="../../assets/icon/user.png" />
+          </ion-avatar>
+          <ion-label slot="start">
+            nanamo
+                <p><ion-icon color="warning" slot="start" name="star"></ion-icon>
+                  <ion-icon color="warning" slot="start" name="star"></ion-icon>
+                  <ion-icon color="warning" slot="start" name="star-half"></ion-icon>
+                  <ion-icon  slot="start" name="star"></ion-icon>
+                  <ion-icon  slot="start" name="star"></ion-icon></p>
+                  <small>2022-01-17</small>
+          </ion-label>
+          
+          <ion-icon slot="end" name="ellipsis-vertical-outline"></ion-icon>
+        </ion-item>
+        
+        <ion-item lines="none">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur odit temporibus cupiditate facilis deserunt saepe earum repudiandae, modi exercitationem enim.
+        </ion-item>
+    </div>
+  </ion-list>
+
+
+    
+</ion-content>

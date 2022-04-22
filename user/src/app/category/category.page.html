@@ -1,0 +1,39 @@
+<ion-header class="osahan-nav">
+  <ion-toolbar>
+     <ion-buttons slot="start">
+        <ion-menu-button class="back-icon-color"></ion-menu-button>
+        <!-- <ion-menu-toggle >
+          <ion-button>
+            <ion-icon slot="icon-only" name="menu"></ion-icon>
+          </ion-button>
+        </ion-menu-toggle> -->
+     </ion-buttons>
+     <ion-label class="title">ປະເພດສິນຄ້າທັງໝົດ</ion-label>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-row>
+    <ion-col *ngFor="let d of data" size="4">
+      <!-- <ion-card  class="card_cat">
+        <img id="image_cat" [src]="d.pic">           
+         <div class="card_header_cat">
+           <ion-text class="card_title_cat">{{d.name}}</ion-text>
+         </div>
+     </ion-card> -->
+
+
+     <ion-card (click)="see(d.name)" class="card_cat">
+      <ion-avatar class="pic-center">
+        <img  [src]="d.pic" />
+      </ion-avatar>
+       <div class="card_header_cat truncate">
+         <ion-text class="card_title_cat">{{d.name}}</ion-text>
+       </div>
+   </ion-card>
+    </ion-col>
+  </ion-row>
+
+  
+</ion-content>

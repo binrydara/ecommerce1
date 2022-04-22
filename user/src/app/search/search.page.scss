@@ -1,0 +1,19 @@
+ion-card{
+    display: flex;
+    flex-direction: column;
+    width: 100% !important;
+    margin: 0 !important;
+   }
+
+.img{
+    position: relative;
+}
+.heart{
+    background-color: #ffffff;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  border-radius: 100%;
+  font-size: 20px;
+  color: red;
+}

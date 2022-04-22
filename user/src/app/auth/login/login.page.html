@@ -1,0 +1,119 @@
+<!-- <ion-content [fullscreen]="true">
+  <div class="close">
+    <ion-icon *ngIf="modal" (click)="dismiss()" color="dark" name="close-circle"></ion-icon>
+  </div>
+
+  <div class="logo">
+    <img [src]="logo" alt="">
+  </div>
+
+<ion-list lines="none" class="ion-margin">
+  <ion-text class="ion-margin-horizontal" (click)="action = 1" color="dark">Sign in</ion-text>
+  <ion-text class="ion-margin-horizontal" (click)="sign()" color="dark">Sign up</ion-text>
+
+  <ion-item *ngIf="action == 2" class="ion-margin">
+    <ion-input [(ngModel)]="name" type="text" placeholder="Enter Name"  clearInput="true"></ion-input>
+  </ion-item>
+  <ion-item *ngIf="action == 2" class="ion-margin">
+    <ion-input [(ngModel)]="phonenumber" type="number" placeholder="Enter Phonenumber"  clearInput="true"></ion-input>
+  </ion-item>
+  <ion-item class="ion-margin">
+    <ion-input [(ngModel)]="username" name="email" type="email" placeholder="Enter Username" type="text" clearInput="true"></ion-input>
+  </ion-item>
+  <ion-item class="ion-margin">
+    <ion-input [(ngModel)]="password" type="Password" (keyup.enter)="login()" placeholder="Enter Password" type="password" clearInput="true"></ion-input>
+  </ion-item>
+  <ion-item *ngIf="action == 2" class="ion-margin">
+    <ion-input [(ngModel)]="repeatpassword" (keyup.enter)="login()" placeholder="Repeat Password" type="password" clearInput="true"></ion-input>
+  </ion-item>
+  <div align="right">
+    <ion-button *ngIf="action == 1" (click)="login()" shape="round" strong="true" class="ion-margin-end" color="dark">
+      SIGN IN
+      <ion-icon name="log-in" slot="end"></ion-icon>
+    </ion-button>
+    <ion-button *ngIf="action == 2" (click)="signup()" shape="round" strong="true" class="ion-margin-end" color="dark">
+      SIGN UP
+      <ion-icon name="log-in" slot="end"></ion-icon>
+    </ion-button>
+  </div>
+</ion-list>
+
+</ion-content> -->
+
+<ion-content class="ion-padding" *ngIf="action == 1" >
+
+  <div class="close">
+    <ion-icon *ngIf="modal" (click)="dismiss()" color="dark" name="close-circle"></ion-icon>
+  </div>
+  
+  <div class="title" align="center">
+    <ion-label>ເຂົ້າສູ່ລະບົບ</ion-label>
+  </div>
+
+  <ion-item>
+    <ion-input  (keypress)="isNumber($event)" maxlength="8" [(ngModel)]="phonenumber" type="text" placeholder="ປ້ອນໝາຍເລກໂທລະສັບ 8 ຕົວເລກ">
+      <ion-icon style="margin-right: 20px;" slot="start" name="call"></ion-icon>
+    </ion-input>
+  </ion-item>
+
+    <ion-button style="margin:50px;" [color]="getcolor()" [disabled]="phonenumber.length != 8" (click)="next()" expand="block">
+      ຖັດໄປ
+    </ion-button>
+
+    <div style="margin-bottom: 50px;" align="center">
+      <ion-label>--- ຫລື ---</ion-label>
+    </div>
+
+  <div align="center">
+    <ion-button class="social" expand="block" style="margin-bottom: 20px;" (click)="onClick()">
+      <ion-icon slot="start" name="logo-google"></ion-icon>
+      ດຳເນີນການຕໍ່ດ້ວຍບັນຊີ Google
+    </ion-button>
+    <ion-button class="social" expand="block" (click)="onClick()">
+      <ion-icon slot="start" name="logo-facebook"></ion-icon>
+      ດຳເນີນການຕໍ່ດ້ວຍ Facebook
+    </ion-button>
+  </div>
+</ion-content>
+
+
+<ion-content *ngIf="action == 2">
+
+  <div style="margin: 50px 0px;" align="center">
+    <ion-item lines="none">
+      <ion-label align="center">ລະຫັດຢືນຢັນຕົວຕົນຈະຖືກສົ່ງໄປທາງ SMS ທີ່ເບີ</ion-label>
+    </ion-item>
+    <ion-label>{{phonenumber}}</ion-label>
+  </div>
+
+
+  <ion-row  >
+    <ion-col >
+     
+      <div align="center">
+        <ion-input class="x" #otp1 required="true" maxLength="1" [(ngModel)]="OTP.first" (keyup)="otpController($event,otp2,'',1)">
+        </ion-input>
+        <ion-input class="x" #otp2 required="true" maxLength="1" [(ngModel)]="OTP.second" (keyup)="otpController($event,otp3,otp1,2)">
+        </ion-input>
+        <ion-input class="x" #otp3 required="true" maxLength="1" [(ngModel)]="OTP.third"  (keyup)="otpController($event,otp4,otp2,3)">
+        </ion-input>
+   
+        <ion-input class="x" #otp4 required="true" maxLength="1" [(ngModel)]="OTP.forth"  (keyup)="otpController($event,otp5,otp3,4)">
+       </ion-input>
+   
+       <ion-input class="x" #otp5  required="true" maxLength="1" [(ngModel)]="OTP.fifth" (keyup)="otpController($event,otp6,otp4,5)">
+       </ion-input>
+   
+       <ion-input class="x" #otp6  required="true" maxLength="1" [(ngModel)]="OTP.sixth" (keyup)="otpController($event,'',otp5,6)">
+       </ion-input>
+      </div>
+
+    </ion-col>
+  </ion-row>
+
+  <div style="margin-top: 50px;" align="center">
+    <ion-label>ກະລຸນາລໍຖ້າ <ion-text color="primary">
+      30
+    </ion-text> ວິນາທີກ່ອນກົດສົ່ງອີກຄັ້ງ</ion-label>
+  </div>
+</ion-content>

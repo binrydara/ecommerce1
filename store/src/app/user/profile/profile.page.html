@@ -1,0 +1,125 @@
+
+
+
+<ion-content>
+  <div class="header">
+    <ion-buttons>
+      <ion-button (click)="back()">
+        <ion-icon slot="icon-only" color="dark" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons>
+      <ion-button (click)="action()">
+        <ion-icon slot="icon-only" color="dark" name="settings-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    
+  </div>
+
+  <!-- profile -->
+  <div class="card">
+      <!-- <ion-img [src]="image"></ion-img> -->
+      <img class="image" [src]="image" alt="">
+
+    <div class="card-content">
+      <div class="name">
+        <h2 class="ion-no-margin">{{name}}</h2>
+      </div>
+      <div class="description">
+        <p (click)="gotodescriptiondetail()" class="ion-no-margin">{{getdescription()}}</p>
+      </div>
+      <div class="button">
+        <ion-button size="small" (click)="gotoproduct()" shape="round">
+          ປະຫວັດຂອງຂ້ອຍ
+        </ion-button>
+         
+          <ion-button (click)="gotoPost()" size="small" shape="round">
+            ໂຄສະນາທີ່ລົງໄວ້
+          </ion-button>
+        
+      </div>
+
+      <!-- <div lines="none" *ngIf="tags.length != 0">
+        <ion-chip color="secondary" outline="true" *ngFor="let e of product_tags; let i = index;">
+          <ion-label color="primary">{{e}}</ion-label>
+         </ion-chip>
+      </div> -->
+
+      <div class="post_list">
+
+         <!-- ========================= Address ============================= -->
+
+    <!-- <ion-item lines="none" *ngIf="address_list?.province || address_list?.district || address_list?.village">
+      <ion-label color="danger">ທີ່ຢູ່</ion-label>
+    </ion-item>
+
+    <ion-item *ngIf="address_list?.province" lines="none">
+      <ion-label color="primary">ແຂວງ :</ion-label>
+      <ion-label>{{address_list?.province}}</ion-label>
+     </ion-item>
+
+    <ion-item *ngIf="address_list?.district" lines="none">
+      <ion-label color="primary">ເມືອງ :</ion-label>
+      <ion-label>{{address_list?.district}}</ion-label>
+     </ion-item>
+
+    <ion-item *ngIf="address_list?.village" >
+      <ion-label color="primary">ບ້ານ :</ion-label>
+      <ion-label>{{address_list?.village}}</ion-label>
+     </ion-item> -->
+
+     <!-- <ion-item lines="none" *ngIf="address_list?.province || address_list?.district || address_list?.village">
+      <ion-label color="danger">ທີ່ຢູ່</ion-label>
+    </ion-item> -->
+    <ion-item lines="none">
+      <ion-icon color="danger" slot="start" name="location"></ion-icon>
+      <ion-label>
+        <ion-text *ngIf="!address_list?.village && !address_list?.district && !address_list?.province" color="medium">
+          ບໍ່ໄດ້ລະບຸສະຖານທີ່
+        </ion-text>
+        <ion-text *ngIf="address_list?.village">{{address_list?.village}},</ion-text>
+        <ion-text *ngIf="address_list?.district"> {{address_list?.district}},</ion-text>
+        <ion-text *ngIf="address_list?.province"> {{address_list?.province}}</ion-text>
+      </ion-label>
+    </ion-item>
+  
+
+
+
+   <!-- ======================= contact =============================== -->
+   <ion-item *ngIf="contact?.facebook || contact?.phoneNumber || contact?.whatsapp || contact?.email "  lines="none">
+     <ion-label color="danger">ຂໍ້ມູນຕິດຕໍ່</ion-label>
+   </ion-item>
+
+
+      <ion-item *ngIf="contact.email" lines="none">
+       <ion-icon color="danger" slot="start" name="logo-google"></ion-icon>
+       <ion-label>{{contact.email}}</ion-label>
+      </ion-item>
+
+      <ion-item *ngIf="contact.facebook " lines="none">
+       <ion-icon color="primary" slot="start" name="logo-facebook"></ion-icon>
+        <ion-label>{{contact.facebook}}</ion-label>
+      </ion-item >
+
+      <ion-item *ngIf="contact.whatsapp" lines="none">
+       <ion-icon color="success" slot="start" name="logo-whatsapp"></ion-icon>
+       <ion-label>{{contact.whatsapp}}</ion-label>
+      </ion-item>
+
+      <ion-item *ngIf="contact.phoneNumber" lines="none">
+       <ion-icon color="secondary" slot="start" name="call"></ion-icon>      
+        <ion-label>{{contact.phoneNumber}}</ion-label>
+      </ion-item>
+        
+         
+
+          
+          <ion-item lines="none">
+            <ion-label></ion-label>
+          </ion-item>
+          
+      </div>
+    </div>
+  </div>
+</ion-content>

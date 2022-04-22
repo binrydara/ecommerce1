@@ -1,0 +1,53 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title> Tab 1 </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div id="div1">
+        
+          <video id="videoQr" style="width: 100%; height: 100%"></video>
+
+  </div>
+
+  <ion-input
+    type="text"
+    [(ngModel)]="qr"
+    placeholder="Enter Text For Gen Qr code"
+  ></ion-input>
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="6">
+        <ion-button (click)="scanQRFromCamera()" expand="block"  shape="round">
+          camera
+        </ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <input
+          type="file"
+          hidden="true"
+          id="file"
+          (change)="scanQRFromImage($event.target['files'])"
+        />
+        
+
+        <ion-button expand="block"  shape="round">
+          <label for="file">file</label>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-button (click)="jsPDFSave()" expand="block" fill="clear" shape="round">
+    gen pdf
+  </ion-button>
+  <ion-button (click)="genQR()" expand="block" fill="clear" shape="round">
+    Gen qr
+  </ion-button>
+  <ion-button (click)="stopcamera()" expand="block" fill="clear" shape="round">
+    stop camera
+  </ion-button>
+</ion-content>
