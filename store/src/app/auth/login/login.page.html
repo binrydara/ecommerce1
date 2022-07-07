@@ -1,22 +1,132 @@
-<ion-content>
-  <ion-row >
+
+<ion-content class="ion-padding" *ngIf="action == 1" >
+
+  <div class="close">
+    <ion-icon *ngIf="modal" (click)="dismiss()" color="dark" name="close-circle"></ion-icon>
+  </div>
+  
+  <div class="title" align="center">
+    <ion-label>ເຂົ້າສູ່ລະບົບ</ion-label>
+  </div>
+
+  <ion-item>
+    <ion-input  (keypress)="isNumber($event)" maxlength="8" [(ngModel)]="phonenumber" type="text" placeholder="ປ້ອນໝາຍເລກໂທລະສັບ 8 ຕົວເລກ">
+      <ion-icon style="margin-right: 20px;" slot="start" name="call"></ion-icon>
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input maxlength="20" [(ngModel)]="password" type="text" placeholder="ປ້ອນລະຫັດຜ່ານ">
+      <ion-icon style="margin-right: 20px;" slot="start" name="lock-open"></ion-icon>
+    </ion-input>
+  </ion-item>
+
+  <br>
+
+    <ion-button style="margin:50px;" [color]="getcolor()" [disabled]="phonenumber.length != 8" (click)="login()" expand="block">
+      ເຂົ້າສູ່ລະບົບ
+    </ion-button>
+
+</ion-content>
+
+<ion-footer *ngIf="action == 1" class="ion-no-border" >
+  <p align="center"> ຍັງບໍ່ມີບັນຊີ ? <ion-text color="primary" (click)="get_signup()">ລົງທະບຽນ</ion-text></p>
+</ion-footer>
+
+<ion-content class="ion-padding" *ngIf="action == 2" >
+
+  <div class="close">
+    <ion-icon *ngIf="modal" (click)="dismiss()" color="dark" name="close-circle"></ion-icon>
+    
+  </div>
+  
+  <ion-icon (click)="back()" color="dark" name="arrow-back-outline" style="font-size: 26px" ></ion-icon>
+
+  <div class="title" align="center">
+    <ion-label>ລົງທະບຽນ</ion-label>
+  </div>
+
+  <ion-item>
+    <ion-input  (keypress)="isNumber($event)" maxlength="8" [(ngModel)]="phonenumber" type="text" placeholder="ປ້ອນໝາຍເລກໂທລະສັບ 8 ຕົວເລກ">
+      <ion-icon style="margin-right: 20px;" slot="start" name="call"></ion-icon>
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input maxlength="20" [(ngModel)]="password" type="text" placeholder="ປ້ອນລະຫັດຜ່ານ">
+      <ion-icon style="margin-right: 20px;" slot="start" name="lock-closed"></ion-icon>
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input maxlength="20" [(ngModel)]="repeatpassword" type="text" placeholder="ປ້ອນລະຫັດຜ່ານອີກຄັ້ງ">
+      <ion-icon style="margin-right: 20px;" slot="start" name="lock-closed"></ion-icon>
+    </ion-input>
+  </ion-item>
+
+  <br>
+  <ion-item  lines="none" >
+    <div class="">
+      <div id="recaptcha"></div>
+    </div>
+  </ion-item>
+
+    <ion-button style="margin:50px;" [color]="getcolor()" [disabled]="phonenumber.length != 8" (click)="signup()" expand="block">
+      ຢືນຢັນ
+    </ion-button>
+
+</ion-content>
+
+
+<ion-content *ngIf="action == 3">
+
+  <div style="margin-top: 15px;margin-left: 15px;">
+    <ion-icon (click)="backToSignUp()" color="dark" name="arrow-back-outline" style="font-size: 26px" ></ion-icon>
+  </div>
+
+<br><br>
+  <div align="center">
+    <ion-item lines="none">
+      <ion-label align="center">ລະຫັດຢືນຢັນຕົວຕົນຈະຖືກສົ່ງໄປທາງ SMS ທີ່ເບີ</ion-label>
+    </ion-item>
+    <ion-label>{{phonenumber}}</ion-label>
+  </div>
+
+
+  <ion-row>
     <ion-col>
-     <ion-input class="x" #otp1 required="true" maxLength="1" [(ngModel)]="OTP.first" (keyup)="otpController($event,otp2,'')">
-     </ion-input>
-     <ion-input class="x" #otp2 required="true" maxLength="1" [(ngModel)]="OTP.second" (keyup)="otpController($event,otp3,otp1)">
-     </ion-input>
-     <ion-input class="x" #otp3 required="true" maxLength="1" [(ngModel)]="OTP.third"  (keyup)="otpController($event,otp4,otp2)">
-     </ion-input>
-
-     <ion-input class="x" #otp4 required="true" maxLength="1" [(ngModel)]="OTP.forth"  (keyup)="otpController($event,otp5,otp3)">
-    </ion-input>
-
-    <ion-input class="x" #otp5  required="true" maxLength="1" [(ngModel)]="OTP.fifth" (keyup)="otpController($event,otp6,otp4)">
-    </ion-input>
-
-    <ion-input class="x" #otp6  required="true" maxLength="1" [(ngModel)]="OTP.sixth" (keyup)="otpController($event,'',otp5)">
-    </ion-input>
+     
+      <div align="center">
+        <ion-input class="x" #otp1 required="true" maxLength="1" [(ngModel)]="OTP.first" (keyup)="otpController($event,otp2,'',1)">
+        </ion-input>
+        <ion-input class="x" #otp2 required="true" maxLength="1" [(ngModel)]="OTP.second" (keyup)="otpController($event,otp3,otp1,2)">
+        </ion-input>
+        <ion-input class="x" #otp3 required="true" maxLength="1" [(ngModel)]="OTP.third"  (keyup)="otpController($event,otp4,otp2,3)">
+        </ion-input>
+   
+        <ion-input class="x" #otp4 required="true" maxLength="1" [(ngModel)]="OTP.forth"  (keyup)="otpController($event,otp5,otp3,4)">
+       </ion-input>
+   
+       <ion-input class="x" #otp5  required="true" maxLength="1" [(ngModel)]="OTP.fifth" (keyup)="otpController($event,otp6,otp4,5)">
+       </ion-input>
+   
+       <ion-input class="x" #otp6  required="true" maxLength="1" [(ngModel)]="OTP.sixth" (keyup)="otpController($event,'',otp5,6)">
+       </ion-input>
+      </div>
 
     </ion-col>
   </ion-row>
+
+  <br>
+  <div align="center">
+    <ion-label>ກະລຸນາລໍຖ້າ <ion-text color="primary">
+      30
+    </ion-text> ວິນາທີກ່ອນກົດສົ່ງອີກຄັ້ງ</ion-label>
+  </div>
+  <br>
+  <ion-button (click)="button_sendOTP()" expand="block">
+    ຢືນຢັນ
+  </ion-button>
 </ion-content>
+
+

@@ -1,0 +1,133 @@
+<ion-header *ngIf="action=='list'" class="ion-no-border">
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <!-- <ion-menu-button></ion-menu-button> -->
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title >
+      ສິນຄ້າທີ່ລົງຂາຍ
+    </ion-title>
+
+    <ion-buttons style="margin-right: 10px;" slot="end" (click)="go_add()">
+      <ion-icon slot="icon-only" name="add"></ion-icon>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-header *ngIf="action=='add-update'">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="action='list'">
+        <ion-icon color="dark" slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-label *ngIf="title == 'add'">ເພີ່ມໂຄສະນາ</ion-label>
+    <ion-label *ngIf="title != 'add'">ແກ້ໄຂໂຄສະນາ</ion-label>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content *ngIf="action=='list'">
+
+  <ion-row *ngFor="let i of PostArray">
+    <ion-col size="auto">
+      <ion-card (click)="detail(i)">
+       
+        <div class="img">
+          <img width="100%" height="150px" [src]="getImagePath(i?.primaryProduct?.product?.image[0])" alt="">
+            <ion-label class="heart1">20% OFF</ion-label>
+        </div>
+       <ion-label style="margin-left: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{i.primaryProduct?.product?.name}}</ion-label>
+        
+       <ion-card-content class="ion-no-padding">
+          <ion-label class="margin-left" >
+            <ion-icon color="warning" slot="start" name="star"></ion-icon>
+            <ion-icon color="warning" slot="start" name="star"></ion-icon>
+            <ion-icon color="warning" slot="start" name="star-half"></ion-icon>
+            <ion-icon  slot="start" name="star-outline"></ion-icon>
+            <ion-icon  slot="start" name="star-outline"></ion-icon>
+              (704)
+          </ion-label>
+  
+              <ion-item  lines="none">
+                <ion-text color="primary">
+                  {{getminmax(i)}}
+                </ion-text>
+                <!-- <small style="color: grey;margin-left: 5px;"><s>₭1.000.000</s></small> -->
+              </ion-item>
+               
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-content>
+
+<ion-content class="ion-padding" *ngIf="action=='add-update'">
+
+  <ion-list>
+   
+    <ion-item (click)="addProduct('primary')" lines="full"  style="padding: 20px 0px 10px 0px">
+      <ion-label><ion-text color="danger">*</ion-text> ເລືອກສິນຄ້າຫຼັກ</ion-label>
+      <ion-label class="ion-text-end" color="primary">{{showprimary()}}</ion-label>
+      <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+    </ion-item>
+    <ion-item *ngIf="getsecon()" (click)="addProduct('secondary')" lines="full"  style="padding: 20px 0px 10px 0px">
+      <ion-label><ion-text color="danger">*</ion-text> ເລືອກສິນຄ້າສຳຮອງ</ion-label>
+      <ion-label class="ion-text-end" color="primary">{{showsecondary()}}</ion-label>
+      <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+    </ion-item>
+    <ion-item (click)="addProduct('addon')" lines="full"  style="padding: 20px 0px 10px 0px">
+      <ion-label><ion-text color="danger">*</ion-text> ເລືອກສິນຄ້າເສີມ</ion-label>
+      <ion-label class="ion-text-end" color="primary">{{showaddon()}}</ion-label>
+      <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+    </ion-item>
+    <ion-item (click)="add_tags()" lines="full"  style="padding: 20px 0px 10px 0px">
+      <ion-label><ion-text color="danger">*</ion-text> ເລືອກແທັກ</ion-label>
+      <ion-label class="ion-text-end" color="primary">{{tags_list}}</ion-label>
+      <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">ລາຍລະອຽດສິນຄ້າ</ion-label>
+      <ion-input [(ngModel)]="description" type="text"></ion-input>
+    </ion-item>
+    <!-- <ion-item lines="full">
+      <ion-label position="floating">ລາຄາສິນຄ້າ</ion-label>
+      <ion-input readonly="true" [value]="prices" type="text"></ion-input>
+    </ion-item> -->
+
+    <br>
+
+    <ion-button size="large"  *ngIf="title == 'add'" (click)="new_post()" expand="block">
+      ເພີ່ມ
+    </ion-button>
+    <ion-button size="large" *ngIf="title != 'add'" (click)="onClick()" expand="block">
+      ແກ້ໄຂ
+    </ion-button>
+
+  </ion-list>
+
+</ion-content>
+
+<ion-content class="ion-padding" *ngIf="action=='add_tag'">
+  
+  <ion-icon (click)="action='add-update'"  name="close"></ion-icon>
+
+  <ion-item>
+    <ion-label>Tags</ion-label>
+    <ion-input [(ngModel)]="add" type="text" placeholder="add tags"></ion-input>
+  </ion-item>
+
+  <ion-chip *ngFor="let i of tags_list" color="primary" mode="ios" outline="true">
+    <ion-icon name="close"></ion-icon>
+    <ion-label>{{i}}</ion-label>
+  </ion-chip>
+
+  <ion-button (click)="addTags()" expand="block">
+    add
+  </ion-button>
+</ion-content>
+
+

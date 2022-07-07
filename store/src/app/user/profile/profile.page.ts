@@ -35,29 +35,29 @@ export class ProfilePage implements OnInit {
     
   }
 
-  async action(){
+  // async action(){
     
-    const actionSheet = await this.actionSheetController.create({
-      header: 'ເຈົ້າຕ້ອງການ ?',
-      cssClass: 'my-custom-class',
-      buttons: [{
-        text: 'ແກ້ໄຂໂປຣຟາຍ',
-        role: 'destructive',
-        icon: 'create',
-        handler: () => {
-          this.update_profile()
-        }
-      }, {
-        text: 'ອອກຈາກລະບົບ',
-        role: 'destructive',
-        icon: 'exit',
-        handler: () => {
-          this.logout()
-        }
-      }]
-    });
-    await actionSheet.present();
-  }
+  //   const actionSheet = await this.actionSheetController.create({
+  //     header: 'ເຈົ້າຕ້ອງການ ?',
+  //     cssClass: 'my-custom-class',
+  //     buttons: [{
+  //       text: 'ແກ້ໄຂໂປຣຟາຍ',
+  //       role: 'destructive',
+  //       icon: 'create',
+  //       handler: () => {
+  //         this.update_profile()
+  //       }
+  //     }, {
+  //       text: 'ອອກຈາກລະບົບ',
+  //       role: 'destructive',
+  //       icon: 'exit',
+  //       handler: () => {
+  //         this.logout()
+  //       }
+  //     }]
+  //   });
+  //   await actionSheet.present();
+  // }
 
   async logout() {
     const alert = await this.alertController.create({
@@ -106,125 +106,104 @@ export class ProfilePage implements OnInit {
   //   }
   // }
 
-  getdescription(){
-    // if(this.description.length > 30){
-    //   return "ລາຍລະອຽດ...";
-    // }
-    // return this.description
-
-      return "ລາຍລະອຽດ...";
-
-  }
-
-  // async gotodescriptiondetail(){
-  //   const modal = await this.modalCtrl.create({
-  //     component: DescriptionPage,
-  //     componentProps: {
-  //       'description':this.description
-  //     }
-  //   });
-
-  //   return await modal.present();
-  // }
-
-  async loadgprofile() {
+  // async loadgprofile() {
 
     
-      const loader = await this.load.create({
-        message: 'Please wait...',
+  //     const loader = await this.load.create({
+  //       message: 'Please wait...',
 
-      });
-      loader.present();
+  //     });
+  //     loader.present();
 
-      this.profile.selectOne_store().subscribe(res => {
-        console.log('res of profile', res);
+  //     this.profile.selectOne_store().subscribe(res => {
+  //       console.log('res of profile', res);
 
-        if (Object.keys(res.data).length != 0) {
+  //       if (Object.keys(res.data).length != 0) {
 
-            this.id = res.data.id
-            this.name = res.data.name
-            this.description = res.data.description
-            this.tags = res.data.tags
-            this.contact = res.data.contact
-            this.data_forUpdate = res.data
+  //           this.id = res.data.id
+  //           this.name = res.data.name
+  //           this.description = res.data.description
+  //           this.tags = res.data.tags
+  //           this.contact = res.data.contact
+  //           this.data_forUpdate = res.data
 
-          // this.data.userdata = res.data;
+  //         // this.data.userdata = res.data;
 
-        }
+  //       }
 
-        loader.dismiss()
+  //       loader.dismiss()
 
-      }), errr => {
-        console.log('error', errr);
-        loader.dismiss()
-      };
-  }
+  //     }), errr => {
+  //       console.log('error', errr);
+  //       loader.dismiss()
+  //     };
+  // }
 
-  async loadaddress() {
+  // async loadaddress() {
 
-      localStorage.setItem('skip', '0')
+  //     localStorage.setItem('skip', '0')
 
-      this.profile.LoadAddress().subscribe(async res => {
-        console.log('res of address', res);
-
-
-        if (res.data.count != 0) {
-
-          this.data_forUpdate_address = res.data.rows[0]
-
-          this.address_list = res.data.rows[0]
-
-          // this.data.user_address = res.data.rows[0]
-        }
-
-        if (res.data.count == 0) {
-
-          this.create_address().then(r => {
-            console.log("Create!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", r);
-
-            this.profile.LoadAddress().subscribe(res => {
-              console.log("load ADDRESS !!!!!!!!!!!!", res);
-
-              this.data_forUpdate_address = res.data.rows[0]
-
-              this.address_list = res.data.rows[0]
-              console.log("load more data !!!!!!!!!!!!!!!!!!!!", this.address_list);
-
-            })
-          }).catch(e => {
-            console.log(e);
-
-          })
+  //     this.profile.LoadAddress().subscribe(async res => {
+  //       console.log('res of address', res);
 
 
-        }
+  //       if (res.data.count != 0) {
 
-      }), errr => {
-        console.log('error', errr);
-      };
-    }
+  //         this.data_forUpdate_address = res.data.rows[0]
+
+  //         this.address_list = res.data.rows[0]
+
+  //         // this.data.user_address = res.data.rows[0]
+  //       }
+
+  //       if (res.data.count == 0) {
+
+  //         this.create_address().then(r => {
+  //           console.log("Create!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", r);
+
+  //           this.profile.LoadAddress().subscribe(res => {
+  //             console.log("load ADDRESS !!!!!!!!!!!!", res);
+
+  //             this.data_forUpdate_address = res.data.rows[0]
+
+  //             this.address_list = res.data.rows[0]
+  //             console.log("load more data !!!!!!!!!!!!!!!!!!!!", this.address_list);
+
+  //           })
+  //         }).catch(e => {
+  //           console.log(e);
+
+  //         })
+
+
+  //       }
+
+  //     }), errr => {
+  //       console.log('error', errr);
+  //     };
+  //   }
   
-  async create_address(): Promise<any> {
-    return new Promise<any>((resolve, reject) => {
-      let data_of_address = {
-        storeUuid: localStorage.getItem('token')
-      }
-      this.profile.new_address(data_of_address).subscribe(async res => {
-        if (res.status == 1) {
-          console.log("res of new address", res);
-          resolve(res)
-        } else {
-          console.log('status of new address', res);
+  // async create_address(): Promise<any> {
+  //   return new Promise<any>((resolve, reject) => {
+  //     let data_of_address = {
+  //       storeUuid: localStorage.getItem('token')
+  //     }
+  //     this.profile.new_address(data_of_address).subscribe(async res => {
+  //       if (res.status == 1) {
+  //         console.log("res of new address", res);
+  //         resolve(res)
+  //       } else {
+  //         console.log('status of new address', res);
 
-          reject(new Error(res.message));
-        }
-      }, async error => {
-        console.log('add address errror', error);
-        reject(error);
-      })
-    });
+  //         reject(new Error(res.message));
+  //       }
+  //     }, async error => {
+  //       console.log('add address errror', error);
+  //       reject(error);
+  //     })
+  //   });
 
-  }
+  // }
 
 
 
@@ -232,34 +211,34 @@ export class ProfilePage implements OnInit {
     this.rout.navigate(['post'])
   }
 
-  async update_profile() {
+  // async update_profile() {
 
-    if (this.data_forUpdate_address) {
+  //   if (this.data_forUpdate_address) {
 
-    } else {
-      this.data_forUpdate_address = []
-    }
-    const modal = await this.modalCtrl.create({
-      component: UpdateProfilePage,
-      componentProps: {
-        'id': this.id,
-        'data': this.data_forUpdate,
-        'addressID': this.data_forUpdate_address
-      }
-    });
+  //   } else {
+  //     this.data_forUpdate_address = []
+  //   }
+  //   const modal = await this.modalCtrl.create({
+  //     component: UpdateProfilePage,
+  //     componentProps: {
+  //       'id': this.id,
+  //       'data': this.data_forUpdate,
+  //       'addressID': this.data_forUpdate_address
+  //     }
+  //   });
 
-    modal.onDidDismiss().then(
-      res => {
-        if (res.data.reload) {
+  //   modal.onDidDismiss().then(
+  //     res => {
+  //       if (res.data.reload) {
 
-          this.loadgprofile();
-          this.loadaddress();
-        }
-      }
-    )
+  //         this.loadgprofile();
+  //         this.loadaddress();
+  //       }
+  //     }
+  //   )
 
-    return await modal.present();
-  }
+  //   return await modal.present();
+  // }
 
   back() {
     this.rout.navigate(['../../tabs/user'])

@@ -2,12 +2,33 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
 
+declare var window;
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
+
+  public countCart:number=0;
+
+  count(){
+
+    let cart=localStorage.getItem('cart');
+
+    if(!cart || cart=='null'){
+
+      this.countCart=0;
+    }else{
+
+      this.countCart=JSON.parse(cart).length;
+    }
+  }
+
+  ionViewWillEnter(){
+    this.count();
+  }
 
     // slideOptscategory = {
   //   freeMod: true,
@@ -90,6 +111,8 @@ checkScreen() {
         };
       
       });
+
+      window.tab=this;
     }
   
 
@@ -108,6 +131,22 @@ checkScreen() {
   ngOnInit() {
   }
 
+  addressname(){
+    let a=JSON.parse(localStorage.getItem('profile'));
+
+    if(a){
+      let b=a.filter(v=>v.isActive==true);
+      // console.log(b);
+      
+      if(b){
+      
+        return b[0].location.addressname;
+      }
+      return "ຍັງບໍ່ໄດ້ເລືອກ";
+    }
+
+    return "ຍັງບໍ່ໄດ້ເລືອກ";
+  }
   detail(data:any){
   
     this.rout.navigate(['product-detail'],{queryParams:{data:JSON.stringify(data)}})

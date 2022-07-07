@@ -1,0 +1,277 @@
+<ion-header *ngIf="action == '1'">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-label *ngIf="add == 'true'">ເພີ່ມສິນຄ້າ</ion-label>
+    <ion-label *ngIf="add == 'false'">ແກ້ໄຂສິນຄ້າ</ion-label>
+  </ion-toolbar>
+</ion-header>
+
+<ion-header *ngIf="action == '2'">
+  <ion-toolbar>
+    <ion-buttons slot="start" >
+      <ion-button (click)="action='1'">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>ເພີ່ມຄ່າຈັດສົ່ງ</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-header *ngIf="action == '3'">
+  <ion-toolbar>
+    <ion-buttons slot="start" >
+      <ion-button (click)="action='1'">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>ປັບປຸງຈຳນວນສິນຄ້າ</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="action == '1' && add=='true'" class="ion-padding">
+
+  <input accept="image/x-png,image/gif,image/jpeg" type="file"  id="fileId" (change)="uploadFile($event)"  hidden>
+ 
+  <!-- *ngIf="action == 'add'" -->
+ 
+    <!-- <ion-img [src]="Addimg"></ion-img> -->
+    <!-- <img width="200px" height="200px" [src]="Addimg"> -->
+  
+  <!-- (click)="saveFile()" id="imgupload"-->
+
+  <center>
+    <ion-slides [options]="slideOptscategory" mode="ios" pager="ios" scrollbar="false">
+      <ion-slide>
+        <label for="fileId"> <img  style="margin-bottom: 15px ;" width="120px" height="150px" src="../../../assets/icon/add2.png" alt=""></label>
+        <!-- (click)="onClick()" -->
+      </ion-slide>
+      <ion-slide *ngFor="let i of image_list;let j=index" >
+        <!-- <div style="height: 100%;" class="img">
+          
+          <img style="margin-bottom: 15px ; width:150px; height:100%;object-fit: cover;" src="{{this.Url}}{{i}}" alt=""> -->
+        <div class="img">
+          
+          <img style="margin-bottom: 15px ;" src="{{this.Url}}{{i}}" alt="">
+          <ion-icon (click)="removepic(j)" class="heart" name="close-circle"></ion-icon>
+        </div>
+      </ion-slide>
+
+        
+    </ion-slides>
+   
+  </center>
+
+  <!-- <div>
+    <ion-badge *ngFor="let p of productStocks?.product" [color]="getSelectedMini(p.uuid)">
+      <img [src]="getImagePath(p?.image)" (click)="selectMiniPhoto(p.uuid)" style="border: solid 1px; width: 48px; height: 48px"/>
+    </ion-badge>
+  </div> -->
+
+
+  <ion-item lines="full">
+    <ion-label position="floating"><ion-text color="danger">*</ion-text> ຊື່ສິນຄ້າ</ion-label>
+    <ion-input [(ngModel)]="proname" type="text"></ion-input>
+  </ion-item>
+  <ion-item lines="full">
+    <ion-label position="floating">ລາຍລະອຽດສິນຄ້າ</ion-label>
+    <ion-input [(ngModel)]="description" type="text"></ion-input>
+  </ion-item>
+  <ion-item (click)="addcat()" lines="full"  style="padding: 20px 0px 10px 0px">
+    <ion-label><ion-text color="danger">*</ion-text> ເລືອກປະເພດສິນຄ້າ</ion-label>
+    <ion-label class="ion-text-end" color="primary">{{catName}}</ion-label>
+    <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+  </ion-item>
+  <ion-item (click)="more_detail()" style="padding: 15px 0px 5px 0px" lines="full">
+    <ion-label>ຕົວເລືອກສິນຄ້າ</ion-label>
+    <ion-label class="ion-text-end" color="primary">{{showaddon()}}</ion-label>
+    <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+  </ion-item>
+
+  <!-- *ngIf="user_data?.storeType != 'ຂາຍອາຫານແລະເຄື່ອງດື່ມ'" -->
+  <ion-item  (click)="action='2'" style="padding: 15px 0px 5px 0px" lines="full">
+    <ion-label><ion-text color="danger">*</ion-text> ຄ່າຈັດສົ່ງ</ion-label>
+    <ion-label class="ion-text-end" color="primary">{{showShippingCost()}}</ion-label>
+    <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+  </ion-item>
+  <ion-item lines="full">
+    <ion-label position="floating">ລາຄາສິນຄ້າຕົວຈິງ (ກໍລະນີມີການຫລຸດລາຄາສິນຄ້າ) <ion-text color="primary"><s>{{mrp}}</s></ion-text></ion-label>
+    <ion-input [(ngModel)]="mrp" type="number"></ion-input>
+  </ion-item>
+  <ion-item *ngIf="!block_price" lines="full">
+    <ion-label position="floating"><ion-text color="danger">*</ion-text> ລາຄາສິນຄ້າ</ion-label>
+    <ion-input  [(ngModel)]="price" type="number"></ion-input>
+  </ion-item>
+  <ion-item *ngIf="block_price" lines="full">
+    <ion-label position="floating"><ion-text color="danger">*</ion-text> ລາຄາສິນຄ້າ</ion-label>
+    <ion-input [readonly]="block_price"  [(ngModel)]="price" type="text"></ion-input>
+  </ion-item>
+
+
+  <!-- *ngIf="user_data?.storeType != 'ຂາຍອາຫານແລະເຄື່ອງດື່ມ'" -->
+  <ion-item  style="margin-bottom:30px;" lines="full">
+    <ion-label position="floating"><ion-text color="danger">*</ion-text> ຈຳນວນສິນຄ້າ</ion-label>
+    <ion-input [readonly]="block_price" [(ngModel)]="qty" type="number"></ion-input>
+  </ion-item>
+
+
+    <ion-button size="large"  *ngIf="add == 'true'" (click)="new_product()" expand="block">
+      ເພີ່ມ
+    </ion-button>
+    <ion-button size="large" *ngIf="add == 'false'" (click)="onClick()" expand="block">
+      ແກ້ໄຂ
+    </ion-button>
+</ion-content>
+
+
+<ion-content *ngIf="action == '1' && add=='false'" class="ion-padding">
+
+  <center>
+    <img [src]="getImage(data_forUpdate?.image[0])" style="margin-bottom: 15px ;" width="120px" height="150px">
+  </center>
+
+  <ion-card style="padding: 10px;">
+    <ion-label>ລະຫັດສິນຄ້າ : </ion-label><ion-text color="primary">{{data_forUpdate?.productCode}}</ion-text>
+    <br>
+    <ion-label>ປະເພດສິນຄ້າ : </ion-label><ion-text color="primary">{{data_forUpdate?.productTypes}}</ion-text>
+    <br>
+    <ion-label>ຊື່ສິນຄ້າ : </ion-label><ion-text color="primary">{{data_forUpdate?.name}}</ion-text>
+    <br>
+  
+    <div *ngIf="getprop1()">
+      <ion-label  *ngIf="data_forUpdate?.moreDetail?.prop.length==1">{{data_forUpdate?.moreDetail?.prop[0]}} : <ion-text color="primary">{{data_forUpdate?.moreDetail?.data}}</ion-text></ion-label>
+      <ion-label *ngIf="data_forUpdate?.moreDetail?.prop.length==2">{{data_forUpdate?.moreDetail?.prop[0]}} : <ion-text color="primary">{{data_forUpdate?.moreDetail?.data[0]}}</ion-text></ion-label>
+      <br>
+    </div>
+  
+    <div *ngIf="getprop2()">
+      <ion-label>{{data_forUpdate?.moreDetail?.prop[1]}} : </ion-label><ion-text color="primary">{{data_forUpdate?.moreDetail?.data[1]}}</ion-text>
+      <br>
+    </div>
+  
+    <ion-label>ລາຄາສິນຄ້າ : </ion-label><ion-text color="primary">{{data_forUpdate?.moreDetail?.price | number}}</ion-text>
+    
+    <br>
+
+    <!-- <div *ngIf="user_data?.storeType != 'ຂາຍອາຫານແລະເຄື່ອງດື່ມ'"> -->
+      <ion-label>ຈຳນວນສິນຄ້າ : </ion-label><ion-text color="primary">{{qtyStock | number}}</ion-text>
+          <ion-button style="margin-left: 10px;" size="small" (click)="gomanage()">
+            <ion-icon slot="start" name="create"></ion-icon>
+            ປັບປຸງຈຳນວນ
+          </ion-button>
+    <!-- </div> -->
+    
+    
+  </ion-card>
+
+  <ion-item lines="full">
+    <ion-label position="floating">ລາຍລະອຽດສິນຄ້າ</ion-label>
+    <ion-input [(ngModel)]="description" type="text"></ion-input>
+  </ion-item>
+  
+
+  <!-- *ngIf="user_data?.storeType != 'ຂາຍອາຫານແລະເຄື່ອງດື່ມ'" -->
+  <ion-item (click)="action='2'" style="padding: 15px 0px 5px 0px" lines="full">
+    <ion-label><ion-text color="danger">*</ion-text> ຄ່າຈັດສົ່ງ</ion-label>
+    <ion-label class="ion-text-end" color="primary">{{showShippingCost()}}</ion-label>
+    <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+  </ion-item>
+  <ion-item style="margin-bottom:30px;" lines="full">
+    <ion-label position="floating">ລາຄາສິນຄ້າກ່ອນຫຼຸດ <ion-text color="primary"><s>{{mrp | number}}</s></ion-text></ion-label>
+    <ion-input [(ngModel)]="mrp" type="number" maxlength="8"></ion-input>
+  </ion-item>
+  <ion-item style="margin-bottom:30px;" lines="full">
+    <ion-label position="floating"><ion-text color="danger">*</ion-text> product code</ion-label>
+    <ion-input [(ngModel)]="code" type="number" maxlength="8"></ion-input>
+  </ion-item>
+
+    <ion-button size="large" *ngIf="add == 'false'" (click)="update()" expand="block">
+      ແກ້ໄຂ
+    </ion-button>
+</ion-content>
+
+<ion-content *ngIf="action == '2'" class="ion-padding">
+
+  <ion-item style="margin-bottom:30px;" lines="full">
+    <ion-label position="floating"><ion-text color="danger">*</ion-text> ນ້ຳໜັກສິນຄ້າ (kg)</ion-label>
+    <ion-input [(ngModel)]="weight" type="number"></ion-input>
+  </ion-item>
+
+  <ion-label>ຂະໜາດກ່ອງບັນຈຸສິນຄ້າ</ion-label>
+
+  <ion-item lines="full">
+    <ion-label position="floating"><ion-text color="danger">*</ion-text> ລວງກວ້າງສິນຄ້າ (cm)</ion-label>
+    <ion-input [(ngModel)]="wide" type="number"></ion-input>
+  </ion-item>
+  <ion-item lines="full">
+    <ion-label position="floating"><ion-text color="danger">*</ion-text> ລວງຍາວສິນຄ້າ (cm)</ion-label>
+    <ion-input [(ngModel)]="long" type="number"></ion-input>
+  </ion-item>
+  <ion-item lines="full">
+    <ion-label position="floating"><ion-text color="danger">*</ion-text> ລວງສູງສິນຄ້າ (cm)</ion-label>
+    <ion-input [(ngModel)]="high" type="number"></ion-input>
+  </ion-item>
+
+</ion-content>
+
+
+<ion-content *ngIf="action == '3'" class="ion-padding">
+
+  <ion-item lines="full">
+    <ion-label><ion-text color="danger">*</ion-text> ສະຖານະສິນຄ້າ</ion-label>
+    <ion-select [(ngModel)]="BDirection" placeholder="ເລືອກສະຖານະ" (ionChange)="Direction=''">
+      <ion-select-option value="in">ນຳເຂົ້າ</ion-select-option>
+      <ion-select-option value="out">ນຳອອກ</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item lines="full" *ngIf="BDirection">
+    <ion-label><ion-text color="danger">*</ion-text> ສະຖານະຍ່ອຍ</ion-label>
+    <ion-select [(ngModel)]="Direction" placeholder="ເລືອກສະຖານະຍ່ອຍ">
+      <ion-select-option *ngIf="BDirection=='out'" value="sell">ຂາຍ</ion-select-option>
+      <ion-select-option *ngIf="BDirection=='out'" value="defective">ເຄື່ອງເພ</ion-select-option>
+      <ion-select-option *ngIf="BDirection=='out'" value="expired">ຫມົດອາຍຸ</ion-select-option>
+      <ion-select-option *ngIf="BDirection=='out'" value="lost">ເຄື່ອງເສຍ</ion-select-option>
+      <ion-select-option *ngIf="BDirection=='out'" value="stolen">ຖືກລັກ</ion-select-option>
+      <ion-select-option *ngIf="BDirection=='out'" value="warranty">ສົ່ງອອກໄປຮັບປະກັນ</ion-select-option>
+      <ion-select-option *ngIf="BDirection=='out'" value="transfer">ຍ້າຍອອກ</ion-select-option>
+      <ion-select-option *ngIf="BDirection=='out'" value="others">ອື່ນໆ</ion-select-option>
+      <ion-select-option *ngIf="BDirection=='in'" value="purchase">ຊື້ເຂົ້າ</ion-select-option>
+      <ion-select-option *ngIf="BDirection=='in'" value="reimport">ນຳເຂົ້າຄືນ</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+
+  <ion-item lines="full">
+    <ion-label><ion-text color="danger">*</ion-text>ຈຳນວນປັບປຸງ : </ion-label>
+    <ion-input [(ngModel)]="manage_qty" type="number"></ion-input>
+  </ion-item>
+
+  <ion-item lines="full">
+    <ion-label position="floating">ລາຍລະອຽດ</ion-label>
+    <ion-input [(ngModel)]="stock_description" type="text"></ion-input>
+  </ion-item>
+
+  <ion-item lines="none">
+    <ion-label>ຈຳນວນທີ່ມີ : <ion-text color="primary">{{qtyStock | number}}</ion-text></ion-label>
+    <ion-button size="larg" slot="end" (click)="manage_stock()" expand="block">
+      ປັບປຸງ
+    </ion-button>
+  </ion-item>
+  <br>
+    <ion-row style="background: rgb(167, 191, 238);">
+      <ion-col size="3">ສະຖານະ</ion-col>
+      <ion-col size="3">ຈຳນວນ</ion-col>
+      <ion-col size="3">ລາຍລະອຽດ</ion-col>
+      <ion-col size="3">ວັນທີ່ປັບປຸງ</ion-col>
+    </ion-row>
+
+    <ion-row style="border: 2px solid rgb(167, 191, 238);" *ngFor="let i of stock_list;let lastItem = last">
+      <ion-col *ngIf="!lastItem" size="3">{{getdirection(i.direction)}}</ion-col>
+      <ion-col *ngIf="!lastItem" size="3">{{i.ref}}</ion-col>
+      <ion-col *ngIf="!lastItem" size="3">{{i.description}}</ion-col>
+      <ion-col *ngIf="!lastItem" size="3">{{i.createdAt | date:'dd/MM/yy  hh:mm'}}</ion-col>
+    </ion-row>
+</ion-content>
+

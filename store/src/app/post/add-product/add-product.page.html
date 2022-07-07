@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-icon color="dark" slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-label>ເພີ່ມສິນຄ້າ</ion-label>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+ 
+  <!-- &nbsp; -->
+
+  <ion-searchbar placeholder="ປ້ອນເພື່ອຄົ້ນຫາ"  (keyup.enter)="search($event)" (ionChange)="Autosearch($event)" ></ion-searchbar>
+
+<ion-item *ngIf="action=='primary'">
+  <ion-label>ທັງໝົດ <ion-text color="danger">{{count}}
+  </ion-text>  ປະເພດ</ion-label>
+</ion-item>
+
+<ion-item *ngIf="action=='secondary'">
+  <ion-label>ມີສິນຄ້າທີ່ກ່ຽວຂ້ອງທັງໝົດ <ion-text color="danger">{{count}}
+  </ion-text>  ປະເພດ</ion-label>
+</ion-item>
+
+
+<div *ngIf="action=='primary'">
+  <ion-radio-group [(ngModel)]="proName"  name="auto" >
+    <ion-row style="border-bottom: 1px solid rgb(216, 215, 215);" *ngFor="let i of product_list.rows">
+      <ion-col size="11">
+              <ion-row >
+                <ion-col size="3"><img src="../../assets/cart.png" style="width: 80%;margin-left: 10%"></ion-col>
+                <ion-col size="9">
+                    <ion-label class="truncate">{{ i.name }}
+                    </ion-label>
+                    <ion-text>{{getcolor_size(i)}}</ion-text>
+                    <!-- <br> -->
+                </ion-col>
+              </ion-row>
+      </ion-col>
+      <ion-col size="1"><br><ion-radio value="{{i.id}}" (click)="getprodata(i)" ></ion-radio></ion-col>
+    </ion-row>
+  </ion-radio-group>
+</div>
+
+
+<div *ngIf="action=='secondary' || action=='addon'">
+  <!-- <ion-item lines="none" *ngFor="let i of product_list.rows ; let j = index">
+    <ion-label class="truncate">{{i.name}}</ion-label>
+    <ion-text>{{getcolor_size(i)}}</ion-text>
+    <ion-checkbox [disabled]="disCheck" [checked]="getcheck(i.name)" value="i.name"  (ionChange)="selectCheckBox($event,i.name)" slot="end" ></ion-checkbox>
+  </ion-item> -->
+
+  <ion-row style="border-bottom: 1px solid rgb(216, 215, 215);" *ngFor="let i of product_list.rows">
+    <ion-col  *ngIf="checkprInsec(i.id)" size="11">
+            <ion-row >
+              <ion-col size="3"><img src="../../assets/cart.png" style="width: 80%;margin-left: 10%"></ion-col>
+              <ion-col size="9">
+                  <ion-label class="truncate">{{ i.name }}
+                  </ion-label>
+                  <ion-text>{{getcolor_size(i)}}</ion-text>
+                  <!-- <br> -->
+              </ion-col>
+            </ion-row>
+    </ion-col>
+    <ion-col *ngIf="checkprInsec(i.id)" size="1"><br><ion-checkbox [checked]="getcheck(i.uuid)" (ionChange)="selectCheckBox($event,i.uuid)"></ion-checkbox></ion-col>
+  </ion-row>
+</div>
+  
+
+  <!-- <ion-infinite-scroll threshold="100px" style="overflow:scroll;" (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll> -->
+
+</ion-content>
+
+<footer>
+    <ion-button slot="end" size="larg" (click)="send()" expand="block">
+      ເລືອກ
+    </ion-button>
+</footer>

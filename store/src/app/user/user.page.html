@@ -1,7 +1,39 @@
-<ion-header>
-  <ion-item>
-    <ion-label align="center">ຂໍ້ມູນສ່ວນຕົວ</ion-label>
+<!-- <ion-header class="header">
+  <ion-item *ngIf="getlogin == true" class="header">
+    <ion-avatar>
+      <img [src]="image" />
+    </ion-avatar>
+    <ion-label style="margin-left: 10px;" color="light">binry dara</ion-label>
   </ion-item>
+
+  <ion-item *ngIf="getlogin == false" class="header">
+    <ion-avatar>
+      <img [src]="image" />
+    </ion-avatar>
+    <ion-button color="light" slot="end" (click)="loadgprofile()" expand="block"  shape="round">
+      ເຂົ້າສູ່ລະບົບ
+    </ion-button>
+  </ion-item>
+</ion-header> -->
+
+<ion-header class="osahan-nav">
+  <ion-toolbar>
+     <ion-buttons slot="start">
+        <ion-menu-button class="back-icon-color"></ion-menu-button>
+     </ion-buttons>
+     <ion-item lines="none" style="--background: transparent;" *ngIf="getlogin == true">
+      <ion-avatar slot="end">
+        <img [src]="image" />
+      </ion-avatar>
+      <ion-label slot="end" style="margin-left: 10px;" color="light">binry dara</ion-label>
+    </ion-item>
+  
+    <ion-item lines="none" style="--background: transparent;" *ngIf="getlogin == false">
+      <ion-button color="light" slot="end" (click)="loadgprofile()" expand="block"  shape="round">
+        ເຂົ້າສູ່ລະບົບ
+      </ion-button>
+    </ion-item>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
@@ -10,7 +42,12 @@
   </ion-item>
   <ion-item lines="none" (click)="loadgprofile()">
     <ion-icon class="person" name="person"></ion-icon>
-    <ion-label>ຂໍ້ມູນສ່ວນຕົວ</ion-label>
+    <ion-label>ຕັ້ງຄ່າບັນຊີ</ion-label>
+    <ion-icon name="chevron-forward"></ion-icon>
+  </ion-item>
+  <ion-item lines="none" >
+    <ion-icon class="person" name="receipt"></ion-icon>
+    <ion-label>ການຊື້ຂອງຂ້ອຍ</ion-label>
     <ion-icon name="chevron-forward"></ion-icon>
   </ion-item>
   <ion-item lines="none" (click)="MyfavoritesPost()">
@@ -35,10 +72,10 @@
   </ion-item>
   <ion-item>
     <ion-label>ຕິດຕໍ່ພວກເຮົາ</ion-label>
-    <ion-icon name="mail"></ion-icon>
+    <ion-icon name="chatbox-ellipses"></ion-icon>
   </ion-item>
   
-    <ion-button color="danger" (click)="logout()" expand="block" fill="clear" shape="round">
-      ອອກຈາກແອັບ
+    <ion-button *ngIf="getlogin == true" color="danger" (click)="logout()" expand="block" fill="clear" shape="round">
+      ອອກຈາກລະບົບ
     </ion-button>
 </ion-content>

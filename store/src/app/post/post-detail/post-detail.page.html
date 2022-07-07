@@ -1,0 +1,218 @@
+<ion-header class="osahan-nav">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button class="back-icon-color"></ion-back-button>
+    </ion-buttons>
+    <ion-label class="title">ລາຍລະອຽດສິນຄ້າ</ion-label>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+  <ion-row>
+    <ion-col class="ion-no-padding" size="12" size-sm="5" size-md="5">
+      <div class="pic">
+        <img *ngIf="isProductSelected" width="100%" height="300px" [src]="getImagePath(selectedProduct?.image)"/>
+        <img *ngIf="!isProductSelected" width="100%" height="300px" [src]="getImagePath(minPhoto)"/>
+        <ion-icon color="danger" class="icon" name="heart"></ion-icon>
+        <ion-icon color="primary" class="icon1" name="share-social-outline"></ion-icon>
+      </div>
+
+      <div>
+        <ion-badge color="dark" *ngFor="let p of productStocks?.product" [color]="getSelectedMini(p.uuid)">
+          <img [src]="getImagePath(p?.image)" (click)="selectMiniPhoto(p.uuid)" style="border: solid 1px; width: 48px; height: 48px"/>
+        </ion-badge>
+      </div>
+    </ion-col>
+    <ion-col class="ion-no-padding" size="12" size-sm="7" size-md="7">
+      <ion-item style="margin-top: 10px" lines="none"> name: {{PostP?.primaryProduct?.product?.name}} </ion-item>
+      <ion-item lines="full">
+        <ion-label align="center" class="margin-left vl">
+          <ion-icon color="warning" slot="start" name="star"></ion-icon>
+          <ion-icon color="warning" slot="start" name="star"></ion-icon>
+          <ion-icon color="warning" slot="start" name="star-half"></ion-icon>
+          <ion-icon slot="start" name="star"></ion-icon>
+          <ion-icon slot="start" name="star"></ion-icon>
+        </ion-label>
+        <ion-label align="center" class="vl">707 Ratings</ion-label>
+        <ion-label align="center">2 ພັນ ຂາຍແລ້ວ</ion-label>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-label style="margin-left: 10px">
+          <ion-text *ngIf="getStockByProductUuid(selectedProduct?.uuid)?.value!=-1" class="price" color="primary"> ₭{{getStockByProductUuid(selectedProduct?.uuid)?.value |number}}  </ion-text>
+          <ion-text *ngIf="getStockByProductUuid(selectedProduct?.uuid)?.value==-1&&getStockByProductUuid(selectedProduct?.uuid)?.min!=getStockByProductUuid(selectedProduct?.uuid)?.max" class="price" color="primary"> ₭{{getStockByProductUuid(selectedProduct?.uuid)?.min |number}} - {{getStockByProductUuid(selectedProduct?.uuid)?.max |number}}  </ion-text>
+          <ion-text *ngIf="getStockByProductUuid(selectedProduct?.uuid)?.value==-1&&getStockByProductUuid(selectedProduct?.uuid)?.min==getStockByProductUuid(selectedProduct?.uuid)?.max" class="price" color="primary"> ₭{{getStockByProductUuid(selectedProduct?.uuid)?.min |number}}   </ion-text>
+          <!--use  &emsp;  for  four spaces-->
+          <p style="color: grey; margin-left: 10px">
+            <s>₭1.000.000 </s> <ion-text color="danger">&nbsp; -50%</ion-text>
+          </p>
+        </ion-label>
+      </ion-item>
+   
+     
+      <!-- prop and data zone -->
+      <div style="margin-top: 10px;" *ngIf="PostP?.primaryProduct?.product?.moreDetail?.prop">
+      <ion-label style="margin-left: 15px;margin-right: 10px;">{{specProperty[0]}}</ion-label>
+     
+            <ng-container *ngFor="let p of propData0"
+              [ngTemplateOutlet]="isAvailablePropData0(p) ?showData0 : showData02"
+              [ngTemplateOutletContext]="{p:p}"
+            ></ng-container>
+    
+            <br>
+      <ng-template #showData0 let-p="p">
+        
+        <ion-chip (click)="showImageByPropData0(p)" [id]="'first_'+p" [color]="getSelected0(p)">
+          {{p}}
+        </ion-chip>
+      </ng-template>
+      <ng-template #showData02 let-p="p">
+        <ion-chip  [id]="'first_'+p" color="medium">
+          {{p}}
+        </ion-chip>
+      </ng-template>
+    
+        <ion-label style="margin-left: 15px;margin-right: 10px;">{{specProperty[1]}}</ion-label>
+    
+        <ng-container *ngFor="let p of propData1"
+          [ngTemplateOutlet]="isAvailablePropData1(p) ?showData1 : showData12"
+          [ngTemplateOutletContext]="{p:p}"
+        ></ng-container>
+    
+
+        <ng-template #showData1 let-p="p">
+          <ion-chip (click)="showImageByPropData1(p)" [id]="'sec_'+p" [color]="getSelected1(p)">
+            {{p}}
+          </ion-chip>
+        </ng-template>
+
+        <ng-template #showData12 let-p="p">
+          <ion-chip [id]="'sec_'+p" color="medium">
+            {{p}}
+          </ion-chip>
+        </ng-template>  
+       
+        <div *ngIf="selectedProduct?.description">
+          <ion-badge>{{selectedProduct?.description}} </ion-badge>
+        </div>
+    </div>
+      <!-- prop and data zone -->
+
+      <ion-item lines="none">
+        <ion-label>ມີສິນຄ້າທັງໝົດ <ion-text color="primary">{{getStockByProductUuid(selectedProduct?.uuid)?.qtt}}</ion-text> ອັນ</ion-label>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-list>
+    <ion-item lines="none">
+      <ion-label>ຄະແນນຂອງສິນຄ້າ</ion-label>
+    </ion-item>
+    <ion-card>
+      <ion-item lines="none">
+        <ion-label>
+          <ion-text color="primary">
+            <h1>2.5 ເຕັມ 5 ດາວ</h1>
+          </ion-text>
+          <ion-label>
+            <ion-icon color="warning" slot="start" name="star"></ion-icon>
+            <ion-icon color="warning" slot="start" name="star"></ion-icon>
+            <ion-icon color="warning" slot="start" name="star-half"></ion-icon>
+            <ion-icon slot="start" name="star"></ion-icon>
+            <ion-icon slot="start" name="star"></ion-icon>
+          </ion-label>
+        </ion-label>
+      </ion-item>
+    </ion-card>
+
+    <div>
+      <ion-item class="top-line" lines="none">
+        <ion-avatar slot="start">
+          <img src="../../assets/icon/user.png" />
+        </ion-avatar>
+        <ion-label slot="start">
+          nanamo
+          <p>
+            <ion-icon color="warning" slot="start" name="star"></ion-icon>
+            <ion-icon color="warning" slot="start" name="star"></ion-icon>
+            <ion-icon color="warning" slot="start" name="star-half"></ion-icon>
+            <ion-icon slot="start" name="star"></ion-icon>
+            <ion-icon slot="start" name="star"></ion-icon>
+          </p>
+          <small>2022-01-17</small>
+        </ion-label>
+
+        <ion-icon slot="end" name="ellipsis-vertical-outline"></ion-icon>
+      </ion-item>
+
+      <ion-item lines="none">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur
+        odit temporibus cupiditate facilis deserunt saepe earum repudiandae,
+        modi exercitationem enim.
+      </ion-item>
+
+      <!-- ////////////////////////////////////////////////////////// -->
+      <ion-item class="top-line" lines="none">
+        <ion-avatar slot="start">
+          <img src="../../assets/icon/user.png" />
+        </ion-avatar>
+        <ion-label slot="start">
+          dadada
+          <p>
+            <ion-icon color="warning" slot="start" name="star"></ion-icon>
+            <ion-icon color="warning" slot="start" name="star"></ion-icon>
+            <ion-icon color="warning" slot="start" name="star"></ion-icon>
+            <ion-icon color="warning" slot="start" name="star-half"></ion-icon>
+            <ion-icon slot="start" name="star"></ion-icon>
+          </p>
+          <small>2022-01-17</small>
+        </ion-label>
+
+        <ion-icon slot="end" name="ellipsis-vertical-outline"></ion-icon>
+      </ion-item>
+
+      <ion-item lines="none">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur
+        odit temporibus cupiditate facilis deserunt saepe earum repudiandae,
+        modi exercitationem enim.
+      </ion-item>
+      <ion-card>
+        <ion-item color="danger" lines="none">
+          <ion-label>ການຕອບກັບຈາກຜູ້ຂາຍ</ion-label>
+        </ion-item>
+        <ion-item lines="none">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad debitis
+          nisi praesentium explicabo reprehenderit quos quibusdam voluptate.
+          Necessitatibus, explicabo assumenda.
+        </ion-item>
+      </ion-card>
+
+      <!-- ////////////////////////////////////////////////////////// -->
+
+      <ion-item class="top-line" lines="none">
+        <ion-avatar slot="start">
+          <img src="../../assets/icon/user.png" />
+        </ion-avatar>
+        <ion-label slot="start">
+          nanamo
+          <p>
+            <ion-icon color="warning" slot="start" name="star"></ion-icon>
+            <ion-icon color="warning" slot="start" name="star"></ion-icon>
+            <ion-icon color="warning" slot="start" name="star-half"></ion-icon>
+            <ion-icon slot="start" name="star"></ion-icon>
+            <ion-icon slot="start" name="star"></ion-icon>
+          </p>
+          <small>2022-01-17</small>
+        </ion-label>
+
+        <ion-icon slot="end" name="ellipsis-vertical-outline"></ion-icon>
+      </ion-item>
+
+      <ion-item lines="none">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur
+        odit temporibus cupiditate facilis deserunt saepe earum repudiandae,
+        modi exercitationem enim.
+      </ion-item>
+    </div>
+  </ion-list>
+</ion-content>

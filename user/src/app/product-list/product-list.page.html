@@ -1,3 +1,18 @@
+<!-- <ion-header class="osahan-nav">
+  <ion-toolbar>
+     <ion-buttons slot="start">
+       <ion-back-button class="back-icon-color"></ion-back-button>
+     </ion-buttons>
+     <ion-label class="title">{{title}}</ion-label>
+     <ion-buttons  (click)="sort()" slot="primary">
+      <ion-button>
+         <ion-icon slot="icon-only" name="menu"></ion-icon>
+      </ion-button>
+   </ion-buttons>
+  </ion-toolbar>
+</ion-header> -->
+
+
 <ion-header class="osahan-nav">
   <ion-toolbar>
      <!-- <ion-buttons slot="start">
@@ -20,15 +35,17 @@
    
    <ion-grid  fixed>
       <ion-row class="ion-align-items-center ion-justify-content-center" >
-        <ion-col  *ngFor="let d of data" size="auto"  >
+        <!-- <ion-col  *ngFor="let d of data" size="auto"  > -->
+        <ion-col  *ngFor="let d of PostArray" size="6"  >
           <ion-card (click)="detail(d)">
            
             <div class="img">
-              <img width="100%" height="150px" [src]="d.pic" alt="">
+              <!-- <img width="100%" height="150px" [src]="d.pic" alt=""> -->
+              <img width="100%" height="150px" src="../../assets/icon/shoe.jpg" alt="">
                 <!-- <ion-icon class="heart" name="heart"></ion-icon> -->
                 <ion-label class="heart1">20% OFF</ion-label>
             </div>
-           <ion-label style="margin-left: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{d.name}}</ion-label>
+           <ion-label style="margin-left: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{d.productType}}</ion-label>
             
            <ion-card-content class="ion-no-padding">
               <ion-label class="margin-left" >
@@ -42,13 +59,47 @@
   
                   <ion-item  lines="none">
                     <ion-text color="primary">
-                      ₭500.000
+                      {{getminmax(d)}}
                     </ion-text>
                     <small style="color: grey;margin-left: 5px;"><s>₭1.000.000</s></small>
                   </ion-item>
                    
             </ion-card-content>
           </ion-card>
+
+
+          <!-- <ion-card (click)="detail(d)">
+           
+            <div class="img">
+              <img width="100%" height="150px" src="../../assets/icon/shoe.jpg" alt="">
+                <ion-label class="heart1">ຮ້ານແນະນຳ</ion-label>
+                <ion-label class="heart">20% OFF</ion-label>
+            </div>
+           <ion-label style="margin-left: 15px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{d.productType}}</ion-label>
+            
+           <ion-card-content class="ion-no-padding">
+              
+              <ion-label class="margin-left" >
+                <ion-icon color="warning" slot="start" name="star"></ion-icon>
+                <ion-icon color="warning" slot="start" name="star"></ion-icon>
+                <ion-icon color="warning" slot="start" name="star-half"></ion-icon>
+                <ion-icon  slot="start" name="star-outline"></ion-icon>
+                <ion-icon  slot="start" name="star-outline"></ion-icon>
+                  (704)
+              </ion-label>
+  
+                    <ion-text class="margin-left" color="primary">
+                      ₭500.000 - ₭1.000.000
+                    </ion-text>
+
+                    <ion-label>
+                      <p class="margin-left">ຂາຍແລ້ວ 14.4 ພັນອັນ</p>
+                      <p class="margin-left">ນະຄອນຫຼວງວຽງຈັນ</p>
+                    </ion-label>
+                  
+                   
+            </ion-card-content>
+          </ion-card> -->
         </ion-col>
       </ion-row>
   

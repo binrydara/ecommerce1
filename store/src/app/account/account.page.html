@@ -1,0 +1,164 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+<ion-back-button></ion-back-button>
+</ion-buttons>
+    <ion-title >
+     ຂໍ້ມູນຮ້ານຄ້າ
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+<!-- 
+<div style="height: 80px;background-color:#f4f5f8">
+&nbsp;
+</div> -->
+
+<div style="height: auto;border-radius: 30px;background-color: white" class="ion-padding">
+
+<h3> ເປີດ/ປິດ ຮ້ານ</h3>
+
+<ion-item lines="none">
+<ion-label> ເປີດຮ້ານ </ion-label>
+<!-- <ion-toggle color="success" (ionChange)="storeOpen(0)"></ion-toggle>
+<ion-toggle color="success" checked (ionChange)="storeOpen(1)"></ion-toggle> -->
+<ion-toggle color="success" *ngIf="isOpen"  checked (ionChange)="storeOpen(0)"></ion-toggle>
+<ion-toggle color="success" *ngIf="!isOpen" (ionChange)="storeOpen(1)"></ion-toggle>
+</ion-item>
+<br>
+
+
+<h3> ແກ້ໄຂຂໍ້ມູນຮ້ານຄ້າ </h3>
+
+<!-- <form #form="ngForm" (ngSubmit)="update(form.value)"> -->
+
+<ion-item lines="none">
+  <ion-label> ປະເພດຮ້ານ : <ion-text color="primary">{{storeType}}</ion-text></ion-label>
+</ion-item>
+
+<ion-item>
+  <ion-label position="floating"><ion-text color="danger">*</ion-text> ຊື່ຂອງຮ້ານ </ion-label>
+  <ion-input type="text" name="name" [(ngModel)]="name" ></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label position="floating"><ion-text color="danger">*</ion-text> ເບີໂທຕິດຕໍ່ </ion-label>
+  <ion-input type="number" name="phone" [(ngModel)]="phonenumber" ></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label position="floating"><ion-text color="danger">*</ion-text> ແຂວງ </ion-label>
+  <ion-select [(ngModel)]="pr_id" name="province" placeholder="ເລືອກແຂວງ" (ionChange)="loaddistrict($event)">
+    <ion-select-option *ngFor="let i of province_list" [value]="i.pr_id" >{{i.pr_name}}</ion-select-option>
+  </ion-select>
+</ion-item>
+<ion-item *ngIf="pr_name">
+  <ion-label position="floating"><ion-text color="danger">*</ion-text> ເມືອງ </ion-label>
+  <ion-select [(ngModel)]="dr_id" name="district" placeholder="ເລືອກເມືອງ" (ionChange)="loadvillage($event)">
+    <ion-select-option *ngFor="let i of findDistricts()" [value]="i.dr_id">{{i.dr_name}}</ion-select-option>
+  </ion-select>
+</ion-item>
+<ion-item *ngIf="dr_name">
+  <ion-label position="floating"><ion-text color="danger">*</ion-text> ບ້ານ </ion-label>
+  <ion-select [(ngModel)]="vill_name" name="village" placeholder="ເລືອກບ້ານ">
+    <ion-select-option *ngFor="let i of findVillages()" value="{{i.vill_name}}">{{i.vill_name}}</ion-select-option>
+  </ion-select>
+</ion-item>
+<br>
+
+
+<h3> ອັດຕາຄ່າຂົນສົ່ງ </h3>
+
+<div *ngFor="let v of value;let i=index">
+
+  <ion-row>
+    <ion-col size="6">ຂອບເຂດ(KM)</ion-col>
+    <ion-col size="6">ຄ່າສົ່ງ</ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size="5"><ion-input [(ngModel)]="v.radius" name="v{{i}}" placeholder="ປ້ອນຂອບເຂດ" style="border: 1px solid rgb(222, 221, 221)" type="number"></ion-input></ion-col>
+    <ion-col size="6"><ion-input [(ngModel)]="v.fee" name="v{{i}}" placeholder="ປ້ອນຄ່າສົ່ງ" style="border: 1px solid rgb(222, 221, 221)" type="number"></ion-input></ion-col>
+    <ion-col size="1"><ion-icon style="margin-top: 10px;font-size: 26px" (click)="removeradius(i)" color="danger" name="close-circle"></ion-icon></ion-col>
+  </ion-row>
+
+</div>
+
+
+<ion-button style="margin-left: 50px;margin-right: 50px;" (click)="addradius()" expand="block" fill="outline" shape="round">
+  ເພີ່ມຂອບເຂດ
+</ion-button>
+
+<br>
+<ion-row *ngIf="value[this.value.length-1]?.radius">
+  <ion-col size="12"><ion-text color="danger">#ໝາຍເຫດ : </ion-text><ion-label color="primary">ຫລັງຈາກ {{getmax()}} KM ຈະບໍ່ສົ່ງ</ion-label></ion-col>
+</ion-row>
+<br>
+
+
+<h3> ອັດຕາຄ່າແພັກເຄື່ອງ </h3>
+
+<div *ngFor="let v of pack_value;let i=index">
+  <ion-card>
+    <ion-item lines="none">
+      <ion-label color="primary">ແພັກ {{i+1}}</ion-label>
+      <ion-icon slot="end" style="margin-top: 10px;font-size: 26px" (click)="removepack(i)" color="danger" name="close-circle"></ion-icon>
+    </ion-item>
+    <ion-item>
+      <ion-label>ນ້ຳໜັກສິນຄ້າ (kg) : </ion-label>
+      <ion-input [(ngModel)]="v.weight" name="v{{i}}" placeholder="ປ້ອນນ້ຳໜັກສິນຄ້າ" type="number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>ລວງກວ້າງສິນຄ້າ (cm) : </ion-label>
+      <ion-input [(ngModel)]="v.width" name="v{{i}}" placeholder="ປ້ອນລວງກວ້າງສິນຄ້າ" type="number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>ລວງຍາວສິນຄ້າ (cm) : </ion-label>
+      <ion-input [(ngModel)]="v.plength" name="v{{i}}" placeholder="ປ້ອນລວງຍາວສິນຄ້າ" type="number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>ລວງສູງສິນຄ້າ (cm) : </ion-label>
+      <ion-input [(ngModel)]="v.height" name="v{{i}}" placeholder="ປ້ອນລວງສູງສິນຄ້າ" type="number"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label>ລາຄາແພັກ : </ion-label>
+      <ion-input [(ngModel)]="v.fee" name="v{{i}}" placeholder="ປ້ອນລາຄາແພັກ" type="number"></ion-input>
+    </ion-item>
+    
+    
+    <ion-item>
+      <ion-label>ບໍລິມາດລວມ : </ion-label>
+      <ion-label color="primary">{{calVolume(i)}}</ion-label>
+    </ion-item>
+  </ion-card>
+</div>
+
+<ion-button style="margin-left: 50px;margin-right: 50px;" (click)="addpack()" expand="block" fill="outline" shape="round">
+  ເພີ່ມແພັກ
+</ion-button>
+<br>
+
+<h3> ເລືອກບໍລິການຊຳລະເງິນໃຫ້ລູກຄ້າ </h3>
+<ion-item (click)="getMethod('1')" style="padding: 15px 0px 5px 0px" lines="full">
+  <ion-label>ບໍລິການຊຳລະເງິນ</ion-label>
+  <ion-label class="ion-text-end" color="primary">{{showpayment()}}</ion-label>
+  <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+</ion-item>
+<br>
+
+<h3> ເລືອກບໍລິການຂົນສົ່ງໃຫ້ລູກຄ້າ </h3>
+<ion-item (click)="getMethod('2')" style="padding: 15px 0px 5px 0px" lines="full">
+  <ion-label>ບໍລິການສົ່ງສິນຄ້າ</ion-label>
+  <ion-label class="ion-text-end" color="primary">{{showshipment()}}</ion-label>
+  <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+</ion-item>
+<br>
+
+<ion-button expand="block" mode="ios" (click)="update()" style="width: 90%;margin-left: 5%"> ຢືນຢັນຂໍ້ມູນ </ion-button>
+<!-- <ion-button expand="block" mode="ios" type="submit" [disabled]="!form" style="width: 90%;margin-left: 5%"> ຢືນຢັນຂໍ້ມູນ </ion-button> -->
+<!-- </form> -->
+</div>
+</ion-content>

@@ -1,127 +1,4 @@
-
-
-
-<ion-content *ngIf="false">
-  <div class="headerr">
-    <ion-buttons>
-      <ion-button (click)="back()">
-        <ion-icon slot="icon-only" color="dark" name="arrow-back-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-buttons>
-      <ion-button (click)="action()">
-        <ion-icon slot="icon-only" color="dark" name="settings-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    
-  </div>
-
-  <div class="card">
-
-    <div class="card-content">
-      <div class="name">
-        <h2 class="ion-no-margin">{{name}}</h2>
-      </div>
-      <div class="description">
-        <p (click)="gotodescriptiondetail()" class="ion-no-margin">{{getdescription()}}</p>
-      </div>
-      <div class="button">
-        <ion-button size="small" (click)="gotoproduct()" shape="round">
-          ປະຫວັດຂອງຂ້ອຍ
-        </ion-button>
-         
-          <ion-button (click)="gotoPost()" size="small" shape="round">
-            ໂຄສະນາທີ່ລົງໄວ້
-          </ion-button>
-        
-      </div>
-
-      <!-- <div lines="none" *ngIf="tags.length != 0">
-        <ion-chip color="secondary" outline="true" *ngFor="let e of product_tags; let i = index;">
-          <ion-label color="primary">{{e}}</ion-label>
-         </ion-chip>
-      </div> -->
-
-      <div class="post_list">
-
-         <!-- ========================= Address ============================= -->
-
-    <!-- <ion-item lines="none" *ngIf="address_list?.province || address_list?.district || address_list?.village">
-      <ion-label color="danger">ທີ່ຢູ່</ion-label>
-    </ion-item>
-
-    <ion-item *ngIf="address_list?.province" lines="none">
-      <ion-label color="primary">ແຂວງ :</ion-label>
-      <ion-label>{{address_list?.province}}</ion-label>
-     </ion-item>
-
-    <ion-item *ngIf="address_list?.district" lines="none">
-      <ion-label color="primary">ເມືອງ :</ion-label>
-      <ion-label>{{address_list?.district}}</ion-label>
-     </ion-item>
-
-    <ion-item *ngIf="address_list?.village" >
-      <ion-label color="primary">ບ້ານ :</ion-label>
-      <ion-label>{{address_list?.village}}</ion-label>
-     </ion-item> -->
-
-     <!-- <ion-item lines="none" *ngIf="address_list?.province || address_list?.district || address_list?.village">
-      <ion-label color="danger">ທີ່ຢູ່</ion-label>
-    </ion-item> -->
-    <ion-item lines="none">
-      <ion-icon color="danger" slot="start" name="location"></ion-icon>
-      <ion-label>
-        <ion-text *ngIf="!address_list?.village && !address_list?.district && !address_list?.province" color="medium">
-          ບໍ່ໄດ້ລະບຸສະຖານທີ່
-        </ion-text>
-        <ion-text *ngIf="address_list?.village">{{address_list?.village}},</ion-text>
-        <ion-text *ngIf="address_list?.district"> {{address_list?.district}},</ion-text>
-        <ion-text *ngIf="address_list?.province"> {{address_list?.province}}</ion-text>
-      </ion-label>
-    </ion-item>
-  
-
-
-
-   <!-- ======================= contact =============================== -->
-   <ion-item *ngIf="contact?.facebook || contact?.phoneNumber || contact?.whatsapp || contact?.email "  lines="none">
-     <ion-label color="danger">ຂໍ້ມູນຕິດຕໍ່</ion-label>
-   </ion-item>
-
-
-      <ion-item *ngIf="contact.email" lines="none">
-       <ion-icon color="danger" slot="start" name="logo-google"></ion-icon>
-       <ion-label>{{contact.email}}</ion-label>
-      </ion-item>
-
-      <ion-item *ngIf="contact.facebook " lines="none">
-       <ion-icon color="primary" slot="start" name="logo-facebook"></ion-icon>
-        <ion-label>{{contact.facebook}}</ion-label>
-      </ion-item >
-
-      <ion-item *ngIf="contact.whatsapp" lines="none">
-       <ion-icon color="success" slot="start" name="logo-whatsapp"></ion-icon>
-       <ion-label>{{contact.whatsapp}}</ion-label>
-      </ion-item>
-
-      <ion-item *ngIf="contact.phoneNumber" lines="none">
-       <ion-icon color="secondary" slot="start" name="call"></ion-icon>      
-        <ion-label>{{contact.phoneNumber}}</ion-label>
-      </ion-item>
-        
-         
-
-          
-          <ion-item lines="none">
-            <ion-label></ion-label>
-          </ion-item>
-          
-      </div>
-    </div>
-  </div>
-</ion-content>
-
-<ion-header class="osahan-nav">
+<ion-header *ngIf="Isaction && action==0" class="osahan-nav">
   <ion-toolbar>
      <ion-buttons slot="start">
         <ion-menu-button class="back-icon-color"></ion-menu-button>
@@ -138,27 +15,27 @@
 </ion-header>
 
 
-<ion-content class="ion-padding">
+<ion-content *ngIf="Isaction && action==0" class="ion-padding">
   <ion-card>
     <div class="mt-2 text-center">
         <img width="150px" height="150px" src="../../../assets/icon/user.png" />
     </div>
     <ion-item class="b-bottom" lines="none">
       <ion-label class="text-center">
-        Gurdeep Osahan
-        <p>iamosahan@gmail.com</p>
+       <ion-text *ngIf="!(address_list[0]?.name)">ຊື່ ແລະ ນາມສະກຸນ : </ion-text> {{address_list[0]?.name}}
+        <p><ion-text *ngIf="!(address_list[0]?.location?.email)">ອີເມວ : </ion-text> {{address_list[0]?.location?.email}}</p>
       </ion-label>
     </ion-item>
 
     <ion-grid fixed>
       <ion-row>
-        <ion-col [routerLink]="['/user/update-profile']" class="text-center cell-class" size="6">
+        <ion-col (click)="action=1" class="text-center cell-class" size="6">
           <ion-icon class="icon-l" name="location"></ion-icon>
           <ion-label>
             <p>ແກ້ໄຂທີ່ຢູ່ຮັບສິນຄ້າ</p>
           </ion-label>
         </ion-col>
-        <ion-col [routerLink]="['/user/update-profile']" class="text-center" size="6">
+        <ion-col (click)="Isaction=!Isaction" class="text-center" size="6">
           <ion-icon class="icon-l" name="person-circle-outline"></ion-icon>
           <ion-label>
             <p>ແກ້ໄຂຂໍ້ມູນສ່ວນຕົວ</p>
@@ -177,9 +54,177 @@
   </ion-card>
 </ion-content>
 
-<ion-footer class="border-0">
-  <ion-button [routerLink]="['/checkout']" size="large" class="button-block p-0 m-0" expand="full" color="primary">
+<ion-footer *ngIf="Isaction && action==0" class="border-0">
+  <ion-button (click)="logout()" size="large" class="button-block p-0 m-0" expand="full" color="primary">
      <ion-icon name="lock-closed-outline"></ion-icon>
-     Logout
+     ອອກຈາກລະບົບ
   </ion-button>
 </ion-footer>
+
+<!-- /=============================================== update profile =================================================\ -->
+<ion-header *ngIf="!Isaction && action==0" class="osahan-nav">
+  <ion-toolbar>
+     <ion-buttons (click)="Isaction=!Isaction" slot="start">
+        <ion-button>
+          <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+        </ion-button>
+     </ion-buttons>
+     <ion-label class="title">ແກ້ໄຂຂໍ້ມູນສ່ວນຕົວ</ion-label>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" *ngIf="!Isaction && action==0">
+  <ion-item class="border" lines="none">
+    <ion-label position="floating">ຊື່ ແລະ ນາມສະກຸນ</ion-label>
+    <ion-input [(ngModel)]="name" type="text"></ion-input>
+  </ion-item>
+  <ion-item class="border" lines="none">
+    <ion-label position="floating">ເບີໂທ</ion-label>
+    <ion-input [(ngModel)]="phone" type="text"></ion-input>
+  </ion-item>
+  <ion-item class="border" lines="none">
+    <ion-label position="floating">ອີເມວ</ion-label>
+    <ion-input [(ngModel)]="email" type="text"></ion-input>
+  </ion-item>
+  <ion-item class="border" lines="none">
+    <ion-label position="floating">ປ່ຽນລະຫັດ</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+
+  <ion-button style="--border-radius: 15px;margin-top:20px;" (click)="update_profile()" size="large" expand="block">
+    ແກ້ໄຂ
+  </ion-button>
+</ion-content>
+
+
+
+<!-- ///////////////////////////////  Address //////////////////////////////////////////////// -->
+
+
+<ion-header translucent="true" *ngIf="action == 1" class="osahan-nav">
+  <ion-toolbar>
+    <ion-buttons (click)="action=0" slot="start">
+      <ion-button>
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+   </ion-buttons>
+     
+     <ion-label class="title">ສະຖານທີ່ຮັບສິນຄ້າ</ion-label>
+     <ion-buttons *ngIf="limit()" (click)="go_add()" slot="primary">
+        <ion-button>
+           <ion-icon slot="icon-only" name="add"></ion-icon>
+        </ion-button>
+     </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true" *ngIf="action == 1" class="ion-padding" color="light">
+  <div *ngFor="let i of address_list;let j=index">
+      <ion-card *ngIf="check(i.id)">
+      <ion-item lines="none">
+        <ion-icon (click)="changeLo(i,j)" [color]="getactive(i)" class="icon" slot="start" name="location"></ion-icon>
+            <ion-label>
+              <div class="card-title">
+              <ion-label>{{i.location?.addressname}}</ion-label>
+            </div>
+        </ion-label>
+        
+      </ion-item>
+      <ion-card-content>
+         <p> ຊື່ຜູ້ຮັບ : {{i.location?.username}}</p>
+         <p> ເບີໂທ : {{i.location?.phone}}</p>
+         <p> ທີ່ຢູ່ : {{i.village}}, {{i.district}}, {{i.province}}</p>
+        </ion-card-content>
+        <ion-item lines="none">
+          <p class="mb-0 small">
+            <a (click)="go_edit(i,j)"  class="text-primary mr-3">
+                <ion-icon name="create-outline"></ion-icon>
+              ແກ້ໄຂ
+            </a>
+            <a (click)="remove(i.id,j)" class="text-danger">
+              <ion-icon name="trash-outline"></ion-icon>
+              ລົບ
+            </a>
+            </p>
+        </ion-item>
+    </ion-card>
+  </div>
+  
+</ion-content>
+
+
+<!-- /////////////////////////////// Add New Address //////////////////////////////////////////////// -->
+
+
+
+<ion-header translucent="true" *ngIf="action == 2" class="osahan-nav">
+  <ion-toolbar>
+    <!-- <ion-item> -->
+      <ion-buttons slot="start" (click)="action = 1" >
+        <ion-button>
+          <ion-icon slot="icon-only"  name="arrow-back-outline"></ion-icon>
+        </ion-button>
+     </ion-buttons>
+      <ion-label class="title">{{title}}</ion-label>
+    <!-- </ion-item> -->
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen="true" *ngIf="action == 2" class="ion-padding" color="light">
+  <div class="card">
+
+        <ion-list lines="full" class="ion-no-margin ion-no-padding">
+          
+          <ion-item>
+            <ion-label position="stacked">
+               ຊື່ບ່ອນຮັບສິນຄ້າ
+               <ion-text color="danger">*</ion-text>
+            </ion-label>
+            <ion-input placeholder="ປ້ອນຊື່ບ່ອນຮັບສິນຄ້າ" [(ngModel)]="addressName" type="text"></ion-input>
+         </ion-item>
+
+           <ion-item>
+              <ion-label position="stacked">
+                ຊື່ ແລະ ນາມສະກຸນ ຜູ້ຮັບ
+                 <ion-text color="danger">*</ion-text>
+              </ion-label>
+
+              <ion-input maxlength="27" placeholder="ປ້ອນຊື່ ແລະ ນາມສະກຸນ ຜູ້ຮັບ" [(ngModel)]="userName" type="text"></ion-input>
+           </ion-item>
+
+           <ion-item>
+              <ion-label position="stacked">
+                ເບີໂທຕິດຕໍ່
+                 <ion-text color="danger">*</ion-text>
+              </ion-label>
+              <ion-input [(ngModel)]="addressphone" placeholder="ປ້ອນເບີໂທຕິດຕໍ່" type="number"></ion-input>
+           </ion-item>
+
+
+           <ion-item>
+            <ion-label position="floating"><ion-text color="danger">*</ion-text> ແຂວງ </ion-label>
+            <ion-select [(ngModel)]="pr_id" name="province" placeholder="ເລືອກແຂວງ" (ionChange)="loaddistrict()">
+              <ion-select-option *ngFor="let i of province_list" [value]="i.pr_id" >{{i.pr_name}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item *ngIf="pr_name">
+            <ion-label position="floating"><ion-text color="danger">*</ion-text> ເມືອງ </ion-label>
+            <ion-select [(ngModel)]="dr_id" name="district" placeholder="ເລືອກເມືອງ" (ionChange)="loadvillage()">
+              <ion-select-option *ngFor="let i of findDistricts()" [value]="i.dr_id">{{i.dr_name}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item *ngIf="dr_name">
+            <ion-label position="floating"><ion-text color="danger">*</ion-text> ບ້ານ </ion-label>
+            <ion-select [(ngModel)]="vill_name" name="village" placeholder="ເລືອກບ້ານ">
+              <ion-select-option *ngFor="let i of findVillages()" value="{{i.vill_name}}">{{i.vill_name}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+        </ion-list>
+       
+        <div class="ion-padding">
+           <ion-button *ngIf="title == 'ເພີ່ມທີ່ຢູ່'" (click)="new_address()" expand="block"  class="ion-no-margin">ເພີ່ມທີ່ຢູ່</ion-button>
+           <ion-button *ngIf="title == 'ແກ້ໄຂທີ່ຢູ່'" (click)="update_address()" expand="block" class="ion-no-margin">ແກ້ໄຂທີ່ຢູ່</ion-button>
+        </div>
+
+  </div>
+</ion-content>

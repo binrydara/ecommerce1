@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: CartPage
+  },
+  {
+    path: 'all-price',
+    loadChildren: () => import('./all-price/all-price.module').then( m => m.AllPricePageModule)
   }
 ];
 

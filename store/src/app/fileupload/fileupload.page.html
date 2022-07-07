@@ -1,0 +1,101 @@
+<ion-header>
+ 
+  <ion-toolbar>
+    <ion-buttons slot="primary">
+      <ion-button (click)="dismiss()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>fileupload</ion-title>
+  </ion-toolbar>
+  
+</ion-header>
+
+<ion-content>
+
+  <!-- <input accept="image/x-png,image/gif,image/jpeg" type="file" id="imgupload" (change)="selectFile_Add($event)"  hidden > -->
+  <!-- <input accept="image/x-png,image/gif,image/jpeg" type="file" id="imgupload" (change)="uploadFile($event)"  hidden> -->
+ 
+  <!-- *ngIf="action == 'add'" -->
+  <!-- <label for="imgupload"> -->
+    <!-- <ion-img [src]="Addimg"></ion-img> -->
+    <!-- <img width="200px" height="200px" [src]="Addimg"> -->
+  <!-- </label> -->
+  
+  
+  <ion-card>
+    <ion-card-header>
+      <ion-grid class="grid">
+        <ion-row>
+        <ion-col size="6">
+          <label for="formFile" class="form-label">Please Select File</label>
+          <input class="form-control" type="file" name="filename" id="fileId" (change)="uploadFile($event)"
+              required>
+        </ion-col>
+        <ion-col size="6">
+          <button type="button" class="btn btn-outline-success btn-sm-outline-success mt-2"
+                        (click)="saveFile()"><i class="far fa-upload"></i> Upload</button>
+        </ion-col>
+      </ion-row>
+      </ion-grid>
+      
+      
+             <!-- Progress Bar *ngIf="progress > 0"-->
+      <!-- <mat-spinner></mat-spinner>
+            <div class="progress form-group mt-1" *ngIf="progress > 0">
+                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width.%]="progress">
+                </div>
+            </div>   -->
+
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid class="grid" fixed>
+
+      <ion-row>
+        <ion-col>#</ion-col>
+        <ion-col>File name</ion-col>
+        <ion-col>File size</ion-col>
+        <ion-col>Description</ion-col>
+        <ion-col>Date</ion-col>
+        <ion-col></ion-col>
+        <ion-col></ion-col>
+      </ion-row>
+      <ion-row  *ngFor="let file of fileArr; let i = index">
+        <ion-col>{{i+1}}id={{file.id}}</ion-col>
+        <ion-col>{{file.fileName}}{{file.fileExtendsion}}</ion-col>
+        <ion-col>{{humanFileSize(file.fileSize)}}</ion-col>
+        <ion-col>{{file.description}}</ion-col>
+        <ion-col>{{file.createdAt | date:'dd/MM/yyyy hh:mm:ss a'}}</ion-col>
+        <ion-col>
+          <a href="{{this.Url}}{{file.fileUrl}}"class="btn btn-outline-success btn-sm">
+            <!-- <i class="far fa-download"></i> -->
+            <ion-icon name="download"></ion-icon>
+          </a>
+        </ion-col>
+        <ion-col size="12">
+          <img src="{{this.Url}}{{file.fileUrl}}" alt="">
+        </ion-col>
+        <ion-col>
+          <ion-button (click)="deleteFile(file.id)" fill="outline">
+            <ion-icon slot="icon-only" name="trash"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    </ion-card-content>
+
+    <div class="d-flex justify-content-center">
+      <nav aria-label="Page navigation example">
+          <ul class="pagination">
+              <li [ngClass]="btn.active ? 'page-item active' : 'page-item'"
+                  *ngFor="let btn of btns; let i = index">
+                  <a class="page-link" href="javascript:void(0)" (click)="selectMany(btn.page)">
+                      {{ btn.name }}
+                  </a>
+              </li>
+          </ul>
+      </nav>
+  </div>
+  </ion-card>
+</ion-content>

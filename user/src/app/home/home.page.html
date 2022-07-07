@@ -49,12 +49,12 @@
         <ion-menu-button class="back-icon-color"></ion-menu-button>
      </ion-buttons>
      <ion-title>
-        <small>ສະຖານທີ່ຮັບສິນຄ້າ</small><br>ບ້ານ 
-        <ion-icon [routerLink]="['/user/update-profile']" name="create-outline"></ion-icon>
+        <small>ສະຖານທີ່ຮັບສິນຄ້າ</small><br>{{addressname()}} 
+        <ion-icon [routerLink]="['/user/profile']" name="create-outline"></ion-icon>
      </ion-title>
      <ion-buttons slot="primary">
         <ion-button [routerLink]="['/cart']" class="top-cart" color="primary">
-           <ion-badge color="primary">3</ion-badge>
+           <ion-badge color="primary">{{countCart}}</ion-badge>
            <ion-icon slot="start" name="cart-outline"></ion-icon>
         </ion-button>
      </ion-buttons>
@@ -140,7 +140,7 @@
   </ion-item>
   <!-- [options]="slideOptscategory" [slidesPerView]="checkScreen()"-->
   <ion-slides [options]="slideOptscategory"  >   
-    <ion-slide *ngFor="let d of data">
+    <ion-slide  *ngFor="let d of data">
       <ion-card (click)="see(d.name)" class="card_cat">
          <!-- <img id="image_cat" src="../../assets/icon/user.png" alt="">-->
          <ion-avatar class="pic-center">

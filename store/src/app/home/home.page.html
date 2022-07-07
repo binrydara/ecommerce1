@@ -1,13 +1,4 @@
-<ion-header class="header"  >
-    <!-- <ion-item color="primary" lines="none">
-      <ion-label>Online Store</ion-label>
-    <ion-icon slot="end" name="search"></ion-icon>
-    <ion-icon slot="end" name="funnel"></ion-icon>
-    <div class="icon">
-      <ion-icon name="chatbubbles"></ion-icon>
-      <ion-badge class="badge" slot="end">22</ion-badge>
-    </div>
-    </ion-item> -->
+<!-- <ion-header class="header"  >
     <ion-grid class="header" fixed>
       <ion-row>
         <ion-col size="6">
@@ -31,159 +22,399 @@
         </ion-col>
       </ion-row>
     </ion-grid>
+</ion-header> -->
+
+
+<!-- <ion-header class="osahan-nav">
+  <ion-toolbar>
+     <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+     </ion-buttons>
+     <ion-label class="title">ກະເປົາເງິນຂອງຂ້ອຍ</ion-label>
+  </ion-toolbar>
+</ion-header> -->
+
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////? -->
+<!-- <ion-content>
+
+  <ion-row>
+    <ion-col class="ion-no-padding" size="12" size-sm="4" size-md="4" size-lg="4">
+      <img width="100%" height="200px" src="../../assets/icon/store.png" alt="">
+    </ion-col>
+    <ion-col class="ion-no-padding" size="12" size-sm="8" size-md="8" size-lg="8">
+           
+                <ion-item (click)="goto_detail()" class="b-bottom mt-30" lines="none">
+                  <ion-label class="title">Manee Store <p>House: 00, Road: 00, City-0000, Country</p>
+                  <ion-label class="margin-left" >ສິນຄ້າຫຼັກ : Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum, ratione!
+                  </ion-label>
+                  </ion-label>
+                </ion-item>
+              
+                <ion-row>
+                  <ion-col size="6">
+                    <ion-button (click)="check()" expand="block" fill="clear" shape="round">
+                      <ion-icon slot="start" name="chatbubbles"></ion-icon>
+                      ຕິດຕໍ່ຮ້ານ
+                    </ion-button>
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-button (click)="onClick()" expand="block" fill="clear" shape="round">
+                      <ion-icon slot="start" name="heart"></ion-icon>
+                      ຕິດຕາມຮ້ານ
+                    </ion-button>
+                  </ion-col>
+                </ion-row>
+    </ion-col>
+  </ion-row>
+
+
+
+        <ion-segment scrollable  [(ngModel)]="selectTabs">
+            <ion-segment-button value="seg1">
+              <ion-label>ໜ້າຫຼັກ</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="seg2">
+              <ion-label>ສິນຄ້າທັງໝົດ</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="seg3">
+              <ion-label>ສິນຄ້າຂາຍດີ</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="seg4">
+              <ion-label>ກ່ຽວກັບຮ້ານ</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="seg5">
+              <ion-label>category5</ion-label>
+            </ion-segment-button>
+        </ion-segment>
+
+
+        <div *ngIf="selectTabs == 'seg1'">
+          <ion-row>
+            <ion-col size="12" size-sm="6">
+              <ion-item lines="none">
+                <ion-icon slot="start" name="star-outline"></ion-icon>
+                <ion-label>
+                  ຄະແນນ: <ion-text color="primary">
+                    4.8 (125.5ພັນ)
+                  </ion-text>
+                </ion-label>
+              </ion-item>
+              <ion-item lines="none">
+                <ion-icon slot="start" name="people"></ion-icon>
+                <ion-label>ຜູ້ຕິດຕາມ: <ion-text color="primary">
+                  4.8 ພັນ
+                </ion-text></ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col size="12" size-sm="6">
+              <ion-item lines="none">
+                <ion-icon slot="start" name="star-outline"></ion-icon>
+                <ion-label>
+                  ຄະແນນ: <ion-text color="primary">
+                    4.8 (125.5ພັນ)
+                  </ion-text>
+                </ion-label>
+              </ion-item>
+              <ion-item lines="none">
+                <ion-icon slot="start" name="people"></ion-icon>
+                <ion-label>ຜູ້ຕິດຕາມ: <ion-text color="primary">
+                  4.8 ພັນ
+                </ion-text></ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+
+          <ion-item class="mt-20" detail lines="none">
+            <ion-label>ປະເພດສິນຄ້າ1</ion-label>
+              <ion-label (click)="see_all('ປະເພດສິນຄ້າ1')" slot="end" color="primary">See All</ion-label>
+          </ion-item>
+          <ion-slides [options]="slideOptscategory">   
+            <ion-slide  *ngFor="let d of data">
+
+              <ion-card class="card_cat" (click)="detail(d)">
+                <div class="img">
+                  <img class="img1" [src]="d.pic" alt="">
+                    <ion-label class="heart1">ຮ້ານແນະນຳ</ion-label>
+                </div>
+               <ion-label style="text-align: left;margin-left: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{d.name}}</ion-label>
+                
+               <ion-card-content class="ion-no-padding text-start">
+                  
+                  <ion-label class="margin-left" >
+                    <ion-icon color="warning" slot="start" name="star"></ion-icon>
+                    <ion-icon color="warning" slot="start" name="star"></ion-icon>
+                    <ion-icon color="warning" slot="start" name="star-half"></ion-icon>
+                    <ion-icon  slot="start" name="star-outline"></ion-icon>
+                    <ion-icon  slot="start" name="star-outline"></ion-icon>
+                      (704)
+                  </ion-label>
+      
+                        <ion-text class="margin-left" color="primary">
+                          ₭500.000 - ₭1.000.000
+                        </ion-text>
+    
+                        <ion-label>
+                          <p class="margin-left">ຂາຍແລ້ວ 14.4 ພັນອັນ</p>
+                          <p class="margin-left">ນະຄອນຫຼວງວຽງຈັນ</p>
+                        </ion-label>
+                </ion-card-content>
+              </ion-card>
+            </ion-slide>
+          </ion-slides>
+
+
+          <ion-item class="mt-20" detail lines="none">
+            <ion-label>ປະເພດສິນຄ້າ2</ion-label>
+              <ion-label (click)="see_all('ປະເພດສິນຄ້າ2')" slot="end" color="primary">See All</ion-label>
+          </ion-item>
+          <ion-slides [options]="slideOptscategory">   
+            <ion-slide  *ngFor="let d of data">
+
+              <ion-card class="card_cat" (click)="detail(d)">
+                <div class="img">
+                  <img class="img1" [src]="d.pic" alt="">
+                    <ion-label class="heart1">ຮ້ານແນະນຳ</ion-label>
+                </div>
+               <ion-label style="text-align: left;margin-left: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{d.name}}</ion-label>
+                
+               <ion-card-content class="ion-no-padding text-start">
+                  
+                  <ion-label class="margin-left" >
+                    <ion-icon color="warning" slot="start" name="star"></ion-icon>
+                    <ion-icon color="warning" slot="start" name="star"></ion-icon>
+                    <ion-icon color="warning" slot="start" name="star-half"></ion-icon>
+                    <ion-icon  slot="start" name="star-outline"></ion-icon>
+                    <ion-icon  slot="start" name="star-outline"></ion-icon>
+                      (704)
+                  </ion-label>
+      
+                        <ion-text class="margin-left" color="primary">
+                          ₭500.000 - ₭1.000.000
+                        </ion-text>
+    
+                        <ion-label>
+                          <p class="margin-left">ຂາຍແລ້ວ 14.4 ພັນອັນ</p>
+                          <p class="margin-left">ນະຄອນຫຼວງວຽງຈັນ</p>
+                        </ion-label>
+                </ion-card-content>
+              </ion-card>
+            </ion-slide>
+          </ion-slides>
+        </div>
+        <div *ngIf="selectTabs == 'seg2'">
+
+          <ion-item *ngIf="searh" style="--background: rgb(235, 232, 232);" lines="none">
+            <ion-label>ຜົນການຄົ້ນຫາ  <ion-text color="primary">
+              : {{searh}}
+            </ion-text></ion-label>
+          </ion-item>
+          <ion-item style="--background: rgb(235, 232, 232);" lines="none">
+            <ion-label>ຈັດລຽງຕາມ  <ion-text class="hide" color="primary">
+              : {{sortBy}}
+            </ion-text></ion-label>
+            <ion-button (click)="sort(2,0)" [fill]="fill2" >
+              ໃໝ່ລ່າສຸດ
+            </ion-button>
+            <ion-button (click)="sort(1,0)" [fill]="fill1">
+              ຄວາມນິຍົມສູງ
+            </ion-button>
+            <ion-button (click)="action_price()" [fill]="fill3" >
+              ລາຄາ
+            </ion-button>
+          </ion-item>
+            <ion-row class="ion-align-items-center ion-justify-content-center">
+              <ion-col class="p-0" *ngFor="let d of data" size="auto">
+                <ion-card class="card_cat" (click)="detail(d)">
+                  <div class="img">
+                    <img class="img1" [src]="d.pic" alt="">
+                      <ion-label class="heart1">ຮ້ານແນະນຳ</ion-label>
+                  </div>
+                 <ion-label style="text-align: left;margin-left: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{d.name}}</ion-label>
+                  
+                 <ion-card-content class="ion-no-padding text-start">
+                    
+                    <ion-label class="margin-left" >
+                      <ion-icon color="warning" slot="start" name="star"></ion-icon>
+                      <ion-icon color="warning" slot="start" name="star"></ion-icon>
+                      <ion-icon color="warning" slot="start" name="star-half"></ion-icon>
+                      <ion-icon  slot="start" name="star-outline"></ion-icon>
+                      <ion-icon  slot="start" name="star-outline"></ion-icon>
+                        (704)
+                    </ion-label>
+        
+                          <ion-text class="margin-left" color="primary">
+                            ₭500.000 - ₭1.000.000
+                          </ion-text>
+      
+                          <ion-label>
+                            <p class="margin-left">ຂາຍແລ້ວ 14.4 ພັນອັນ</p>
+                            <p class="margin-left">ນະຄອນຫຼວງວຽງຈັນ</p>
+                          </ion-label>
+                  </ion-card-content>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+          
+        </div>
+        <div *ngIf="selectTabs == 'seg3'">
+          <h1>segment3</h1>
+        </div>
+        <div *ngIf="selectTabs == 'seg4'">
+          <h1>segment4</h1>
+        </div>
+        <div *ngIf="selectTabs == 'seg5'">
+          <h1>segment5</h1>
+        </div>
+      
+        <ion-item lines="none">
+          <ion-label></ion-label>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label></ion-label>
+        </ion-item>
+</ion-content> -->
+
+
+
+
+
+
+<ion-header class="ion-no-border">
+<ion-toolbar color="light">
+<ion-buttons slot="start">
+<ion-menu-button></ion-menu-button>
+</ion-buttons>
+<ion-title> ຮ້ານເມກ້າຂາຍເສື້ອຜ້າ </ion-title>
+</ion-toolbar>
 </ion-header>
 
 <ion-content >
-  <ion-grid  fixed>
-    <ion-row  class="ion-no-padding">
-      <ion-col size="6">
-        <ion-card (click)="detail()">
-         
-          <div class="img">
-            <img width="100%" height="150px" src="https://ng.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/57/319977/1.jpg?5403" alt="">
-              <ion-icon class="heart" name="heart"></ion-icon>
-          </div>
-         <ion-label style="margin-left: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">LabAwesobinfshgdkfjhdskjfhdsfuihdosfhdsofsdfdsfdsfmeel</ion-label>
-          
-         <ion-card-content class="ion-no-padding">
-            <ion-label class="margin-left" >
-              <ion-icon color="warning" slot="start" name="star"></ion-icon>
-              <ion-icon color="warning" slot="start" name="star"></ion-icon>
-              <ion-icon color="warning" slot="start" name="star-half"></ion-icon>
-              <ion-icon  slot="start" name="star"></ion-icon>
-              <ion-icon  slot="start" name="star"></ion-icon>
-            </ion-label>
 
-              <ion-label align="center" class="margin-left">
-                <h1>500.000</h1>
-              </ion-label>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-      <ion-col size="6">
-        <ion-card>
+<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)"><ion-refresher-content></ion-refresher-content></ion-refresher>
 
-          <div class="img">
-            <img width="100%" height="150px" src="https://ng.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/57/319977/1.jpg?5403" alt="">
-              <ion-icon class="heart" name="heart"></ion-icon>
-          </div>
-         <ion-label style="margin-left: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">LabAwesobinfshgdkfjhdskjfhdsfuihdosfhdsofsdfdsfdsfmeel</ion-label>
-          
-         <ion-card-content class="ion-no-padding">
-          <ion-label class="margin-left" >
-            <ion-icon color="warning" slot="start" name="star"></ion-icon>
-            <ion-icon color="warning" slot="start" name="star"></ion-icon>
-            <ion-icon color="warning" slot="start" name="star"></ion-icon>
-            <ion-icon color="warning" slot="start" name="star"></ion-icon>
-            <ion-icon color="warning" slot="start" name="star"></ion-icon>
-          </ion-label>
+<!-- <div style="height: 80px;background-color:#f4f5f8">
+&nbsp;
+</div> -->
 
-            <ion-label align="center" class="margin-left">
-              <h1>500.000</h1>
-            </ion-label>
-        </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-    <ion-row  class="ion-no-padding">
-      <ion-col size="6">
-        <ion-card>
-          <div class="img">
-            <img width="100%" height="150px" src="https://ng.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/57/319977/1.jpg?5403" alt="">
-              <ion-icon class="heart" name="heart"></ion-icon>
-          </div>
-         <ion-label style="margin-left: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">LabAwesobinfshgdkfjhdskjfhdsfuihdosfhdsofsdfdsfdsfmeel</ion-label>
-          
-         <ion-card-content class="ion-no-padding">
-          <ion-label class="margin-left" >
-            <ion-icon color="warning" slot="start" name="star"></ion-icon>
-            <ion-icon color="warning" slot="start" name="star"></ion-icon>
-            <ion-icon color="warning" slot="start" name="star"></ion-icon>
-            <ion-icon color="warning" slot="start" name="star"></ion-icon>
-            <ion-icon color="warning" slot="start" name="star"></ion-icon>
-          </ion-label>
+<!-- style="height: auto;margin-top: -20%;border-radius: 30px;background-color: white" -->
+<div style="border-radius: 30px 30px 0px 0px;background-color: white" class="ion-padding">
 
-            <ion-label align="center" class="margin-left">
-              <h1>500.000</h1>
-            </ion-label>
-        </ion-card-content>
-        </ion-card>
-      </ion-col>
-      <ion-col size="6">
-        <ion-card>
-          <div class="img">
-            <img width="100%" height="150px" src="https://ng.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/57/319977/1.jpg?5403" alt="">
-              <ion-icon class="heart" name="heart"></ion-icon>
-          </div>
-         <ion-label style="margin-left: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">LabAwesobinfshgdkfjhdskjfhdsfuihdosfhdsofsdfdsfdsfmeel</ion-label>
-          
-         <ion-card-content class="ion-no-padding">
-          <ion-label class="margin-left" >
-            <ion-icon color="warning" slot="start" name="star"></ion-icon>
-            <ion-icon color="warning" slot="start" name="star"></ion-icon>
-            <ion-icon color="warning" slot="start" name="star"></ion-icon>
-            <ion-icon color="warning" slot="start" name="star"></ion-icon>
-            <ion-icon color="warning" slot="start" name="star"></ion-icon>
-          </ion-label>
+<!-- <h3 align="center"> ພາບລວມສິນຄ້າທີ່ມີ </h3> -->
 
-            <ion-label align="center" class="margin-left">
-              <h1>500.000</h1>
-            </ion-label>
-        </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-    <ion-row  class="ion-no-padding">
-      <ion-col size="6">
-        <ion-card>
-          <div class="img">
-            <img width="100%" height="150px" src="https://ng.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/57/319977/1.jpg?5403" alt="">
-              <ion-icon class="heart" name="heart"></ion-icon>
-          </div>
-         <ion-label style="margin-left: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">LabAwesobinfshgdkfjhdskjfhdsfuihdosfhdsofsdfdsfdsfmeel</ion-label>
-          
-         <ion-card-content class="ion-no-padding">
-          <ion-label class="margin-left" >
-            <ion-icon color="warning" slot="start" name="star"></ion-icon>
-            <ion-icon color="warning" slot="start" name="star"></ion-icon>
-            <ion-icon color="warning" slot="start" name="star"></ion-icon>
-            <ion-icon color="warning" slot="start" name="star"></ion-icon>
-            <ion-icon color="warning" slot="start" name="star"></ion-icon>
-          </ion-label>
 
-            <ion-label align="center" class="margin-left">
-              <h1>500.000</h1>
-            </ion-label>
-        </ion-card-content>
-        </ion-card>
-      </ion-col>
-      <ion-col size="6">
-        <ion-card>
-          <div class="img">
-            <img width="100%" height="150px" src="https://ng.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/57/319977/1.jpg?5403" alt="">
-              <ion-icon class="heart" name="heart"></ion-icon>
-          </div>
-         <ion-label style="margin-left: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">LabAwesobinfshgdkfjhdskjfhdsfuihdosfhdsofsdfdsfdsfmeel</ion-label>
-          
-         <ion-card-content class="ion-no-padding">
-          <ion-label class="margin-left" >
-            <ion-icon color="warning" slot="start" name="star"></ion-icon>
-            <ion-icon color="warning" slot="start" name="star"></ion-icon>
-            <ion-icon color="warning" slot="start" name="star"></ion-icon>
-            <ion-icon color="warning" slot="start" name="star"></ion-icon>
-            <ion-icon color="warning" slot="start" name="star"></ion-icon>
-          </ion-label>
+<ion-row style="text-align: center;border-bottom: 2px solid #f4f5f8">
 
-            <ion-label align="center" class="margin-left">
-              <h1>500.000</h1>
-            </ion-label>
-        </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
+<ion-col size="6" style="border-right:1px solid #e8e8e8"><ion-icon name="create" style="font-size: 30px" color="primary"></ion-icon><br><b> ປະເພດສິນຄ້າ </b><br><small> 120 </small></ion-col>
 
-    <ion-item>
-      <ion-label></ion-label>
-    </ion-item>
-  </ion-grid>
+<ion-col size="6"><ion-icon name="grid-outline" style="font-size: 30px" color="primary"></ion-icon><br><b> ສິນຄ້າ </b><br><small> 30 </small></ion-col>
+
+</ion-row>
+</div>
+
+<div style="border-radius: 30px 30px 0px 0px;background-color: white" class="ion-padding">
+
+<!-- <h3 align="center"> ພາບລວມການສັ່ງຊື້ </h3> -->
+
+
+<ion-row style="text-align: center;border-bottom: 2px solid #f4f5f8">
+
+<ion-col size="6" style="border-right:1px solid #e8e8e8"><ion-icon name="cart" style="font-size: 30px" color="primary"></ion-icon><br><b> ລາຍການສັ່ງຊື້ລວມ </b><br><small> 120 </small></ion-col>
+
+<ion-col size="6"><ion-icon name="checkmark-circle" style="font-size: 30px" color="primary"></ion-icon><br><b> ລາຍການສັ່ງຊື້ທີ່ສົ່ງແລ້ວ </b><br><small> 30 </small></ion-col>
+
+</ion-row>
+</div>
+
+
+<ion-segment [(ngModel)]="pet" scrollable  mode="md">
+<ion-segment-button value="1" mode="md">
+ ລາຍການສັ່ງຊື້ໃໝ່
+</ion-segment-button>
+<ion-segment-button value="2" mode="md">
+ ລາຍການສັ່ງຊື້ທີ່ສຳເລັດແລ້ວ 
+</ion-segment-button>
+
+<ion-segment-button value="3" mode="md">
+ ລາຍການສັ່ງຊື້ທີ່ຖືກຍົກເລີກ 
+</ion-segment-button>
+
+</ion-segment>
+
+<div [ngSwitch]="pet">
+
+<div *ngSwitchCase="1">
+
+<ion-row *ngFor="let order of data" (click)="detail(order)" style="border-bottom: 2px solid #f4f5f8;padding: 10px 10px">
+<ion-col size="2"><b> O002 </b></ion-col>
+<ion-col size="6"> ເກີບຜ້າສີຂາວລາຍດຳ  
+
+<small style="color:red" *ngIf="order.otp == 1">( ບໍລິການສົ່ງ )</small>
+<small style="color:red" *ngIf="order.otp != 1">( ຮັບສິນຄ້າເອງ )</small>
+
+<br><small> ໜອງດາ, ສີໂຄດຕະບອງ, ນະຄອນຫລວງວຽງຈັນ </small>
+
+<br>
+<!-- *ngIf="order.status == 0" *ngIf="order.status == 1" *ngIf="order.status == 3" *ngIf="order.status == 4"-->
+<ion-chip color="primary" mode="ios" outline="true">
+  <small style="color:orange;" > ສັ່ງຊື້ໃໝ່ </small>
+</ion-chip>
+<ion-chip color="primary" mode="ios" outline="true">
+  <small style="color:green;" > ຮັບອໍເດີ້ແລ້ວ </small>
+
+</ion-chip>
+<ion-chip color="primary" mode="ios" outline="true">
+  <small style="color:blue;" > ເລືອກບໍລິການສົ່ງ </small>
+
+</ion-chip>
+<ion-chip color="primary" mode="ios" outline="true">
+  <small style="color:black;" > ກຳລັງດຳເນີນການສົ່ງ </small>
+
+</ion-chip>
+
+</ion-col>
+<ion-col size="4" style="text-align: right"> <ion-chip color="danger">100,000 ກີບ </ion-chip>
+</ion-col>
+</ion-row>
+
+</div>
+
+<div *ngSwitchCase="2">
+  <!-- *ngFor="let order of complete" -->
+<ion-row  (click)="detail(order)" style="border-bottom: 2px solid #f4f5f8;padding: 10px 10px">
+<ion-col size="2"><b> O001 </b></ion-col>
+<ion-col size="6"> ເກີບຜ້າສີຂາວລາຍດຳ  
+
+<!-- <small style="color:red" *ngIf="order.otp == 1">( text.s_delivery )</small>
+<small style="color:red" *ngIf="order.otp != 1">( text.s_pickup )</small> -->
+
+<br><small> ໜອງດາ, ສີໂຄດຕະບອງ, ນະຄອນຫລວງວຽງຈັນ </small>
+
+</ion-col>
+<ion-col size="4" style="text-align: right"> <ion-chip color="danger">100,000 ກີບ</ion-chip>
+</ion-col>
+</ion-row>
+
+</div>
+
+<div *ngSwitchCase="3">
+  <!-- *ngFor="let order of cancel" -->
+<ion-row  style="border-bottom: 2px solid #f4f5f8;padding: 10px 10px">
+<ion-col size="2"><b> order.id </b></ion-col>
+<ion-col size="6"> order.name  
+
+<!-- <small style="color:red" *ngIf="order.otp == 1">( text.s_delivery )</small>
+<small style="color:red" *ngIf="order.otp != 1">( text.s_pickup )</small> -->
+
+<br><small> order.address </small>
+
+</ion-col>
+<ion-col size="4" style="text-align: right"> <ion-chip color="danger"> order.currency   order.total </ion-chip>
+</ion-col>
+</ion-row>
+
+</div>
+
+</div>
+
 </ion-content>

@@ -10,6 +10,7 @@ import { LoginPage } from '../auth/login/login.page';
   styleUrls: ['./user.page.scss'],
 })
 export class UserPage implements OnInit {
+  getlogin:boolean=true;
 
   constructor(private rout: Router,
     private profile: ProfileService,
@@ -18,8 +19,13 @@ export class UserPage implements OnInit {
     private modalCtrl:ModalController) { }
 
   ngOnInit() {
-
+    if (localStorage.getItem('token') == null) {
+      this.getlogin=false;
+    }else{
+      this.getlogin=true;
+    }
   }
+  image='../../assets/icon/favicon.png';
 
 
   async loadgprofile() {
@@ -53,6 +59,7 @@ export class UserPage implements OnInit {
                   //   this.LoadCountCommentByPostUuid()
           
                   // }
+                  this.getlogin=true;
                 }
               )
               return await modal.present();
@@ -120,7 +127,7 @@ export class UserPage implements OnInit {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'ຢືນຢັນ',
-      message: 'ຕ້ອງການອອກຈາກແອັບ ?',
+      message: 'ຕ້ອງການອອກຈາກລະບົບ ?',
       buttons: [
         {
           text: 'Cancel',
@@ -131,8 +138,9 @@ export class UserPage implements OnInit {
         }, {
           text: 'Okay',
           handler: () => {
-            this.rout.navigate(['/auth'])
+            // this.rout.navigate(['/auth'])
             localStorage.removeItem('token');
+            this.getlogin=false;
           }
         }
       ]

@@ -153,6 +153,26 @@
   border-width: 1px 0px 0px 0px; 
   border-style:solid; 
 }
+.border{
+  border-radius: 10px;
+  border: 1px solid #DEDEDE;
+  margin-bottom: 15px;
+ border-bottom: 2px solid var(--ion-color-primary);
+
+}
+.icon{
+  font-size: xx-large;
+}
+.back-icon{
+  font-size: x-large;
+}
+.card-title{
+  font-size: larger;
+  font-weight: bold;
+}
+
+
+
 
 
   

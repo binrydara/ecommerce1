@@ -1,0 +1,295 @@
+*{
+    font-size: 14px;
+    
+}
+.tittle{
+    font-size: 16px;
+    font-weight: bold;
+}
+.cardcontent {
+    // background-color:#EBE85F ;
+    margin: 0;
+
+    .content {
+        overflow-y: scroll;
+    }
+}
+
+.location {
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 5px;
+    margin-top: 5px;
+    text-align: center;
+}
+
+.list_store {
+    padding: 5px;
+    border-bottom: 1px ridge;
+    border-top: 1px groove;
+
+    .box_store {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .name_store {
+        font-weight: bold;
+        margin-left: 10px;
+        font-size: 14px;
+    }
+}
+.list_senting {
+    padding: 5px;
+    border-bottom: 1px ridge;
+    border-top: 1px groove;
+
+    .box_senting {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px ridge;
+    }
+
+    .name_senting{
+        font-weight: bold;
+        margin-left: 10px;
+        font-size: 14px;
+        padding: 5px;
+    }  
+    .pay{
+        // padding-top: 5px;
+        // font-weight: bold;
+        padding-top: 5px;
+        margin: 0;
+        // font-size: 16px;
+    }
+    
+    .list_card{
+        // width: 500px;
+        // height: 100px;
+        width: 100%;
+        height: 100%;
+    }
+    
+}
+
+.list_pays {
+    padding: 5px;
+    border-bottom: 1px ridge;
+    border-top: 1px groove;
+
+    .box_pays {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px ridge;
+    }
+
+    .name_pays{
+        font-weight: bold;
+        margin-left: 10px;
+        // font-size: 18px;
+        padding: 5px;
+    }  
+    
+    .list_cardpays{
+        // width: 500px;
+        // height: 70px;
+        width: 100%;
+        height: 100%;
+    }
+    .pay{
+        // padding-top: 5px;
+        // font-weight: bold;
+        padding-top: 18px;
+        margin: 0;
+        font-size: 14px;
+    }
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 5px;
+    // font-size: 18px;
+    // font-weight: bold;
+    .col-right{
+        font-weight: bold;
+    }
+}
+
+.cardorder {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    text-align: end;
+}
+
+#sss {
+    margin-top: 5px;
+    padding: 5px;
+    width: 110px;
+    height: 80px;
+    border-radius: 8px;
+}
+
+.detail {
+    margin-right: auto;
+    padding-top: 10px;
+
+    .name {
+        font-size: 14px;
+    }
+
+    .price {
+        color: #F44F1F;
+        font-size: 14px;
+        padding-top: 12px;
+        font-weight: bold;
+    }
+}
+
+.sending_product {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0px 5px;
+
+    .ps {
+        // font-size: 16px;
+        font-weight: bold;
+    }
+}
+
+.paymoney {
+    display: flex;
+    justify-content: space-between;
+    // font-size: 16px;
+    padding: 0px 5px;
+}
+
+.detail_price {
+    text-align: end;
+    padding-top: 10px;
+
+    .font {
+        padding: 3px;
+        // font-size: 16px;
+    }
+
+    .box_detail_price {
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+
+        .price_shop {
+            color: #F44F1F;
+            font-weight: bold;
+            // font-size: 18px;
+            padding: 3px;
+        }
+    }
+}
+
+.cardcontents {
+    width: 100%;
+    padding: 0px 10px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px ridge;
+}
+
+.image {
+    padding: 5px;
+    width: 130px;
+}
+
+.icon {
+    margin-left: auto;
+    margin-top: 25px;
+}
+
+.icon-forwrad {
+    font-size: 24px;
+    // margin-left: 75px;
+}
+
+.footers {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 5px;
+    text-align: end;
+
+    .box_label {
+        display: flex;
+        flex-direction: row;
+        margin-top: 10px
+    }
+
+    .sum_all {
+        margin-left: 5px;
+        // font-size: 16px;
+    }
+
+    .price_all {
+        color: #F44F1F;
+        padding-left: 5px;
+        // font-size: 18px;
+        font-weight: bold;
+    }
+
+}
+
+//================================action 2
+
+.card_content {
+    display: flex;
+    //    border-top: 1px groove;
+    padding: 0;
+}
+
+.detail_conent {
+    margin-right: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    // font-size: 14px;
+}
+
+.village {
+    // font-size: 14px;
+}
+
+.edit {
+
+    padding-right: 10px;
+    padding-top: 5px;
+    // font-size: 18px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+//====================================== action 3
+.add {
+    padding-left: 20px;
+    // font-size: 24px;
+    font-weight: bold;
+    color: aliceblue;
+}
+
+.input {
+    background-color: aliceblue;
+    padding-top: 10px;
+    color: black;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #8F7CC7 !important;
+}
+
+.mind {
+    margin: 10px;
+}

@@ -1,0 +1,95 @@
+<!-- action 1 -->
+<ion-header *ngIf="action =='ຮ້ານຈັດການຂົນສົ່ງ'">
+  <ion-toolbar style="--background: #B4A7D9;" >
+    <ion-title>ຮ້ານຈັດການຂົນສົ່ງ</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="action=='1'">
+   <ion-list class="ion-no-padding" >
+     <ion-card style="margin: 0;">
+        <p style="font-size: 16px;">ທ່ານສາມາດສໍາລະເງີນນໍາພະນັກງານຂົນສົ່ງ ຫຼຶ ສາມາດຕິດຕໍ່ຫາຮ້ານໄດ້ເລີຍ</p>
+     </ion-card>
+   </ion-list>
+</ion-content>
+<!-- End action 1 -->
+
+
+<!-- action 2 -->
+<ion-header *ngIf="action =='ຂົນສົ່ງທາງສະຖານີ'">
+  <ion-toolbar style="--background: #B4A7D9;" >
+    <ion-title>ຂົນສົ່ງທາງສະຖານີ</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="action=='ຂົນສົ່ງທາງສະຖານີ'">
+  <div *ngFor="let item of deli">
+    <ion-item  lines="full" (click)="onClick(item)">
+      <ion-list class="ion-no-padding" >
+        <div style="display: flex;">
+          <ion-avatar style="width: 45px;height: 45px;">
+            <img style="margin-top: 8px;" src="{{item.image_store}}" alt="">
+        </ion-avatar>
+          <p style="padding-left: 15px;">{{item.store_name}}</p>
+        </div>
+      </ion-list>
+    </ion-item>
+  </div>
+</ion-content>
+<!-- End action 2 -->
+
+<!-- action 3 -->
+
+<ion-header *ngIf="action =='ລູກຄ້າເລືອກຂົນສົ່ງເອງ'">
+  <ion-toolbar style="--background: #B4A7D9;" >
+    <ion-title>ລູກຄ້າເລືອກຂົນສົ່ງເອງ</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+
+
+<!-- End action 3 -->
+
+<!-- action 4 -->
+
+<ion-header *ngIf="action == '3'">
+  <ion-toolbar style="--background: #B4A7D9;" >
+    <ion-title>ກະລຸນາເລືອກສາຂາທີ່ຈະຮັບສິນຄ້າ:</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="action='ຂົນສົ່ງທາງສະຖານີ'">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="action == '3'">
+  <div *ngFor="let item of deli">
+    <ion-item  lines="full" (click)="onClick(item)">
+      <ion-list class="ion-no-padding" >
+        <div style="display: flex;">
+          <p style="padding-left: 15px;">{{item.store_name}}</p>
+        </div>
+      </ion-list>
+    </ion-item>
+  </div>
+</ion-content>
+
+
+<!-- End action 4 -->

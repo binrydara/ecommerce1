@@ -1,7 +1,16 @@
-<ion-header>
-  <ion-item lines="none">
-    <ion-label align="center">ກະຕ່າຂອງຂ້ອຍ</ion-label>
+<!-- <ion-header class="header">
+  <ion-item class="header" lines="none">
+    <ion-label color="light" align="center">ກະຕ່າຂອງຂ້ອຍ</ion-label>
   </ion-item>
+</ion-header> -->
+
+<ion-header class="osahan-nav">
+  <ion-toolbar>
+     <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+     </ion-buttons>
+     <ion-label class="title">ກະຕ່າຂອງຂ້ອຍ</ion-label>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
@@ -11,72 +20,25 @@
     <ion-item-sliding *ngFor="let i of test ; let j = index"> 
 
   <ion-item class="ion-no-padding">
-      <img style="margin: 5px;border-radius: 5px;" width="80px" height="80px" [src]="i.pic" />
+      <img style="margin: 5px 10px;border-radius: 5px;" width="90px" height="90px" [src]="i.pic" />
     <ion-label class="margin-left">
-      <h1>{{i.name}}</h1>
-      <p>{{i.price}}</p>
-    </ion-label>
-    <ion-label class="ion-text-end">
+      
+          <ion-label style="font-size: 20px;">{{i.name}}</ion-label>
      
-        <!-- <ion-icon class="size" color="danger" name="trash"></ion-icon> -->
-     
-        <ion-buttons slot="end">
-          <ion-button (click)="onClick()">
-            <ion-icon slot="start" name="remove"></ion-icon>
-          </ion-button>
-          <ion-label align="center">1</ion-label>
-          <ion-button (click)="onClick()">
-            <ion-icon slot="end" name="add"></ion-icon>
-          </ion-button>
-        </ion-buttons>
+      <p>₭{{i.price}}</p>
+
+      <ion-buttons>
+      <ion-button (click)="onClick()">
+        <ion-icon class="btn-color" slot="icon-only" name="remove"></ion-icon>
+      </ion-button>
+      <ion-label >100</ion-label>
+      <ion-button  (click)="onClick()">
+        <ion-icon class="btn-color" slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     </ion-label>
+
   </ion-item>
-
-
-<!-- <ion-item class="ion-no-padding">
-  <img style="margin: 5px;border-radius: 5px;" width="80px" height="80px" src="https://media.wired.com/photos/5fa5c9e7ba670daaf8e97a79/125:94/w_1795,h_1350,c_limit/Gear-Xero-HFS-SOURCE-Xero-Shoes.jpg" />
-<ion-label class="margin-left">
-  <h1>test</h1>
-  <p>500.000</p>
-</ion-label>
-<ion-label class="ion-text-end">
- 
-    <ion-icon class="size" color="danger" name="trash"></ion-icon>
- 
-    <ion-buttons slot="end">
-      <ion-button (click)="onClick()">
-        <ion-icon slot="start" name="remove"></ion-icon>
-      </ion-button>
-      <ion-label align="center">1</ion-label>
-      <ion-button (click)="onClick()">
-        <ion-icon slot="end" name="add"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-</ion-label>
-</ion-item>
-
-<ion-item class="ion-no-padding">
-  <img style="margin: 5px;border-radius: 5px;" width="80px" height="80px" src="https://media.wired.com/photos/6154ba291b38af32f7638ffd/master/w_2580,c_limit/Gear-Barefoot-Shoes-Freet-Tanga-SOURCE-Freet.jpg" />
-<ion-label class="margin-left">
-  <h1>test</h1>
-  <p>500.000</p>
-</ion-label>
-<ion-label class="ion-text-end">
- 
-    
- 
-    <ion-buttons slot="end">
-      <ion-button (click)="onClick()">
-        <ion-icon slot="start" name="remove"></ion-icon>
-      </ion-button>
-      <ion-label align="center">1</ion-label>
-      <ion-button (click)="onClick()">
-        <ion-icon slot="end" name="add"></ion-icon>
-      </ion-button>
-      <ion-icon class="size" color="danger" name="trash"></ion-icon>
-    </ion-buttons>
-</ion-label>
-</ion-item> -->
 
 <ion-item-options side="end">
   <ion-item-option color="danger">ລົບ</ion-item-option>
@@ -87,16 +49,18 @@
 
 </ion-content>
 
-<ion-footer style="border-top: 3px solid #30B1F2;">
-  <ion-item lines="none">
-    <ion-label>ລວມລາຄາ : 1.500.000​</ion-label>
-  <ion-button (click)="onClick()" expand="block"  >
+<ion-footer style="border-top: 3px solid #3880ff;">
+  <ion-item  lines="none">
+    <ion-label>ລວມລາຄາ : <ion-text color="success">
+      <h1>₭1.500.000</h1>
+    </ion-text>​</ion-label>
+  <ion-button size="larg" (click)="onClick()" expand="block"  >
     ສັ່ງຊື້ສິນຄ້າ
   </ion-button>
   </ion-item>
 
-  <ion-item style="margin-bottom: 20px;" lines="none">
+  <ion-item lines="none">
     <ion-label></ion-label>
   </ion-item>
-  
+
 </ion-footer>

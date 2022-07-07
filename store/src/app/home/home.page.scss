@@ -1,45 +1,66 @@
-.i {
-  position: relative;
-}
-.badge {
-  background-color: red;
-  position: absolute;
-  top: -5px;
-  right: -3px;
-  border-radius: 100%;
-  font-size: 10px;
-}
-.icon{
-    font-size: x-large;
-    margin-right: 5px;
-    color: #ffffff;
-}
-.header{
-    background: #30B1F2;
-}
-// .ion-no-padding{
-//     margin: 0 auto;
+// ion-card{
+//   display: flex;
+//   flex-direction: column;
+//   // width: 100% !important;
+//   width: 167px;
+
+//   margin: 0 !important;
+//  }
+// .margin-left{
+//   margin-left: 10px;
 // }
 
-ion-card{
-    display: flex;
-    flex-direction: column;
-    width: 100% !important;
-    margin: 0 !important;
-   }
-.margin-left{
-    margin-left: 10px;
-}
-.img{
-    position: relative;
-}
-.heart{
-    background-color: #ffffff;
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  border-radius: 100%;
-  font-size: 20px;
-  color: red;
+// .card_cat{
+// margin: 2px !important;
+// }
+
+// .padding-0{
+//   padding:0px !important;
+// }
+
+// .hide_after_2rows{
+// margin-left: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;
+// }
+// .img1{
+//   width: 100%;
+//   height: 165px;
+// }
+// .text-start{
+//   text-align: left;
+// }
+// .mt-20{
+//   margin-top: 20px;
+// }
+
+// .mt-30{
+//   margin-top: 30px;
+
+// }
+
+// @media screen and (max-width:575px) {
+//   .mt-30{
+//       margin-top: 0px;
+//   }
+// }
+
+// @media screen and (max-width:499px) {
+//   .hide{
+//       display: none;
+//   }
+// }
+
+// .p-0{
+//   padding:3px !important;
+// }
+
+.welcomeHeader
+{
+    height: 200px
 }
 
+.homeHeader
+{
+	background-color: var(--ion-color-light);
+	color:white;
+	height:140px;
+}

@@ -1,0 +1,136 @@
+<ion-header *ngIf="action==1">
+  <ion-toolbar>
+    <ion-title>welcome</ion-title>
+
+    <ion-buttons slot="primary">
+      <ion-button (click)="logout()">
+        ອອກຈາກລະບົບ
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content style="--background: rgb(241, 235, 235);" *ngIf="action==1" class="ion-padding">
+  
+  <div *ngFor="let i of my_store;let j=index">
+    <ion-card (click)="home(j)" color="primary">
+      <ion-item >
+        <ion-label>{{i?.storeType}}</ion-label>
+      </ion-item>
+      <!-- <ion-card-title><center><ion-label>{{i?.storeType}}</ion-label></center></ion-card-title> -->
+      <ion-row>
+        <ion-col size="4"><img src="../../assets/cart.png" alt=""></ion-col>
+        <ion-col size="8">
+          <center><ion-label>{{i?.name}}</ion-label></center>
+          <ion-label>{{i?.more_detail.province}}, </ion-label>
+          <ion-label> {{i?.more_detail.district}}, </ion-label>
+          <ion-label> {{i?.more_detail.village}}, </ion-label>
+          <ion-label> {{i?.more_detail.phone}}</ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </div>
+
+  <ion-fab (click)="action=2" style="margin-bottom: 30px;margin-right: 10px;" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+
+<ion-content *ngIf="action == 2" class="ion-padding"  #content>
+
+  <ion-icon name="arrow-back-outline" style="font-size: 26px" (click)="action = 1"></ion-icon>
+  
+  <!-- <br><br><br> -->
+  
+  <h1 align="center">ຕ້ອງການເປັນຜູ້ຂາຍ ? </h1>
+  <p align="center"> ກອກຂໍ້ມູນສົ່ງມາຫາເຮົາ, ແລ້ວເຮົາຈະຕິດຕໍ່ກັບຫາທ່ານ </p>
+  <br>
+  
+  <form #form="ngForm" (ngSubmit)="new(form.value)">
+  
+  <ion-item>
+    <ion-label> ປະເພດຮ້ານ </ion-label>
+      <ion-select ngModel name="storeType" placeholder="ເລືອກປະເພດຮ້ານ">
+        <ion-select-option value="ຂາຍອາຫານແລະເຄື່ອງດື່ມ">ຂາຍອາຫານແລະເຄື່ອງດື່ມ</ion-select-option>
+        <ion-select-option value="ຂາຍເຄື່ອງໃຊ້ທົ່ວໄປ">ຂາຍເຄື່ອງໃຊ້ທົ່ວໄປ</ion-select-option>
+        <ion-select-option value="ຂາຍເຄື່ອງແຟຊັ່ນ">ຂາຍເຄື່ອງແຟຊັ່ນ</ion-select-option>
+        <ion-select-option value="ຂາຍເຄື່ອງໃຊ້ໄຟຟ້າ">ຂາຍເຄື່ອງໃຊ້ໄຟຟ້າ</ion-select-option>
+        <ion-select-option value="ຂາຍເຄື່ອງສົດ">ຂາຍເຄື່ອງສົດ</ion-select-option>
+        <ion-select-option value="ຂາຍຜົນຜະລິດກະສິກຳ">ຂາຍຜົນຜະລິດກະສິກຳ</ion-select-option>
+        <ion-select-option value="ຂາຍເຄື່ອງມືສອງ">ຂາຍເຄື່ອງມືສອງ</ion-select-option>
+        <ion-select-option value="ຂາຍເຄື່ອງIT">ຂາຍເຄື່ອງIT</ion-select-option>
+        <ion-select-option value="ຂາຍອາໄລ່ລົດ">ຂາຍອາໄລ່ລົດ</ion-select-option>
+        <ion-select-option value="ຂາຍເຄື່ອງກໍ່ສ້າງ">ຂາຍເຄື່ອງກໍ່ສ້າງ</ion-select-option>
+      </ion-select>
+  </ion-item>
+
+  <div *ngIf="form.value.storeType">
+    <ion-item>
+      <ion-label position="floating"> ຊື່ຮ້ານ </ion-label>
+      <ion-input type="text" ngModel name="name"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="floating"> ເບີໂທຕິດຕໍ່ </ion-label>
+      <ion-input type="number" ngModel name="phone"></ion-input>
+    </ion-item>
+    
+    
+    <br>
+    <ion-item lines="none">
+      <ion-label color="primary" style="font-size: large;"> ທີ່ຕັ້ງຂອງຮ້ານ </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating"> ແຂວງ </ion-label>
+      <ion-select [(ngModel)]="pr_id" name="province" placeholder="ເລືອກແຂວງ" (ionChange)="loaddistrict($event)">
+        <ion-select-option *ngFor="let i of province_list" [value]="i.pr_id" >{{i.pr_name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="pr_name">
+      <ion-label position="floating"> ເມືອງ </ion-label>
+      <ion-select [(ngModel)]="dr_id" name="district" placeholder="ເລືອກເມືອງ" (ionChange)="loadvillage($event)">
+        <ion-select-option *ngFor="let i of findDistricts()" [value]="i.dr_id">{{i.dr_name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="dr_name">
+      <ion-label position="floating"> ບ້ານ </ion-label>
+      <ion-select [(ngModel)]="vill_name" name="village" placeholder="ເລືອກບ້ານ">
+        <ion-select-option *ngFor="let i of findVillages()" value="{{i.vill_name}}">{{i.vill_name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    
+    
+  </div>
+  
+  <br>
+  <!-- <ion-row *ngFor="let plan of data" class="plan" (click)="selectPlan(plan)" [class]="plan.id == plan_id ? 'activeCard' : 'non'">
+  
+  <ion-col size="12"><b>{{ plan.name }} <ion-chip style="float: right" color="primary">{{ plan.currency }}{{ plan.price }}</ion-chip></b></ion-col>
+  
+  <ion-col size="12" style="font-size: 12px">{{ plan.desc }}</ion-col>
+  
+  <ion-col size="12" style="font-size: 12px">
+  <p><ion-icon name="checkmark-outline"></ion-icon> Time Period : {{ plan.time }}</p>
+  
+  <p *ngFor="let fet of plan.feat"><ion-icon name="checkmark-outline"></ion-icon> {{ fet }}</p>
+  
+  </ion-col>
+  
+  </ion-row> -->
+  
+  <ion-item lines="none" class="ion-text-wrap">
+      <ion-label class="ion-text-wrap" style="font-size: 12px"> i agree with your <a href=" setting.term " target="_blank"> Terms & Conditions </a></ion-label>
+      <ion-checkbox slot="start" (ionChange)="term()"></ion-checkbox>
+    </ion-item>
+  
+    <br>
+  <!-- <ion-button expand="block" mode="ios" type="submit" [disabled]="!form.valid || !hasTerm"> ສົ່ງຂໍ້ມູນ </ion-button> -->
+  <ion-button expand="block" mode="ios" type="submit"> ສົ່ງຂໍ້ມູນ </ion-button>
+  
+  </form>
+  
+  </ion-content>

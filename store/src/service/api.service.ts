@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { DatapassService } from './datapass.service';
+import { AlertController, LoadingController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  constructor(public http: HttpClient) { }
+
+  constructor(public http: HttpClient,public dataPassService:DatapassService,public load:LoadingController,public alrt:AlertController) { }
   
   protected getBaseUrl_orderbilding(): string {
   
@@ -24,6 +27,12 @@ export class ApiService {
   
     //  return 'http://localhost:22000/api/v1/';
      return environment.server;
+  
+  }
+  protected getFileManagerUrl(): string {
+  
+    //  return 'http://localhost:22000/api/v1/';
+     return environment.serverFile;
   
   }
   protected getBaseUrl_auth(): string {
@@ -70,5 +79,18 @@ export class ApiService {
     const myheader = new HttpHeaders({ 'Content-Type': 'application/json'})
     .set('token', token+'').set('skip',skip+'').set('skip_store',skip_store+'').set('skip_tag',skip_tag+'');
     return myheader;
+  }
+
+  async alert(text: string) {
+    const alert = await this.alrt.create({
+      header: 'ແຈ້ງເຕືອນ',
+      message: text,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+  getImage (img: string){
+    return this.getFileManagerUrl()+'file/download/'+img
   }
 }

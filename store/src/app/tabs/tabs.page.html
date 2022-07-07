@@ -1,7 +1,7 @@
 
 <ion-tabs  #tabs (ionTabsDidChange)="setCurrentTab($event)">
 
-  <ion-fab (click)="gohome()"  vertical="bottom" horizontal="center" slot="fixed">
+  <ion-fab class="hide" (click)="gohome()"  vertical="bottom" horizontal="center" slot="fixed">
     <ion-fab-button >
       <ion-icon name="home"></ion-icon>
     </ion-fab-button>
@@ -9,7 +9,7 @@
 
 
 
-  <ion-tab-bar  slot="bottom" >
+  <ion-tab-bar class="hide"  slot="bottom" >
 
     <ion-tab-button tab="store-list">
       <ion-icon name="storefront"></ion-icon>

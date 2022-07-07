@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title *ngIf="action==1">ເລືອກສີຂອງສິນຄ້າທີ່ຕ້ອງການ</ion-title>
+    <ion-title *ngIf="action==2">ເລືອກຂະໜາດຂອງສິນຄ້າທີ່ຕ້ອງການ</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" *ngIf="action==1">
+
+  <ion-item lines="none" *ngFor="let i of color_list ; let j = index">
+    <ion-label>{{i}}</ion-label>
+    <ion-checkbox [disabled]="disCheck" [checked]="getcheck(i)" value="i"  (ionChange)="selectCheckBox($event,i)" slot="start" ></ion-checkbox>
+  </ion-item>
+
+</ion-content>
+
+<ion-footer *ngIf="action==1">
+  <ion-toolbar>
+    <ion-button (click)="send_color()" expand="block">
+      ເລືອກ
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>
+
+<ion-content class="ion-padding" *ngIf="action==2">
+
+  <ion-item lines="none" *ngFor="let i of size_list ; let j = index">
+    <ion-label>{{i}}</ion-label>
+    <ion-checkbox [disabled]="disCheck" [checked]="getcheck_size(i)" value="i"  (ionChange)="selectCheckBox($event,i)" slot="start" ></ion-checkbox>
+  </ion-item>
+
+</ion-content>
+
+<ion-footer *ngIf="action==2">
+  <ion-toolbar>
+    <ion-button (click)="send_size()" expand="block">
+      ເລືອກ
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

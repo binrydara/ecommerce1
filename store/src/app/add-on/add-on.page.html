@@ -1,0 +1,361 @@
+<ion-header *ngIf="action=='list' || action=='add' || action=='addP'">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>ຕົວເລືອກສິນຄ້າ</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-header *ngIf="action=='set'">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="action='list'">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>ຕັ້ງລາຄາ ແລະ ຈຳນວນຂອງສິນຄ້າ</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- <ion-content *ngIf="action=='list' || action=='addSize' || action=='addColor'" class="ion-padding">
+
+    <ion-item lines="none">
+      <ion-label>ສີ</ion-label>
+      <ion-icon (click)="get_color(1)" name="caret-down-circle-outline"></ion-icon>
+    </ion-item>
+
+
+    <ion-chip color="danger" mode="ios" outline="true" *ngFor="let e of product_color; let i = index;">
+      <ion-label >{{e}}</ion-label>
+      <ion-icon name="close" (click)="removeItem(i)"></ion-icon>
+    </ion-chip>
+
+    <ion-chip (click)="action='addColor'" color="primary" mode="ios" outline="true">
+      <ion-icon name="add"></ion-icon>
+      <ion-label>ເພີ່ມ</ion-label>
+    </ion-chip> 
+  
+    <ion-item lines="none">
+      <ion-label>ຂະໜາດ</ion-label>
+      <ion-icon (click)="get_color(2)" name="caret-down-circle-outline"></ion-icon>
+    </ion-item>
+
+    <ion-chip color="danger" mode="ios" outline="true" *ngFor="let s of product_sizes; let i = index;">
+      <ion-label >{{s}}</ion-label>
+      <ion-icon name="close" (click)="removeItem_sizes(i)"></ion-icon>
+    </ion-chip>
+
+    <ion-chip (click)="action='addSize'" color="primary" mode="ios" outline="true">
+      <ion-icon name="add"></ion-icon>
+      <ion-label>ເພີ່ມ</ion-label>
+    </ion-chip>
+
+
+    <div *ngFor="let i of value;let j=index">
+      <ion-item lines="none">
+        <ion-label>more option</ion-label>
+        <ion-icon (click)="removevalue(j)" name="close"></ion-icon>
+      </ion-item>
+
+      <ion-chip (click)="action='addSize'" color="primary" mode="ios" outline="true">
+        <ion-icon name="add"></ion-icon>
+        <ion-label>ເພີ່ມ</ion-label>
+      </ion-chip>
+
+    </div>
+
+    <ion-card (click)="addvalue()">
+      <ion-item lines="none">
+        <ion-icon slot="start" name="add"></ion-icon>
+        <ion-label>ເພີ່ມຕົວເລືອກສິນຄ້າ</ion-label>
+      </ion-item>
+    </ion-card>
+
+</ion-content> -->
+
+<!-- <ion-content class="ion-padding" *ngIf="action=='set'">
+  <div *ngIf="product_color.length != 0 && product_sizes.length != 0">
+    <ion-row style="background: rgb(226, 224, 224);">
+      <ion-col size="6">ຕົວເລືອກສິນຄ້າ</ion-col>
+      <ion-col style="margin: 0 auto;" size="3">ລາຄາ</ion-col>
+      <ion-col size="3">ຈຳນວນ</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let i of product_color;let k=index">
+      <ion-col *ngIf="product_color.length != 0 && product_sizes.length != 0" size="12">
+       <br>
+          <ion-label style="--margin-bottom: 10px;" color="primary">{{i}}</ion-label>
+       
+        <ion-row  *ngFor="let j of product_sizes;let l=index">
+          <ion-col size="6">{{j}} {{l}}</ion-col>
+          <ion-col size="3"><ion-input [(ngModel)]="price_2list[k]" style="border: 1px solid rgb(222, 221, 221);" type="number" placeholder="K0"></ion-input></ion-col>
+          <ion-col size="3"><ion-input [(ngModel)]="qty_2list[k]" style="border: 1px solid rgb(222, 221, 221);" type="number" placeholder="0"></ion-input></ion-col>
+        </ion-row>
+      </ion-col>
+   
+    </ion-row>
+  </div>
+  <div *ngIf="product_color.length != 0 && product_sizes.length == 0">
+    <ion-row style="background: rgb(226, 224, 224);">
+      <ion-col size="6">ຕົວເລືອກສິນຄ້າ</ion-col>
+      <ion-col size="3">ລາຄາ</ion-col>
+      <ion-col size="3">ຈຳນວນ</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let i of product_color;let j=index">
+      <ion-col size="6">{{i}}</ion-col>
+      <ion-col size="3"><ion-input [(ngModel)]="price_list[j]" style="border: 1px solid rgb(222, 221, 221);" type="number" placeholder="K0"></ion-input></ion-col>
+      <ion-col size="3"><ion-input [(ngModel)]="qty_list[j]" style="border: 1px solid rgb(222, 221, 221);" type="number" placeholder="0"></ion-input></ion-col>
+    </ion-row>
+  </div>
+  <div *ngIf="product_color.length == 0 && product_sizes.length != 0">
+    <ion-row style="background: rgb(226, 224, 224);">
+      <ion-col size="6">ຕົວເລືອກສິນຄ້າ</ion-col>
+      <ion-col size="3">ລາຄາ</ion-col>
+      <ion-col size="3">ຈຳນວນ</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let i of product_sizes,let j=index">
+      <ion-col size="6">{{i}}</ion-col>
+      <ion-col size="3"><ion-input [(ngModel)]="price_list[j]" style="border: 1px solid rgb(222, 221, 221);" type="number" placeholder="K0"></ion-input></ion-col>
+      <ion-col size="3"><ion-input [(ngModel)]="qty_list[j]" style="border: 1px solid rgb(222, 221, 221);" type="number" placeholder="0"></ion-input></ion-col>
+    </ion-row>
+  </div>
+</ion-content> -->
+
+<ion-content
+  class="ion-padding"
+  *ngIf="action=='list' || action=='add' || action=='addP'"
+>
+  <div *ngFor="let l of addonList()">
+    <ion-item lines="none">
+      <ion-label>{{l}}</ion-label>
+      <!-- <ion-label>{{getname(l)}}</ion-label> -->
+      <ion-icon name="close" (click)="removeProperty(l)"></ion-icon>
+    </ion-item>
+
+    <ion-chip
+      color="danger"
+      mode="ios"
+      outline="true"
+      *ngFor="let v of propertyVal(l);let i =index;"
+    >
+      <ion-label>{{v}}</ion-label>
+      <ion-icon name="close" (click)="removeValue(l,i)"></ion-icon>
+    </ion-chip>
+    <ion-chip
+      (click)="open_addSection(l)"
+      color="primary"
+      mode="ios"
+      outline="true"
+    >
+      <ion-icon name="add"></ion-icon>
+      <ion-label>ເພີ່ມ</ion-label>
+    </ion-chip>
+  </div>
+
+  <ion-button
+    *ngIf="notuse=='y'"
+    (click)="cancel()"
+    color="danger"
+    expand="block"
+  >
+    ຍົກເລີກການໃຊ້ຕົວເລືອກສິນຄ້າ
+  </ion-button>
+
+  <ion-card
+    *ngIf="getTotalAddonLength() == 1 || getTotalAddonLength() == 0"
+    style="margin-top: 20px"
+    (click)="action='addP'"
+  >
+    <ion-item lines="none">
+      <ion-icon slot="start" name="add"></ion-icon>
+      <ion-label>ເພີ່ມຕົວເລືອກສິນຄ້າ</ion-label>
+    </ion-item>
+  </ion-card>
+</ion-content>
+
+<ion-content class="ion-padding" *ngIf="action=='set'">
+  <ion-item>
+    <ion-label>ເພີ່ມຮູບໃຫ້ສິນຄ້າ</ion-label>
+    <ion-toggle slot="end"></ion-toggle>
+  </ion-item>
+
+  <!-- FORM1 -->
+
+  <ion-grid *ngIf="getTotalAddonLength()==1">
+    <ion-row style="background: rgb(226, 224, 224)">
+      <ion-col size="6">ຕົວເລືອກສິນຄ້າ</ion-col>
+      <ion-col style="margin: 0 auto" size="3">ລາຄາ</ion-col>
+      <ion-col size="3">ຈຳນວນ</ion-col>
+    </ion-row>
+    <br />
+    <div *ngFor="let x of getProductSpecDataList1();let i =index;">
+        <ion-row >
+      <!-- <ion-col size="4">{{x}}</ion-col> -->
+      <ion-col size="4">{{x}}</ion-col>
+      <ion-col size="2"> <img src="../../assets/icon/add2.png" style="width:64px;height: 64px;"/>
+      </ion-col>
+      <!-- <ion-col size="2"><img src="../../assets/cart.png"></ion-col> -->
+      <ion-col size="3"
+        ><ion-input
+          style="border: 1px solid rgb(222, 221, 221)"
+          type="number"
+          placeholder="K0"
+          [name]="x"
+          (ionChange)="updateReadyProdPrice($event)"
+          [value]="getProductDataByparams(x)[0]?.moreDetail?.price"
+        ></ion-input
+      ></ion-col>
+      <ion-col size="3"
+        ><ion-input
+          style="border: 1px solid rgb(222, 221, 221)"
+          type="number"
+          [name]="x"
+          (ionChange)="updateReadyProdQtt($event)"
+          [value]="getProductDataByparams(x)[0]?.moreDetail?.qtty"
+        ></ion-input
+      ></ion-col>
+    </ion-row>
+    <ion-slides [options]="slideOptscategory">
+
+      <ion-slide *ngFor="let img of getProductDataByparams(x)[0]?.image;let j=index">
+
+        <div class="img">
+          <!-- <img style="margin-bottom: 15px ;" src="{{this.Url}}{{i}}" alt=""> -->
+          <img [src]="getImage(img)" style="width:64px;height: 64px;"/>
+          <ion-icon (click)="removeImagesFromReadyProducts(x,'',[img])" class="heart" name="close-circle"></ion-icon>
+        </div>
+        
+      </ion-slide>
+      
+     </ion-slides>
+    </div>
+  
+  </ion-grid>
+
+  <!-- FORM2 -->
+  <div *ngIf="getTotalAddonLength()==2">
+    <ion-row style="background: rgb(226, 224, 224)">
+      <ion-col size="6">ຕົວເລືອກສິນຄ້າ</ion-col>
+      <ion-col style="margin: 0 auto" size="3">ລາຄາ</ion-col>
+      <ion-col size="3">ຈຳນວນ</ion-col>
+    </ion-row>
+
+    <div *ngFor="let x of getProductSpecDataList();let i =index;">
+      <br />
+      <ion-label color="primary">{{x}}</ion-label>
+      <div *ngFor="let y of getProductSpecDataList2(x);let ix =index;">
+        <ion-row>
+          <ion-col size="4">{{y}}</ion-col>
+          <!-- <ion-col size="5">{{y}}</ion-col> -->
+          <!-- <ion-col size="1"><ion-icon color="primary" name="image"></ion-icon></ion-col> -->
+          <ion-col size="2" (click)="getpic()"
+            ><img src="../../assets/cart.png"
+          /></ion-col>
+          <ion-col size="3"
+            ><ion-input
+              type="number"
+              style="border: 1px solid rgb(222, 221, 221)"
+              [name]="x+','+y"
+              (ionChange)="updateReadyProdPrice($event)"
+              [value]="getProductDataByparams(x,y)[0]?.moreDetail?.price"
+            ></ion-input
+          ></ion-col>
+          <ion-col size="3"
+            ><ion-input
+              type="number"
+              style="border: 1px solid rgb(222, 221, 221)"
+              [name]="x+','+y"
+              (ionChange)="updateReadyProdQtt($event)"
+              [value]="getProductDataByparams(x,y)[0]?.moreDetail?.qtty"
+            ></ion-input
+          ></ion-col>
+        </ion-row>
+       <ion-slides [options]="slideOptscategory">
+        <!-- <ion-slide>
+          <img src="../../assets/icon/add2.png" style="width:64px;height: 64px;"/>
+        </ion-slide> -->
+        <ion-slide *ngFor="let img of getProductDataByparams(x,y)[0]?.image;let j=index">
+
+          <div class="img">
+            <!-- <img style="margin-bottom: 15px ;" src="{{this.Url}}{{i}}" alt=""> -->
+            <img [src]="getImage(img)" style="width:64px;height: 64px;"/>
+            <ion-icon (click)="removeImagesFromReadyProducts(x,y,[img])" class="heart" name="close-circle"></ion-icon>
+          </div>
+          
+        </ion-slide>
+        
+       </ion-slides>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer *ngIf="action=='list'">
+  <ion-button
+    [disabled]="getTotalAddonLength()==0"
+    (click)="createForm()"
+    expand="block"
+  >
+    ຕັ້ງລາຄາ ແລະ ຈຳນວນຂອງສິນຄ້າ
+  </ion-button>
+</ion-footer>
+
+<ion-footer *ngIf="action=='set'">
+  <ion-button (click)="send()" expand="block"> ຢືນຢັນ </ion-button>
+</ion-footer>
+
+<ion-footer *ngIf="action=='add'">
+  <ion-item style="margin-bottom: 20px" lines="full">
+    <ion-input
+      [(ngModel)]="modal_value"
+      maxlength="10"
+      type="text"
+      [placeholder]="'ປ້ອນ'+id_add+'ທີ່ຕ້ອງການ'"
+    >
+    </ion-input>
+    <ion-text color="medium" style="margin-right: 10px"
+      >{{add.length}}/10</ion-text
+    >
+  </ion-item>
+
+  <ion-row class="ion-align-items-center ion-justify-content-center">
+    <ion-col size="6"></ion-col>
+    <ion-col size="3">
+      <ion-button (click)="backToList()" fill="outline" expand="block">
+        ຍົກເລີກ
+      </ion-button>
+    </ion-col>
+    <ion-col size="3">
+      <ion-button (click)="addValue(id_add,'inp_'+id_add)" expand="block">
+        ເພີ່ມ
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-footer>
+
+<ion-footer *ngIf="action=='addP'">
+  <ion-item style="margin-bottom: 20px" lines="full">
+    <ion-input
+      id="nP"
+      maxlength="10"
+      type="text"
+      placeholder="ປ້ອນຊື່ຕົວເລືອກ"
+    ></ion-input>
+    <ion-text color="medium" style="margin-right: 10px"
+      >{{add.length}}/10</ion-text
+    >
+  </ion-item>
+
+  <ion-row class="ion-align-items-center ion-justify-content-center">
+    <ion-col size="6"></ion-col>
+    <ion-col size="3">
+      <ion-button (click)="backToList()" fill="outline" expand="block">
+        ຍົກເລີກ
+      </ion-button>
+    </ion-col>
+    <ion-col size="3">
+      <ion-button (click)="addProperty()" expand="block"> ເພີ່ມ </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-footer>

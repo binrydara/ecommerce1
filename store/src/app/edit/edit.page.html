@@ -1,0 +1,79 @@
+<ion-header class="ion-no-border">
+  <!--<ion-toolbar color="light">
+     <ion-buttons slot="start">
+<ion-back-button></ion-back-button>
+</ion-buttons> 
+    <ion-title>
+     text.s_edit 
+    </ion-title>
+  </ion-toolbar>-->
+  <ion-item lines="none">
+    <ion-icon slot="start" (click)="dismiss()" color="dark"  name="arrow-back"></ion-icon>
+    <!-- <ion-label>ແກ້ໄຂຂໍ້ມູນສິນຄ້າ</ion-label> -->
+    <ion-label>ເພີ່ມສິນຄ້າ</ion-label>
+  </ion-item>
+</ion-header>
+
+<ion-content >
+
+
+<div style="border-radius: 30px 30px 0px 0px;background-color: white" class="ion-padding">
+
+<!-- <form #form="ngForm" (ngSubmit)="edit(form.value)">
+
+
+<ion-item>
+  <ion-label position="floating"> Small Price </ion-label>
+  <ion-input type="tel"  [(ngModel)]="data.s_price"  name="s_price"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label position="floating"> Medium Price </ion-label>
+  <ion-input type="tel" [(ngModel)]="data.m_price"  name="m_price"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label position="floating"> Full Price </ion-label>
+  <ion-input type="tel" [(ngModel)]="data.l_price"  name="l_price"></ion-input>
+</ion-item>
+
+<br><br>
+<ion-button expand="block" mode="ios" type="submit"> Submit </ion-button>
+</form> -->
+
+<ion-item>
+  <ion-label> ຊື່ສິນຄ້າ :</ion-label>
+  <!-- [(ngModel)]="data.m_price"  name="m_price"-->
+  <ion-input type="text"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label position="floating"> ລາຍລະອຽດສິນຄ້າ </ion-label>
+  <ion-input type="text"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label position="stacked"> ປະເພດສິນຄ້າ </ion-label>
+    <ion-select value="peperoni" multiple="true" placeholder="Select Pizza">
+      <ion-select-option value="peperoni">Peperoni</ion-select-option>
+      <ion-select-option value="hawaii">Hawaii</ion-select-option>
+    </ion-select>
+</ion-item>
+<ion-item>
+  <ion-label position="floating"> ຍີ່ຫໍ້ສິນຄ້າ </ion-label>
+    <ion-select value="peperoni" multiple="true" placeholder="Select Pizza">
+      <ion-select-option value="peperoni">Peperoni</ion-select-option>
+      <ion-select-option value="hawaii">Hawaii</ion-select-option>
+    </ion-select>
+</ion-item>
+<ion-item>
+  <ion-label position="stacked"> ລາຄາສິນຄ້າ </ion-label>
+  <ion-input type="number">LAK</ion-input>
+</ion-item>
+<ion-item>
+  <ion-label> ຕົວເລືອກສິນຄ້າ</ion-label>
+  <ion-icon slot="end" name="chevron-forward"></ion-icon>
+</ion-item>
+
+</div>
+
+</ion-content>
+

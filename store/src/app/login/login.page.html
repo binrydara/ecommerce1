@@ -1,0 +1,43 @@
+<!-- <ion-header class="ion-no-border">
+<ion-toolbar color="light">
+<ion-buttons slot="start">
+<ion-back-button></ion-back-button>
+</ion-buttons>
+</ion-toolbar>
+</ion-header> -->
+
+<ion-content >
+<!-- <div style="height: 80px;background-color:#f4f5f8">
+&nbsp;
+</div> -->
+
+<!-- margin-top: -20%; -->
+<div style="height: auto;border-radius: 30px;background-color: white" class="ion-padding">
+
+<center>
+  <h1> ກະລຸນາປ້ອນຂໍ້ມູນເພື່ອເຂົ້າລະບົບ </h1>
+</center>
+<br>
+
+<form #form="ngForm" (ngSubmit)="login(form.value)">
+
+<ion-item>
+  <ion-label position="floating"> ເບີໂທ </ion-label>
+  <ion-input type="tel" [(ngModel)]="phone" required name="phone"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label position="floating"> ລະຫັດຜ່ານ </ion-label>
+  <ion-input type="password" [(ngModel)]="password" required name="password"></ion-input>
+</ion-item>
+<br>
+<ion-button expand="block" mode="ios" type="submit"> ເຂົ້າສູ່ລະບົບ </ion-button>
+
+</form>
+</div>
+
+</ion-content>
+
+<ion-footer class="ion-no-border" >
+<p align="center"> ຍັງບໍ່ມີບັນຊີ ? <a routerDirection="forward" routerLink="/signup"> ລົງທະບຽນ </a></p>
+</ion-footer>
