@@ -1,5 +1,5 @@
 <ion-header *ngIf="action==1">
-  <ion-toolbar style="--background: #B4A7D9;" >
+  <ion-toolbar color="primary">
     <ion-title class="tittle">ສັ່ງຊື້ສິນຄ້າ</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="dismiss()">
@@ -11,34 +11,38 @@
 
 <ion-content  *ngIf="action==1">
  
-    <ion-card class="cardcontent">
-      <div class="content">
-        <div class="ow" style="margin: 10px;font-size: 14px;font-weight: bold;">
-          <ion-label >ສະຖານທີ່ສົ່ງ:</ion-label>
-          <p *ngIf="location == null" (click)="action=2" class="location" id="option">+ ເລືອກທີ່ຢູ່ຈຸດຮັບເຄື່ອງ</p>
+          <ion-item lines="full">
+            <ion-label >ຈຸດຮັບເຄື່ອງ : </ion-label>
+          <ion-label style="font-size: larger;" color="primary">{{addressname()}}</ion-label>
+          <ion-button (click)="goto_profile()">
+            ປ່ຽນຈຸດຮັບເຄື່ອງ
+          </ion-button>
+          </ion-item>
+          
+          <ion-button *ngIf="addressname() == '0'" (click)="goto_profile()" expand="block" fill="outline" shape="round">
+            + ເລືອກທີ່ຢູ່ຈຸດຮັບເຄື່ອງ
+          </ion-button>
 
-          <div class="location" *ngFor="let item of location" (click)="action=2">
-            <ion-label >
-              <p> ສະຖານທີ່ສົ່ງ: {{item.place}}, ບ້ານ: {{item.village}}, ເມື່ອງ: {{item.district}}, ເເຂວງ: {{item.provice}}</p>
-            </ion-label>
-          </div>
-        </div>
-          <ion-list class="ion-no-padding" style="background: #E3C3AE;" *ngFor="let shop of storelist();let j=index">
-            <ion-list class="list_store">
+          <ion-list class="ion-no-padding" style="background: #3880ff;" *ngFor="let shop of store_in_cart;let j=index">
+            <!-- <ion-list class="list_store">
               <div class="box_store">
-                <div class="name_store">{{shop}}</div>
+                <div class="name_store"></div>
               </div>
-            </ion-list>
-                      <ion-list class="ion-no-padding" *ngFor="let cart of order">
-                        <div class="cardcontents" *ngIf="shop == cart.store">
-                          <div class="images"><img id="sss" src="{{cart.productimage}}" alt="" ></div> 
-                            <ion-label class="detail" >
-                              <p class="name">ຊື່ຜະລິດຕະພັນ: {{cart.Nameproduct}}</p>
-                                <p class="name">ຈໍານວນ: {{cart.qty}}</p>
-                              <p class="price">ລາຄາ: {{cart.price| number}} ກີບ</p>        
-                            </ion-label>                  
-                        </div> 
-
+            </ion-list> -->
+            <ion-item lines="none">
+              <ion-label style="font-weight: bold;">ສິນຄ້າຈາກຮ້ານ : {{shop.name}}</ion-label>
+            </ion-item>
+                      <ion-list class="ion-no-padding" *ngFor="let o of order">
+                        <ion-row *ngIf="shop.uuid == o.storeUuid">
+                          <ion-col size="3"><img id="sss" src="/assets/icon/male.jpg" alt="" ></ion-col>
+                          <ion-col size="9">
+                            <ion-label>
+                              <p>ຊື່ສິນຄ້າ: {{o.name}}</p>
+                                <p>ຈໍານວນ: {{o.order_qty}}</p>
+                              <p>ລວມລາຄາ: {{o?.total_order_price | number}} ກີບ</p>        
+                            </ion-label>         
+                          </ion-col>
+                        </ion-row>
                       </ion-list> 
 
                       <!-- transport -->
@@ -49,9 +53,9 @@
                             <ion-slide *ngFor="let item of list">
                                 <ion-card class="list_card">
                                   <div style="display: flex;flex-direction: row;">
-                                    <input type="checkbox" style="margin: 25px 10px; accent-color: #9b59b6;">
+                                    <input type="checkbox" style="margin: 25px 10px; accent-color: #3880ff;">
                                       <div style="display: flex;flex-direction: row;" (click)="transport(item.n)">
-                                        <img style="margin: 20px 5px;width: 25px;height: 25px;" src="{{item.t}}" alt="">
+                                        <img style="margin: 20px 5px;width: 25px;height: 25px;" src="/assets/icon/male.jpg" alt="">
                                         <p class="pay" >{{item.n}}</p>
                                       </div>
                                   </div>
@@ -69,9 +73,9 @@
                             <ion-slide *ngFor="let item of pays">
                                 <ion-card class="list_cardpays">
                                   <div style="display: flex;flex-direction: row;">
-                                    <input type="checkbox" style="margin: 25px 10px; accent-color: #9b59b6;">
+                                    <input type="checkbox" style="margin: 25px 10px; accent-color: #3880ff;">
                                       <div style="display: flex;flex-direction: row;" >
-                                        <img style="margin: 20px 5px;width: 25px;height: 25px;" src="{{item.p}}" alt="">
+                                        <img style="margin: 20px 5px;width: 25px;height: 25px;" src="/assets/icon/mmoney.png" alt="">
                                         <p class="pay" >{{item.n}}</p>
                                       </div>
                                   </div>
@@ -86,20 +90,18 @@
                                 <p class="ps">ການຈັດສົ່ງສິນຄ້າ:</p>
                                 <p style="font-size: 14px;">ຮັບເຄື່ອງພາຍໃນ ວັນທີ່: 7-9 ມີຖຸນາ</p>
                               </div>
-                                <p class="ps">{{sum_deliverycoststore(shop) | number}} ກີບ</p>
+                                <p class="ps">{{sum_deliverycoststore(shop.uuid) | number}} ກີບ</p>
                               <ion-icon class="" style="padding-top: 10px;" name="chevron-forward-outline"></ion-icon>
                             </ion-label>               
                           </ion-list>
 
-                          <div class="detail_price">
                             <ion-label style="padding-right: 5px;">
-                                <p class="font" >ລາຍການທັງໝົດ: {{counts_qtyshop(shop)}} ລາຍການ</p>
+                                <p class="font" >ລາຍການທັງໝົດ: {{counts_qtyshop(shop.uuid)}} ລາຍການ</p>
                                 <ion-label class="box_detail_price">
                                   <p class="font">ລາຄາລວມສັ່ງຊື້ (ລວມຄ່າສົ່ງ): </p>   
                                   <p class="price_shop">{{sum_pricestore(shop)| number }} ກີບ </p>
                                 </ion-label>
                             </ion-label>
-                          </div>
           </ion-list>
     
           <div >
@@ -113,11 +115,9 @@
               </ion-label>
             <ion-label class="row">
               <div class="col-left">ລາຄາລວມທັງໝົດ: </div>
-                <div style="color: #F44F1F;" class="col-right">{{sum_pricesall() | number}} ກີບ</div>
+                <div style="color: #3880ff;" class="col-right">{{sum_pricesall() | number}} ກີບ</div>
             </ion-label>
           </div>
-      </div>
-    </ion-card>
   
 </ion-content>
 
@@ -126,118 +126,15 @@
     <p class="sum_all">ລາຄາລວມທັງໝົດ: </p>
     <p class="price_all"> {{sum_pricesall() | number}} ກີບ</p>
   </ion-label>
-  <ion-button style="--background: #F44F1F;--border-radius: 40%;" (click)="payAll()">ສັ່ງຊື້
+  <ion-button (click)="payAll()">ສັ່ງຊື້
       <!-- <img  src="../../../assets/icon/checkout_30px.png" alt=""> -->
   </ion-button> 
 </ion-footer>
 
-                            <!-- Action2 -->
-
-<ion-header *ngIf="action==2">
-  <ion-toolbar style="--background: #B4A7D9;" >
-    <ion-title class="tittle">ເລືອກທີ່ຢູ່</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="back()">
-        <ion-icon slot="icon-only" name="close"></ion-icon>
-      </ion-button>
-  </ion-buttons>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content *ngIf="action==2">
-  <div class="container">
-    <div style="margin: 10px;font-size: 18px;font-weight: bold;">
-       <ion-label >ສະຖານທີ່ສົ່ງ:</ion-label>
-        <p (click)="action=3" class="location">+ ເພີ່ມທີ່ຢູ່ຈຸດຮັບເຄື່ອງ</p>
-    </div>
-
-  <div  *ngFor="let item of detail_person;let j=index">
-    <ion-card class="card_content" >
-    
-        <div style="margin: 10px;" ><img style="height: 35px; width: 30px;margin-top: 20px;" src="../../../../assets/icon/Location_48px.png" alt=""></div> 
-          <div class="detail_conent" (click)="sent(item)">
-            <ion-label>
-              <p class="village"> ສະຖານທີ່ສົ່ງ: {{item.place}}</p>
-              <p class="village">ບ້ານ: {{item.village}}</p>
-                <p class="village">ເມື່ອງ: {{item.district}}</p>
-              <p class="village">ເເຂວງ: {{item.provice}}</p>
-            </ion-label>
-          </div>
-    
-          <div class="edit">
-            <div><ion-text style="color: #41A5EE; " >ເເກ້ໄຂ</ion-text></div>
-            <div><ion-icon (click)="delete_location(j)" style="height: 25px;width: 25px;margin-top: 20px;margin-left: 5px;" name="trash-outline"></ion-icon></div>
-          </div>
-    
-    </ion-card>
-  </div>
-    <div *ngIf="detail_person == null">
-      <ion-label>
-        <p style="font-size: 18px;margin-top: 150px;text-align: center;">ບໍ່ມີທີ່ຢູ່ທີ່ທ່ານເພີ່ມ ກະລຸນາເພີ່ມທີ່ຢູ່ຂອງທ່ານ​....!!</p>
-      </ion-label>
-    </div>
-  </div>
-</ion-content>
-
-                            <!-- End Action2 -->
-
-
-                            <!-- Action 3 -->
-<ion-header *ngIf="action==3">
-  <ion-toolbar style="--background: #B4A7D9; border-radius: 5px;" >
-    <ion-title class="tittle">ເພີ່ມທີ່ຢູ່</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="action=2">
-        <ion-icon slot="icon-only" name="close"></ion-icon>
-      </ion-button>
-  </ion-buttons>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content *ngIf="action==3">
-  <div class="mind">
-      <ion-label>ຊື່ ເເລະ ນາມສະກຸນ:</ion-label>
-      <ion-input [(ngModel)]="name" class="input" maxlength="15" placeholder="ປ້ອນຊື່ ເເລະ ນາມສະກຸນ" required></ion-input>
-      
-      <ion-label>ເບີໂທຕິດຕໍ່</ion-label>
-      <ion-input [(ngModel)]="tel"  class="input" maxlength="15" placeholder="ປ້ອນເບີໂທ"></ion-input>
-
-      <ion-label>ສະຖານທີ່ສົ່ງ</ion-label>
-      <ion-input [(ngModel)]="place"  class="input" maxlength="15" placeholder="ປ້ອນສະຖານທີ່"></ion-input>
-    
-  
-        <ion-label>ບ້ານ:</ion-label>
-        <ion-select [(ngModel)]="village"  class="input" placeholder="ເລືອກບ້ານ">
-          <ion-select-option value="ໂນນສະຫວ່າງ">ໂນນສະຫວ່າງ</ion-select-option>
-          <ion-select-option value="ປາກທ້າງ">ປາກທ້າງ</ion-select-option>
-          <ion-select-option value="ໜອງໜ້ຽວ">ໜອງໜ້ຽວ</ion-select-option>
-        </ion-select>
-  
-  
-      <ion-label>ເມື່ອງ:</ion-label>
-      <ion-select [(ngModel)]="district"  class="input" placeholder="ເລືອກເມືອງ">
-        <ion-select-option>ສີໂຄດຕະບອງ</ion-select-option>
-      </ion-select>
-  
-      <ion-label>ເເຂວງ:</ion-label>
-      <ion-select [(ngModel)]="provice"   class="input" placeholder="ເລືອກເເຂວງ">
-        <ion-select-option>ນະຄອນຫຼວງວຽງຈັນ</ion-select-option>
-      </ion-select>
-
-  </div>
-
-</ion-content>
-
-<ion-button *ngIf="action ==3" (click)="add_detail()" id="add" style="--background: #F44F1F; width: 99%; height: 50px; padding-bottom: 10px; ">ເພີ່ມ
-  <!-- <img  src="../../../assets/icon/checkout_30px.png" alt=""> -->
-</ion-button> 
-
-
-                          <!-- End Action 3  -->
 
                           <!-- action 4 -->
   <ion-header *ngIf="action==4">
-  <ion-toolbar style="--background: #B4A7D9; border-radius: 5px;" >
+  <ion-toolbar style="--background: #3880ff; border-radius: 5px;" >
     <ion-title>ລາຍລະອຽດການສົ່ງສິນຄ້າ</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="action=1">

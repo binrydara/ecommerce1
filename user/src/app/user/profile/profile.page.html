@@ -1,16 +1,17 @@
 <ion-header *ngIf="Isaction && action==0" class="osahan-nav">
   <ion-toolbar>
-     <ion-buttons slot="start">
+     <ion-buttons *ngIf="action_modal==''" slot="start">
         <ion-menu-button class="back-icon-color"></ion-menu-button>
+     </ion-buttons>
+      <ion-buttons *ngIf="action_modal=='modal'" slot="start">
+        <ion-button (click)="dismiss()">
+           <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+        </ion-button>
      </ion-buttons>
      <!-- <ion-title>ຂໍ້ມູນສ່ວນຕົວ
      </ion-title> -->
      <ion-label class="title">ຂໍ້ມູນສ່ວນຕົວ</ion-label>
-     <!-- <ion-buttons [routerLink]="['/categories']" slot="primary">
-        <ion-button>
-           <ion-icon slot="icon-only" name="list"></ion-icon>
-        </ion-button>
-     </ion-buttons> -->
+    
   </ion-toolbar>
 </ion-header>
 
@@ -148,6 +149,11 @@
             </p>
         </ion-item>
     </ion-card>
+  </div>
+  <div *ngIf="address_list == null">
+    <ion-label>
+      <p style="font-size: 18px;margin-top: 150px;text-align: center;">ບໍ່ມີທີ່ຢູ່ທີ່ທ່ານເພີ່ມ ກະລຸນາເພີ່ມທີ່ຢູ່ຂອງທ່ານ​....!!</p>
+    </ion-label>
   </div>
   
 </ion-content>

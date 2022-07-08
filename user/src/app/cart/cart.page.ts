@@ -89,6 +89,12 @@ export class CartPage implements OnInit {
     this.cart.forEach((v, i) => {
       v['index'] = i;
     });
+    this.unCheckedItem.push(...this.cart.filter((v) => v.storeUuid != this.cart[0].storeUuid));
+
+    setTimeout(() => {
+      this.uncheckStore();
+    }, 1000);
+
   }
 
   check() {
@@ -145,7 +151,7 @@ export class CartPage implements OnInit {
   }
   getqty_addons(action: number, product_index: number, i: number) {
     if (action == 1) {
-     
+
       if (this.cart[product_index].addons[i].qty >= 100) {
         return;
       }
@@ -154,7 +160,7 @@ export class CartPage implements OnInit {
 
       localStorage.setItem('cart', JSON.stringify(this.cart));
     } else {
-     
+
       if (this.cart[product_index].addons[i].qty <= 1) {
         return;
       }
@@ -164,21 +170,15 @@ export class CartPage implements OnInit {
     }
   }
 
-  async alertwhenitemnull() {
-    const alers = await this.toat.create({
-      message: 'ກະລຸນາເລືອກລາຍການສິນຄ້າ!!',
-      duration: 800,
-      position: 'middle',
-      icon: 'information-circle',
-    });
-    await alers.present();
-  }
+
 
   storelist() {
     // ເເຍກ ຮ້ານຊໍ້າກັນມາເປັນຕົວດຽວ
     if (this.cart != null) {
       this.ax = this.cart.map((v) => v.storeUuid);
       this.ax = [...new Set(this.ax)];
+
+
       return this.ax;
     }
   }
@@ -206,16 +206,20 @@ export class CartPage implements OnInit {
 
 
   unCheckedItem = [];
-
+  isStoreChecked(storeUuid:string){
+    return !this.unCheckedItem.find((v) => v.storeUuid == storeUuid);
+  }
   isItemSelect(i: number) {
     // const uuid=this.cart[i].uuid;
+    console.log(i,this.unCheckedItem.length);
+    
     return !this.unCheckedItem.find((v) => v.index == i);
   }
 
-  setAllCheck(v: boolean) {
-    const el = document.getElementById('allstore') as HTMLIonCheckboxElement;
-    el.checked = v;
-  }
+  // setAllCheck(v: boolean) {
+  //   const el = document.getElementById('allstore') as HTMLIonCheckboxElement;
+  //   el.checked = v;
+  // }
   addUnCheckedStore(ev: any) {
     // check true store auto select item
     const el = ev.target;
@@ -228,13 +232,20 @@ export class CartPage implements OnInit {
       x.forEach((v) => {
         this.unCheckedItem.splice(this.unCheckedItem.indexOf(v), 1);
       });
-      if (!this.unCheckedItem.length) {
-        this.setAllCheck(true);
-      }
+      this.cart.filter((v) => v.storeUuid != s).forEach(v=>{
+        if(!this.unCheckedItem.find(x=>x.index==v.index)){
+          this.unCheckedItem.push(v);
+        }
+      })
+      this.uncheckStore();
     } else {
       // false
-      this.unCheckedItem.push(...this.cart.filter((v) => v.storeUuid == s));
-      this.setAllCheck(false);
+      this.cart.filter((v) => v.storeUuid == s).forEach(v=>{
+        if(!this.unCheckedItem.find(x=>x.index==v.index)){
+          this.unCheckedItem.push(v);
+        }
+      })
+      // this.setAllCheck(false);
     }
   }
 
@@ -247,53 +258,68 @@ export class CartPage implements OnInit {
           .map((v) => v.storeUuid)
       ),
     ].forEach((v: string) => {
-      (document.getElementById(v) as HTMLIonCheckboxElement).checked = true;
+      (document.getElementById(v) as HTMLInputElement).checked = true;
     });
+  }
+  checkStoreByItem(v) {
+
+    (document.getElementById(v) as HTMLInputElement).checked = true;
+
   }
   uncheckStore() {
     [...new Set(this.unCheckedItem.map((v) => v.storeUuid))].forEach((v) => {
-      (document.getElementById(v) as HTMLIonCheckboxElement).checked = false;
+      const x = (document.getElementById(v) as HTMLInputElement);
+      if (x)
+        x.checked = false;
     });
-    this.setAllCheck(false);
+    // this.setAllCheck(false);
   }
 
   addUnCheckItems(j: any) {
     let x = this.unCheckedItem.findIndex((v) => v.index == j);
 
     if (x != -1) {
-      this.unCheckedItem.splice(x, 1);
-      this.checkAllItemByStore();
-      if (!this.unCheckedItem.length) {
-        this.setAllCheck(true);
-      }
+      const y = this.unCheckedItem.splice(x, 1);
+      this.cart.filter((v) => v.storeUuid != this.cart.find(v=>v.index==j).storeUuid)
+      .forEach(v => {
+        if(!this.unCheckedItem.find(x=>x.index==v.index))
+        this.unCheckedItem.push(v);
+      });
+      this.checkStoreByItem(y[0].storeUuid);
+      this.uncheckStore();
     } else {
-      this.unCheckedItem.push(...this.cart.filter((v) => v.index == j));
+      this.cart.filter((v) => v.index == j).forEach(v => {
+        if(!this.unCheckedItem.find(x=>x.index==v.index)){
+           this.unCheckedItem.push(v);
+        }
+      });
+     
       this.uncheckStore();
     }
   }
 
-  checkallstore(ev: any) {
-    const el = ev.target;
-    const s = el.uuid;
-    const val = el.checked;
+  // checkallstore(ev: any) {
+  //   const el = ev.target;
+  //   const s = el.uuid;
+  //   const val = el.checked;
 
-    if (val) {
-      this.ax.forEach((v) => {
-        const el = document.getElementById(v) as HTMLIonCheckboxElement;
-        console.log(el);
+  //   if (val) {
+  //     this.ax.forEach((v) => {
+  //       const el = document.getElementById(v) as HTMLIonCheckboxElement;
+  //       console.log(el);
 
-        el.checked = true;
-      });
-      this.unCheckedItem = [];
-      return;
-    }
+  //       el.checked = true;
+  //     });
+  //     this.unCheckedItem = [];
+  //     return;
+  //   }
 
-    this.ax.forEach((v) => {
-      const el = document.getElementById(v) as HTMLIonCheckboxElement;
-      el.checked = false;
-    });
-    this.unCheckedItem.push(...this.cart);
-  }
+  //   this.ax.forEach((v) => {
+  //     const el = document.getElementById(v) as HTMLIonCheckboxElement;
+  //     el.checked = false;
+  //   });
+  //   this.unCheckedItem.push(...this.cart);
+  // }
 
   async submitSelectedAllItems() {
     const items = this.cart.filter(
@@ -316,11 +342,13 @@ export class CartPage implements OnInit {
       const items = this.cart.filter(
         (v) => !this.unCheckedItem.find((x) => x.index == v.index)
       );
-      return items.reduce((x, y) =>
-        x + y.addons.reduce((a, b) =>
-          a + b.total_price, 0), 0) +
-        items.reduce((a, b) =>
-          a + b.total_order_price, 0);
+
+      // const getaddons=items.filter(v=>v.addons.length>0);
+      // console.log(getaddons);
+
+      // console.log(items.reduce((x, y)=>x+y.addons.reduce((a, b) =>a + b.total_price, 0),0));
+
+      return items.reduce((x, y) => x + y.addons.reduce((a, b) => a + b.total_price, 0), 0) + items.reduce((a, b) => a + b.total_order_price, 0);
     }
   }
 
@@ -338,21 +366,36 @@ export class CartPage implements OnInit {
         items.reduce((a, b) =>
           a + b.order_qty, 0);
     }
-    
+
+  }
+
+
+  async alertwhenitemnull() {
+    const alers = await this.toat.create({
+      message: 'ກະລຸນາເລືອກລາຍການສິນຄ້າ!!',
+      duration: 1000,
+      position: 'middle',
+      icon: 'information-circle',
+    });
+    await alers.present();
   }
 
   async payAll() {
     // ສັ່ງຊື້ໝົດທຸກຮ້ານ
     const items = this.cart.filter(
-      (v) => !this.unCheckedItem.find((x) => x.uuid == v.uuid)
+      (v) => !this.unCheckedItem.find((x) => x.index == v.index)
     );
     if (items.length == 0) {
       this.alertwhenitemnull();
     } else {
-      localStorage.setItem('order', JSON.stringify(items));
+      // localStorage.setItem('order', JSON.stringify(items));
       const detailorder = await this.modalcontrol.create({
         component: AllPricePage,
+        componentProps: {
+          'order': items
+        }
       });
+
       await detailorder.present();
     }
     // const allBills =[]

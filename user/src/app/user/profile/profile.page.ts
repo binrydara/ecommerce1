@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActionSheetController, AlertController, LoadingController, ModalController } from '@ionic/angular';
 import { ProfileService } from 'src/service/profile.service';
@@ -36,13 +36,24 @@ export class ProfilePage implements OnInit {
 
   public Isaction: boolean = true;
 
+  @Input() action_modal="";
+
   constructor(private rout: Router, private datapass: DatapassService,
     private profile: ProfileService,
     private load: LoadingController,
     private modalCtrl: ModalController,
     private alt: AlertController) { }
 
+    dismiss() {
+      this.modalCtrl.dismiss();
+    }
+
+    ionViewWillEnter(){
+      
+    }
+
   ngOnInit() {
+
     this.province_list = this.datapass.province_array;
     this.district_list = this.datapass.distirct_array;
     this.village_list = this.datapass.village_array;

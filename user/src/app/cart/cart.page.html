@@ -63,11 +63,11 @@
 
 
 <ion-content >
-  <ion-list class="ion-no-padding" *ngFor="let shop of storelist();let j=index">
+  <ion-list class="ion-no-padding" *ngFor="let shop of storelist();let i=index">
     <ion-list class="list_store">
       <div class="box_store">
         <div class="custom_checkbox"> 
-          <input type="checkbox" class="checkboxs" checked slot="start" (change)="addUnCheckedStore($event)" [id]="shop" >          
+          <input type="checkbox" class="checkboxs" [checked]="isStoreChecked(shop)"  slot="start" (change)="addUnCheckedStore($event)" [id]="shop" >          
         </div>      
         <div style="display: flex;">
           <div class="name_store"(click)="gotoprofile(shop)">{{getstorename(shop)}}</div>
@@ -79,7 +79,7 @@
         <ion-list class="ion-no-padding" *ngFor="let c of cart;let j=index">
             <div class="cardcontent" *ngIf="shop == c.storeUuid">
               <div class="clas_check">
-                <input type="checkbox"class="checkbox" [checked]="isItemSelect(j)" checked slot="start"
+                <input type="checkbox"class="checkbox" [checked]="isItemSelect(j)"  slot="start"
                 (click)="addUnCheckItems(j)" /></div>
                 <div class="images"><img id="sss" src="{{getImagePath(c?.image[0]) || '/assets/icon/shoe.jpg'}}" alt="" (click)="onClick(c)"></div> 
                   <ion-label class="detail" (click)="onClick(c)">
@@ -96,11 +96,11 @@
                               <button class="btqty" (click)="getqty(1,j)"><ion-icon style="font-size: 14px;" slot="icon-only" name="add"></ion-icon></button>
                           </ion-buttons>
                         </div>    
-                    </div>         
+                    </div>   
             </div> 
 
             <ion-list *ngFor="let a of c?.addons;let k=index">
-              <ion-grid fixed>
+              <ion-grid *ngIf="shop == c.storeUuid" fixed>
                 <ion-row>
                   <ion-col size="1">ao</ion-col>
                   <ion-col size="3"><img id="sss" src="{{getImagePath(a?.image[0]) || '/assets/icon/shoe.jpg'}}" alt="" (click)="onClick(a)"></ion-col>
@@ -124,6 +124,8 @@
                 </ion-row>
               </ion-grid>
             </ion-list>
+
+            
         </ion-list>   
   </ion-list>
     <div *ngIf="cart == null" style="display: flex; align-items: center;flex-direction: column;margin-top: 20px;">
@@ -136,8 +138,7 @@
 <ion-footer class="footer" *ngIf="findstore() > 0">
   <div class="lablel_footer">
     <div class="div_checkall_footer">
-      <input type="checkbox" (change)="checkallstore($event)" id="allstore" class="checkbox" checked slot="start">
-        <p style="margin: 15px 5px;font-size: 14px;">ທັງໝົດ<p>     
+     <p style="margin: 15px 5px;font-size: 14px;">ທັງໝົດ<p>     
           </div>
             <div class="divall_price_footer" > 
               <p class="p_footer">ຍອດລວມ: </p>
